@@ -36,22 +36,43 @@ import static org.sagebionetworks.research.domain.inject.GsonModule.createPassTh
 
 import com.google.gson.JsonDeserializer;
 
+import org.sagebionetworks.research.domain.inject.GsonModule;
 import org.sagebionetworks.research.domain.inject.GsonModule.ClassKey;
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey;
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey;
 import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule.StepViewClassKey;
+import org.sagebionetworks.research.presentation.inject.StepViewModule;
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory;
 import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey;
+import org.sagebionetworks.research.presentation.mapper.DrawableMapper;
 import org.sagebionetworks.research.presentation.model.interfaces.StepView;
 import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory;
+
+import java.util.Map;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 
+/**
+ * Dagger configuration to register PlaqueBodyMapStep as a new type of Step with associated type-key of
+ * "plaqueBodyMapStep".
+ * <p>
+ * The creation flow of a Step is: JSON to a Step class, Step class to a StepView class, and StepView class is
+ * displayed by a Fragment. This Module defines the bindings for the factories which instantiate the classes
+ * associated with "plaqueBodyMapStep".
+ */
 @Module
 public class PlaqueBodyMapStepModule {
+
+    /**
+     * Registers PlaqueBodyMapStep as the POJO associated with "plaqueBodyMapStep". This configures Gson's polymorphic
+     * deserialization of the Step class hierarchy.
+     *
+     * @see org.sagebionetworks.research.domain.inject.StepModule#provideType(Map)
+     */
     @Provides
     @IntoMap
     @StepClassKey(PlaqueBodyMapStep.class)
@@ -59,6 +80,13 @@ public class PlaqueBodyMapStepModule {
         return PlaqueBodyMapStep.TYPE;
     }
 
+
+    /**
+     * Register deserializer to read a PlaqueBodyMapStep from a JSON-format Task's "steps" field.
+     *
+     * @return PlaqueBodyMapStep's Gson deserializer
+     * @see GsonModule#provideJsonDeserializerMap()
+     */
     @Provides
     @IntoMap
     @ClassKey(PlaqueBodyMapStep.class)
@@ -66,6 +94,12 @@ public class PlaqueBodyMapStepModule {
         return createPassThroughDeserializer(PlaqueBodyMapStep.class);
     }
 
+    /**
+     * Register the factory method for mapping a Step class to a StepView class for a "plaqueBodyMapStep".
+     *
+     * @see StepViewModule#stepToFactoryMap()
+     * @see StepViewModule#provideStepViewFactory(Map, DrawableMapper)
+     */
     @Provides
     @IntoMap
     @StepTypeKey(PlaqueBodyMapStep.TYPE)
@@ -73,6 +107,13 @@ public class PlaqueBodyMapStepModule {
         return PlaqueBodyMapStepView::fromPlaqueBodyMapStep;
     }
 
+    /**
+     * Registers a Fragment to be shown when navigating to a "plaqueBodyMapStep".
+     *
+     * @return instance of ShowPlaqueBodyMapStepFragment
+     * @see ShowStepModule#fragmentFactoryMap()
+     * @see ShowStepModule#provideShowStepFragmentFactory(Map)
+     */
     @Provides
     @IntoMap
     @StepViewKey(PlaqueBodyMapStepView.TYPE)
@@ -80,6 +121,16 @@ public class PlaqueBodyMapStepModule {
         return ShowPlaqueBodyMapStepFragment::newInstance;
     }
 
+    /**
+     * ShowPlaqueBodyMapStepFragment extends ShowStepFragmentBase, which uses an abstract factory to instantiate a
+     * ViewModel for its descendants.
+     * <p>
+     * Note that the ShowPlaqueBodyMapStepFragment itself may need to be configured if it uses Dagger.
+     *
+     * @return instance of ShowStepViewModelFactory for creation of ViewModels for a "plaqueBodyMapStep"
+     * @see org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule#provideShowStepViewModelFactory(Map)
+     * @see PsorcastShowStepFragmentsModule#contributeShowPlaqueBodyStepFragmentInjector()
+     */
     @Provides
     @IntoMap
     @StepViewClassKey(PlaqueBodyMapStepView.TYPE)
