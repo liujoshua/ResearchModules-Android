@@ -1,0 +1,109 @@
+{
+  "comments": "timeout and delayToNextStep are defined in miliseconds;",
+  "identifier": "Flanker Inhibitory Control",
+  "type": "Flanker",
+  "hideActions": ["goBackward"],
+  "defaultSteps": { "numberOfSteps": 1, "startingStepGroup": "setA" },
+  "stepRules": [
+    {
+      "description": "If last administered step was between A01 and A50 than live steps would be B01 - B50",
+      "nextStepName": "firstLiveStep",
+      "stepGroup": "setB",
+      "criteria": [
+        {
+          "name": "lastStepIdentifierInSetA",
+          "description": "If last administered step was in set A"
+        }
+      ]
+    },
+    {
+      "description": "If last administered step was between B01 and B50 than live steps would be A01 - A50",
+      "nextStepName": "firstLiveStep",
+      "stepGroup": "setA",
+      "criteria": [
+        {
+          "name": "lastStepIdentifierInSetB",
+          "description": "If last administered step was in set B"
+        }
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "identifier": "A01",
+      "type": "form",
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
+      "resumeStep": "T.1L",
+      "stepName": "firstLiveStep",
+      "stepGroup": "setA",
+      "inputFields": [
+        {
+          "identifier": "A01a",
+          "dataType": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 1250,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
+            {
+              "itemResponseOID": "B3C6D4A2-CB57-E3AA-874A-F371871D523D",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "56C3CE81-96BC-6281-A865-C22D7166C34B",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "identifier": "A01b",
+          "dataType": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing left]",
+          "delayToNextInputField": 200,
+          "flankers": ["←", "←", "", "←", "←"],
+          "choices": [
+            {
+              "itemResponseOID": "4FEFC8E8-ED31-6D28-ADE1-B2D71BA64B27",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "DBCDD403-3B74-BC9A-A57D-A7D7C59D7108",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "identifier": "A01c",
+          "dataType": "singleChoice",
+          "flankerType": "testStimuli",
+          "stimuliType": "CongruentLeft",
+          "text": "[both flanking and center arrows pointing left]",
+          "timeout": 2000,
+          "flankers": ["←", "←", "←", "←", "←"],
+          "choices": [
+            {
+              "itemResponseOID": "880DC707-BE27-512D-A9CC-665618BC77E9",
+              "text": "[arrow left]",
+              "value": 1,
+              "score": 1
+            },
+            {
+              "itemResponseOID": "CF4FA60D-13EB-31CD-A76D-F36B44B52231",
+              "text": "[arrow right]",
+              "value": 2,
+              "score": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

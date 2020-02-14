@@ -2,5 +2,24 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/CJavaVM" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/java_swift" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/Bridge-iOS-SDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/CMSSupport" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/RNCryptor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/RNCryptor/Spec" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/ZipZap" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/Bridge-iOS-SDK" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/CMSSupport" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/RNCryptor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/RNCryptor/Spec" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/Bridge-iOS-SDK/Submodules/ZipZap" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/BridgeApp-Apple-SDK/Carthage/Checkouts/SageResearch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/mobiletoolbox/Carthage/Checkouts/SageResearch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-anycodable" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/flanker-test-app/src/main/swift/.build/checkouts/swift-java-coder" vcs="Git" />
   </component>
 </project>

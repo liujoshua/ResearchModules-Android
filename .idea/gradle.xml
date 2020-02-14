@@ -3,22 +3,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/common" />
-            <option value="$PROJECT_DIR$/motor-control" />
-            <option value="$PROJECT_DIR$/motor-control-test-app" />
-            <option value="$PROJECT_DIR$/psorcast" />
-            <option value="$PROJECT_DIR$/psorcast-test-app" />
-          </set>
-        </option>
-        <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
-      </GradleProjectSettings>
-      <GradleProjectSettings>
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="IDE">
             <builds>
@@ -36,6 +20,23 @@
             <option value="$PROJECT_DIR$/../SageResearch-Android/domain" />
             <option value="$PROJECT_DIR$/../SageResearch-Android/mobile-ui" />
             <option value="$PROJECT_DIR$/../SageResearch-Android/presentation" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/flanker-test-app" />
+            <option value="$PROJECT_DIR$/motor-control" />
+            <option value="$PROJECT_DIR$/motor-control-test-app" />
+            <option value="$PROJECT_DIR$/psorcast" />
+            <option value="$PROJECT_DIR$/psorcast-test-app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
