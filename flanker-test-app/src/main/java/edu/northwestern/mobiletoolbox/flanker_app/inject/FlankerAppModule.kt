@@ -39,7 +39,7 @@ import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import edu.northwestern.mobiletoolbox.flanker_app.activity.MainActivity
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerPerformTaskModule
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentModule
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerShowStepFragmentModule
 import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
 import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
 
@@ -54,7 +54,7 @@ abstract class FlankerAppModule {
     @ContributesAndroidInjector
     abstract fun contributePerformTaskActivityInjector(): PerformTaskActivity
 
-    @ContributesAndroidInjector(modules = [ShowStepFragmentModule::class, FlankerShowStepFragmentModule::class])
+    @ContributesAndroidInjector(modules = [FlankerShowStepFragmentModule::class])
     abstract fun contributesPerformTaskFragmentInjector(): PerformTaskFragment
 
     @Module

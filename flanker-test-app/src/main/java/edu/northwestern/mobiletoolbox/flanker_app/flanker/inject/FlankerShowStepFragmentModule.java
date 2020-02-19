@@ -30,17 +30,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject;
 
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope;
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowActiveUIStepFragment;
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowCountdownStepFragment;
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragment;
 import org.sagebionetworks.research.modules.common.step.instruction.ShowInstructionStepFragment;
 import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class FlankerShowStepFragmentModule {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FlankerShowStepFragmentModule.class);
+
     @ContributesAndroidInjector
     @ShowStepFragmentScope
     abstract ShowInstructionStepFragment contributeShowInstructionStepFragmentInjector();
@@ -48,4 +55,23 @@ public abstract class FlankerShowStepFragmentModule {
     @ContributesAndroidInjector
     @ShowStepFragmentScope
     abstract ShowOverviewStepFragment contributeShowOverviewStepFragmentInjector();
+
+    // below are from SageResearch's ShowStepFragmentModule, with FormUIStepFragment commented out
+
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowActiveUIStepFragment contributeShowActiveUIStepFragmentInjector();
+
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowCountdownStepFragment contributeShowCountdownStepFragmentInjector();
+
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowUIStepFragment contributeShowUIStepFragmentInjector();
+
+//    @ContributesAndroidInjector
+//    @ShowStepFragmentScope
+//    abstract FormUIStepFragment contributeFormUIStepFragmentInjector();
+//
 }

@@ -33,25 +33,22 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject;
 
 
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule;
 import org.sagebionetworks.research.mobile_ui.inject.TaskResultModule;
 import org.sagebionetworks.research.presentation.inject.RecorderConfigPresentationModule;
 import org.sagebionetworks.research.presentation.inject.RecorderModule;
 import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule;
-import org.sagebionetworks.research.presentation.inject.StepViewModule;
 import org.sagebionetworks.research.presentation.inject.TextToSpeechModule;
 
 import dagger.Module;
 
 @Module(includes = {
         FlankerTaskModule.class,
-        FlankerStepModule.class,
+        FlankerStepViewModule.class,
+        FlankerShowStepModule.class,
         RecorderModule.class,
         TextToSpeechModule.class,
         RecorderConfigPresentationModule.class,
-        StepViewModule.class,
         ShowStepViewModelModule.class,
-        ShowStepModule.class,
         TaskResultModule.class})
 public class FlankerPerformTaskModule {
 }

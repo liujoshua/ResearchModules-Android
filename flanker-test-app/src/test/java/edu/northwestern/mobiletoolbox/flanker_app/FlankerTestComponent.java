@@ -34,16 +34,10 @@ package edu.northwestern.mobiletoolbox.flanker_app;
 
 import com.google.gson.Gson;
 
-import org.sagebionetworks.research.domain.inject.StepModule;
-
 import dagger.Component;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerTaskModule;
 
-@Component(modules = {
-        StepModule.class,
-        FlankerStepModule.class,
-        FlankerTaskModule.class})
+@Component(modules = {FlankerTaskModule.class})
 public interface FlankerTestComponent {
     Gson gson();
 }
