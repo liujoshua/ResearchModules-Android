@@ -30,28 +30,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject;
+package edu.northwestern.mobiletoolbox.flanker_app.inject;
 
-
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule;
-import org.sagebionetworks.research.mobile_ui.inject.TaskResultModule;
-import org.sagebionetworks.research.presentation.inject.RecorderConfigPresentationModule;
-import org.sagebionetworks.research.presentation.inject.RecorderModule;
-import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule;
-import org.sagebionetworks.research.presentation.inject.StepViewModule;
-import org.sagebionetworks.research.presentation.inject.TextToSpeechModule;
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope;
+import org.sagebionetworks.research.modules.common.step.instruction.ShowInstructionStepFragment;
+import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
 
 import dagger.Module;
+import dagger.android.ContributesAndroidInjector;
 
-@Module(includes = {
-        FlankerTaskModule.class,
-        FlankerStepModule.class,
-        RecorderModule.class,
-        TextToSpeechModule.class,
-        RecorderConfigPresentationModule.class,
-        StepViewModule.class,
-        ShowStepViewModelModule.class,
-        ShowStepModule.class,
-        TaskResultModule.class})
-public class FlankerPerformTaskModule {
+@Module
+public abstract class FlankerShowStepFragmentModule {
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowInstructionStepFragment contributeShowInstructionStepFragmentInjector();
+
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract ShowOverviewStepFragment contributeShowOverviewStepFragmentInjector();
 }

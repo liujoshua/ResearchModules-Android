@@ -55,8 +55,6 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoice;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoiceInputField;
 
 /**
  * Override Base type

@@ -37,12 +37,16 @@ import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.FlankerFo
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInputFieldModule
 import org.sagebionetworks.research.domain.inject.ActionModule
 import org.sagebionetworks.research.domain.inject.StepModule
+import org.sagebionetworks.research.modules.common.step.instruction.InstructionStepModule
+import org.sagebionetworks.research.modules.common.step.overview.OverviewStepModule
 
 @Module(includes = [
     StepModule::class,
     ActionModule::class,
     FlankerInputFieldModule::class,
-    FlankerFormStepModule::class // custom Flanker Form Step
+    FlankerFormStepModule::class, // custom Flanker Form Step
+    OverviewStepModule::class,
+    InstructionStepModule::class
 ])
 class FlankerStepModule {
 
