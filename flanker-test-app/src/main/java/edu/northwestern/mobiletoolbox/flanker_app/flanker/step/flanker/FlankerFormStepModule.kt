@@ -30,12 +30,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker
 
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.ui.ShowFlankerFormStepFragment
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.ui.ShowFlankerFormStepFragment
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
 import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
@@ -68,6 +68,4 @@ class FlankerFormStepModule {
     fun provideFlankerFormStepFragmentFactory(): ShowStepFragmentFactory {
         return ShowStepFragmentFactory { stepView: StepView -> ShowFlankerFormStepFragment.newInstance(stepView) }
     }
-
-
 }

@@ -32,13 +32,39 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app;
 
-import com.google.gson.Gson;
+import android.util.Log;
 
-import dagger.Component;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerTaskModule;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-@Component(modules = {FlankerStepModule.class, FlankerTaskModule.class})
-public interface FlankerTestComponent {
-    Gson gson();
+import org.sagebionetworks.research.domain.step.interfaces.Step;
+import org.sagebionetworks.research.domain.task.Task;
+import org.sagebionetworks.research.domain.task.navigation.StepNavigator;
+import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory;
+import org.sagebionetworks.research.domain.task.navigation.TreeNavigator;
+
+import java.util.List;
+
+public class FlankerNavigator extends TreeNavigator {
+
+
+    public static class Factory implements StepNavigatorFactory {
+        @Override
+        public StepNavigator create(final Task task, final List<String> progressMarkers) {
+            Log.d("StepNavigator.Factory", "Creating FlankerNavigator");
+            return new FlankerNavigator(task.getSteps(), progressMarkers);
+        }
+    }
+
+    /**
+     * Constructs a TreeNavigator from the given list of steps, and the given progress markers
+     *
+     * @param steps
+     *         The list of steps to construct this TreeNavigator from.
+     */
+    public FlankerNavigator(
+            @NonNull final List<Step> steps,
+            @Nullable final List<String> progressMarkers) {
+        super(steps, progressMarkers);
+    }
 }

@@ -32,9 +32,9 @@
 package edu.northwestern.mobiletoolbox.flanker_app
 
 import com.google.common.collect.ImmutableList
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerChoice
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerChoiceInputField
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerFormStep
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoice
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoiceInputField
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.FlankerFormStep
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

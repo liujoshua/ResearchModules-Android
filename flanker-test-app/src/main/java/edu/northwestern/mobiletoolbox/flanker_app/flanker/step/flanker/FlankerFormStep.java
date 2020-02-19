@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,6 +47,8 @@ import org.sagebionetworks.research.domain.step.interfaces.Step;
 import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
+
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.MtbFormStepBase;
 
 public class FlankerFormStep extends MtbFormStepBase {
     public static final String TYPE = "flankerForm";

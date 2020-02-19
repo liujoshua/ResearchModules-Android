@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

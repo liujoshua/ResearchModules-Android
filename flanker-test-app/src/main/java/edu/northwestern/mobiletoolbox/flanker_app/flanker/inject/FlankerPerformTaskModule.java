@@ -30,15 +30,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject;
 
-import com.google.gson.Gson;
 
-import dagger.Component;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerTaskModule;
+import org.sagebionetworks.research.domain.inject.ActionModule;
+import org.sagebionetworks.research.domain.inject.GsonModule;
+import org.sagebionetworks.research.domain.inject.StepModule;
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule;
+import org.sagebionetworks.research.mobile_ui.inject.TaskResultModule;
+import org.sagebionetworks.research.presentation.inject.RecorderConfigPresentationModule;
+import org.sagebionetworks.research.presentation.inject.RecorderModule;
+import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule;
+import org.sagebionetworks.research.presentation.inject.StepViewModule;
+import org.sagebionetworks.research.presentation.inject.TextToSpeechModule;
 
-@Component(modules = {FlankerStepModule.class, FlankerTaskModule.class})
-public interface FlankerTestComponent {
-    Gson gson();
+import dagger.Module;
+import dagger.android.support.AndroidSupportInjectionModule;
+
+@Module(includes = {GsonModule.class, FlankerTaskModule.class, StepModule.class, RecorderModule.class,
+        TextToSpeechModule.class, RecorderConfigPresentationModule.class, StepViewModule.class,
+        ShowStepViewModelModule.class, ShowStepModule.class, ActionModule.class, TaskResultModule.class,
+        AndroidSupportInjectionModule.class})
+public class FlankerPerformTaskModule {
 }

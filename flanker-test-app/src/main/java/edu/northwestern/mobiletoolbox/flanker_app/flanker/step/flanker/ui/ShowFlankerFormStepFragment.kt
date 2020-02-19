@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.ui
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

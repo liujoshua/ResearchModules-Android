@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;

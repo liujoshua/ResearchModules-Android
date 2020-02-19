@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright 2018  Sage Bionetworks. All rights reserved.
+ * Copyright 2020  Sage Bionetworks. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject;
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form;
 
 import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
@@ -55,8 +55,8 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerChoice;
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerChoiceInputField;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoice;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoiceInputField;
 
 /**
  * Override Base type

@@ -33,8 +33,8 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
 import dagger.Module
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerFormStepModule
-import edu.northwestern.mobiletoolbox.flanker_app.inject.FlankerInputFieldModule
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.FlankerFormStepModule
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInputFieldModule
 import org.sagebionetworks.research.domain.inject.ActionModule
 import org.sagebionetworks.research.domain.inject.StepModule
 
