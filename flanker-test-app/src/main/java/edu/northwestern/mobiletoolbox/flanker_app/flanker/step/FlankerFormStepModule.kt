@@ -32,25 +32,42 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
 
-import com.google.gson.JsonDeserializer
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import org.sagebionetworks.research.domain.inject.GsonModule.createPassThroughDeserializer
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.ui.ShowFlankerFormStepFragment
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
-import org.sagebionetworks.research.domain.step.implementations.FormUIStepBase
-import org.sagebionetworks.research.domain.step.interfaces.FormUIStep
+import org.sagebionetworks.research.domain.step.interfaces.Step
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
+import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
+import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey
+import org.sagebionetworks.research.presentation.mapper.DrawableMapper
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
 @Module
-object FormStepModule {
-	@Provides
-	@IntoMap
-	@StepClassKey(FormStep::class)
-	fun provideFormStepTypeKey(): String = FormStep.TYPE
+class FlankerFormStepModule {
 
-	@Provides
-	@IntoMap
-	@ClassKey(FormStep::class)
-	fun provideFormStepDeserializer(): JsonDeserializer<FormStep> = createPassThroughDeserializer(FormStep::class.java)
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerFormStep::class)
+    fun provideFormStepTypeKey(): String = FlankerFormStep.TYPE
+
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepViewFactory(): InternalStepViewFactory {
+        return InternalStepViewFactory { step: Step, mapper: DrawableMapper ->
+            FlankerFormStepView.fromFlankerFormStep(step, mapper)
+        }
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepFragmentFactory(): ShowStepFragmentFactory {
+        return ShowStepFragmentFactory { stepView: StepView -> ShowFlankerFormStepFragment.newInstance(stepView) }
+    }
+
+
 }

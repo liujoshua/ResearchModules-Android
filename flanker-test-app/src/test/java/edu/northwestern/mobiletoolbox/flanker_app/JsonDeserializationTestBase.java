@@ -30,9 +30,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step;
+package edu.northwestern.mobiletoolbox.flanker_app;
 
-import org.sagebionetworks.research.domain.form.implementations.ChoiceInputField;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
-public class ChoiceInputFieldObject extends ChoiceInputField {
+import com.google.gson.Gson;
+
+import org.junit.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+
+public class JsonDeserializationTestBase {
+
+    protected Gson gson;
+
+    protected FlankerTestComponent flankerTestComponent;
+
+    @Before
+    public void setup() {
+        flankerTestComponent = DaggerFlankerTestComponent.builder().build();
+        gson = flankerTestComponent.gson();
+    }
+
+    protected static String getClasspathResourceAsString(String fileName) throws IOException {
+        ClassLoader classLoader = JsonDeserializationTestBase.class.getClassLoader();
+        URL resource = classLoader.getResource(fileName);
+        File f = new File(resource.getPath());
+        byte[] b = Files.readAllBytes(f.toPath());
+        return new String(b, UTF_8);
+    }
 }

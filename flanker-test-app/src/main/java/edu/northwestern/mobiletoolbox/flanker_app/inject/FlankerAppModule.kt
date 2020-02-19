@@ -34,29 +34,37 @@ package edu.northwestern.mobiletoolbox.flanker_app.inject
 
 import android.app.Application
 import android.content.Context
-import edu.northwestern.mobiletoolbox.flanker_app.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import edu.northwestern.mobiletoolbox.flanker_app.activity.MainActivity
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
+import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentModule
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
 
-@Module
+@Module(includes = [
+    FlankerStepModule::class,
+    PerformTaskModule::class
+])
 abstract class FlankerAppModule {
 
-//    @ContributesAndroidInjector
-//    abstract fun contributePerformTaskActivityInjector(): PerformTaskActivity
 
-	@ContributesAndroidInjector
-	abstract fun contributeMainActivityInjector(): MainActivity
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivityInjector(): MainActivity
 
-	@Module
-	companion object {
-		@JvmStatic
-		val LOG: Logger = LoggerFactory.getLogger(FlankerAppModule::class.java)
+    @ContributesAndroidInjector
+    abstract fun contributePerformTaskActivityInjector(): PerformTaskActivity
 
-		@JvmStatic
-		@Provides
-		fun getApplicationContext(application: Application): Context = application.applicationContext
-	}
+    @ContributesAndroidInjector(modules = [ShowStepFragmentModule::class])
+    abstract fun contributesPerformTaskFragmentInjector(): PerformTaskFragment
+
+    @Module
+    companion object {
+
+        @JvmStatic
+        @Provides
+        fun getApplicationContext(application: Application): Context = application.applicationContext
+    }
 }

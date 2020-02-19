@@ -33,15 +33,21 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
 import dagger.Module
-import dagger.Provides
-import dagger.multibindings.IntoSet
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FormStepModule
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FlankerFormStepModule
+import edu.northwestern.mobiletoolbox.flanker_app.inject.FlankerInputFieldModule
+import org.sagebionetworks.research.domain.inject.ActionModule
+import org.sagebionetworks.research.domain.inject.StepModule
 
 @Module(includes = [
-	FormStepModule::class
+    StepModule::class,
+    ActionModule::class,
+    FlankerInputFieldModule::class,
+    FlankerFormStepModule::class // custom Flanker Form Step
 ])
 class FlankerStepModule {
-	@Provides
-	@IntoSet
-	fun provideFlankerAutoValueTypeAdapterFactory() = FlankerAutoValueTypeAdapterFactory.create()
+
+// currently not using any custom AutoValue classes
+//    @Provides
+//    @IntoSet
+//    fun provideFlankerAutoValueTypeAdapterFactory() = FlankerAutoValueTypeAdapterFactory.create()
 }

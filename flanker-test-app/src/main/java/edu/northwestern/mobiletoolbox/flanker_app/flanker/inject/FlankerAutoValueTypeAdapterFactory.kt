@@ -33,11 +33,13 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
 import com.google.gson.TypeAdapterFactory
-import com.ryanharter.auto.value.gson.GsonTypeAdapterFactory
 
-@GsonTypeAdapterFactory
+/**
+ * Unused. Currently not using any custom AutoValue classes.
+ */
+//@GsonTypeAdapterFactory
 abstract class FlankerAutoValueTypeAdapterFactory : TypeAdapterFactory {
-	companion object {
-		fun create(): TypeAdapterFactory = AutoValueGson_FlankerAutoValueTypeAdapterFactory()
-	}
+//	companion object {
+//		fun create(): TypeAdapterFactory = AutoValueGson_FlankerAutoValueTypeAdapterFactory()
+//	}
 }
