@@ -30,27 +30,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
+package edu.northwestern.mobiletoolbox.flanker_app;
 
-import com.google.gson.JsonDeserializer
-import dagger.Module
-import dagger.Provides
-import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMap
-import org.sagebionetworks.research.domain.inject.GsonModule.createPassThroughDeserializer
-import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
-import org.sagebionetworks.research.domain.step.implementations.FormUIStepBase
-import org.sagebionetworks.research.domain.step.interfaces.FormUIStep
+import static java.nio.charset.StandardCharsets.UTF_8;
 
-@Module
-object FormStepModule {
-	@Provides
-	@IntoMap
-	@StepClassKey(FormStep::class)
-	fun provideFormStepTypeKey(): String = FormStep.TYPE
+import com.google.gson.Gson;
 
-	@Provides
-	@IntoMap
-	@ClassKey(FormStep::class)
-	fun provideFormStepDeserializer(): JsonDeserializer<FormStep> = createPassThroughDeserializer(FormStep::class.java)
+import org.junit.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+
+public class JsonDeserializationTestBase {
+
+    protected Gson gson;
+
+    protected FlankerTestComponent flankerTestComponent;
+
+    @Before
+    public void setup() {
+        flankerTestComponent = DaggerFlankerTestComponent.builder().build();
+        gson = flankerTestComponent.gson();
+    }
+
+    protected static String getClasspathResourceAsString(String fileName) throws IOException {
+        ClassLoader classLoader = JsonDeserializationTestBase.class.getClassLoader();
+        URL resource = classLoader.getResource(fileName);
+        File f = new File(resource.getPath());
+        byte[] b = Files.readAllBytes(f.toPath());
+        return new String(b, UTF_8);
+    }
 }

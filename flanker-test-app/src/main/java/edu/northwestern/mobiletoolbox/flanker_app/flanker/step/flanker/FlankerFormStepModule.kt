@@ -30,21 +30,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker
 
-import org.junit.Test
+import dagger.Module
+import dagger.Provides
+import dagger.multibindings.IntoMap
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.ui.ShowFlankerFormStepFragment
+import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
+import org.sagebionetworks.research.domain.step.interfaces.Step
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
+import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
+import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey
+import org.sagebionetworks.research.presentation.mapper.DrawableMapper
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
-import org.junit.Assert.*
+@Module
+class FlankerFormStepModule {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerFormStep::class)
+    fun provideFormStepTypeKey(): String = FlankerFormStep.TYPE
 
-	@Test
-	fun addition_isCorrect() {
-		assertEquals(4, 2 + 2)
-	}
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepViewFactory(): InternalStepViewFactory {
+        return InternalStepViewFactory { step: Step, mapper: DrawableMapper ->
+            FlankerFormStepView.fromFlankerFormStep(step, mapper)
+        }
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepFragmentFactory(): ShowStepFragmentFactory {
+        return ShowStepFragmentFactory { stepView: StepView -> ShowFlankerFormStepFragment.newInstance(stepView) }
+    }
 }
