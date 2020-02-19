@@ -229,7 +229,7 @@
     },
     {
       "identifier" : "P.1",
-      "type" : "flankerForm",
+      "type" : "form",
       "isPractice" : true,
       "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
       "stepName": "firstPracticeInstruction",
@@ -307,7 +307,7 @@
 
     {
       "identifier" : "P.2",
-      "type" : "flankerForm",
+      "type" : "form",
       "isPractice" : true,
       "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
       "inputFields" : [
@@ -382,7 +382,7 @@
 
     {
       "identifier" : "P.3",
-      "type" : "flankerForm",
+      "type" : "form",
       "isPractice" : true,
       "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
       "inputFields" : [
@@ -455,7 +455,7 @@
 
     {
       "identifier" : "P.4",
-      "type" : "flankerForm",
+      "type" : "form",
       "isPractice" : true,
       "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
       "inputFields" : [
@@ -529,7 +529,7 @@
 
     {
       "identifier" : "P.5",
-      "type" : "flankerForm",
+      "type" : "form",
       "isPractice" : true,
       "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
       "stepName" : "lastPracticeStep",
@@ -603,7 +603,7 @@
 
     {
       "identifier": "A01",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -679,7 +679,7 @@
     },
     {
       "identifier": "A02",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -754,7 +754,7 @@
     },
     {
       "identifier": "A03",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -829,7 +829,7 @@
     },
     {
       "identifier": "A04",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -904,7 +904,7 @@
     },
     {
       "identifier": "A05",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -979,7 +979,7 @@
     },
     {
       "identifier": "A06",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1054,7 +1054,7 @@
     },
     {
       "identifier": "A07",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1129,7 +1129,7 @@
     },
     {
       "identifier": "A08",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1204,7 +1204,7 @@
     },
     {
       "identifier": "A09",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1279,7 +1279,7 @@
     },
     {
       "identifier": "A10",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1354,7 +1354,7 @@
     },
     {
       "identifier": "A11",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1429,7 +1429,7 @@
     },
     {
       "identifier": "A12",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1504,7 +1504,7 @@
     },
     {
       "identifier": "A13",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1579,7 +1579,7 @@
     },
     {
       "identifier": "A14",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1654,7 +1654,7 @@
     },
     {
       "identifier": "A15",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1729,7 +1729,7 @@
     },
     {
       "identifier": "A16",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1804,7 +1804,7 @@
     },
     {
       "identifier": "A17",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1879,7 +1879,7 @@
     },
     {
       "identifier": "A18",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -1954,7 +1954,7 @@
     },
     {
       "identifier": "A19",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2029,7 +2029,7 @@
     },
     {
       "identifier": "A20",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2104,7 +2104,7 @@
     },
     {
       "identifier": "A21",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2179,7 +2179,7 @@
     },
     {
       "identifier": "A22",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2254,7 +2254,7 @@
     },
     {
       "identifier": "A23",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2329,7 +2329,7 @@
     },
     {
       "identifier": "A24",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2404,7 +2404,7 @@
     },
     {
       "identifier": "A25",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2479,7 +2479,7 @@
     },
     {
       "identifier": "A26",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2554,7 +2554,7 @@
     },
     {
       "identifier": "A27",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2629,7 +2629,7 @@
     },
     {
       "identifier": "A28",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2704,7 +2704,7 @@
     },
     {
       "identifier": "A29",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2779,7 +2779,7 @@
     },
     {
       "identifier": "A30",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2854,7 +2854,7 @@
     },
     {
       "identifier": "A31",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -2929,7 +2929,7 @@
     },
     {
       "identifier": "A32",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3004,7 +3004,7 @@
     },
     {
       "identifier": "A33",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3079,7 +3079,7 @@
     },
     {
       "identifier": "A34",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3154,7 +3154,7 @@
     },
     {
       "identifier": "A35",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3229,7 +3229,7 @@
     },
     {
       "identifier": "A36",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3304,7 +3304,7 @@
     },
     {
       "identifier": "A37",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3379,7 +3379,7 @@
     },
     {
       "identifier": "A38",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3454,7 +3454,7 @@
     },
     {
       "identifier": "A39",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3529,7 +3529,7 @@
     },
     {
       "identifier": "A40",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3605,7 +3605,7 @@
 
     {
       "identifier": "A41",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3680,7 +3680,7 @@
     },
     {
       "identifier": "A42",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3755,7 +3755,7 @@
     },
     {
       "identifier": "A43",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3830,7 +3830,7 @@
     },
     {
       "identifier": "A44",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3905,7 +3905,7 @@
     },
     {
       "identifier": "A45",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -3980,7 +3980,7 @@
     },
     {
       "identifier": "A46",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4055,7 +4055,7 @@
     },
     {
       "identifier": "A47",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4130,7 +4130,7 @@
     },
     {
       "identifier": "A48",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4205,7 +4205,7 @@
     },
     {
       "identifier": "A49",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4280,7 +4280,7 @@
     },
     {
       "identifier": "A50",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4355,7 +4355,7 @@
     },
     {
       "identifier": "B01",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4431,7 +4431,7 @@
     },
     {
       "identifier": "B02",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4506,7 +4506,7 @@
     },
     {
       "identifier": "B03",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4581,7 +4581,7 @@
     },
     {
       "identifier": "B04",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4656,7 +4656,7 @@
     },
     {
       "identifier": "B05",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4731,7 +4731,7 @@
     },
     {
       "identifier": "B06",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4806,7 +4806,7 @@
     },
     {
       "identifier": "B07",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4881,7 +4881,7 @@
     },
     {
       "identifier": "B08",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -4956,7 +4956,7 @@
     },
     {
       "identifier": "B09",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5031,7 +5031,7 @@
     },
     {
       "identifier": "B10",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5107,7 +5107,7 @@
 
     {
       "identifier": "B11",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5182,7 +5182,7 @@
     },
     {
       "identifier": "B12",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5257,7 +5257,7 @@
     },
     {
       "identifier": "B13",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5332,7 +5332,7 @@
     },
     {
       "identifier": "B14",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5407,7 +5407,7 @@
     },
     {
       "identifier": "B15",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5482,7 +5482,7 @@
     },
     {
       "identifier": "B16",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5557,7 +5557,7 @@
     },
     {
       "identifier": "B17",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5632,7 +5632,7 @@
     },
     {
       "identifier": "B18",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5707,7 +5707,7 @@
     },
     {
       "identifier": "B19",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5782,7 +5782,7 @@
     },
     {
       "identifier": "B20",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5857,7 +5857,7 @@
     },
     {
       "identifier": "B21",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -5932,7 +5932,7 @@
     },
     {
       "identifier": "B22",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6007,7 +6007,7 @@
     },
     {
       "identifier": "B23",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6082,7 +6082,7 @@
     },
     {
       "identifier": "B24",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6157,7 +6157,7 @@
     },
     {
       "identifier": "B25",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6232,7 +6232,7 @@
     },
     {
       "identifier": "B26",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6307,7 +6307,7 @@
     },
     {
       "identifier": "B27",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6382,7 +6382,7 @@
     },
     {
       "identifier": "B28",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6457,7 +6457,7 @@
     },
     {
       "identifier": "B29",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6532,7 +6532,7 @@
     },
     {
       "identifier": "B30",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6608,7 +6608,7 @@
     },
     {
       "identifier": "B31",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6683,7 +6683,7 @@
     },
     {
       "identifier": "B32",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6758,7 +6758,7 @@
     },
     {
       "identifier": "B33",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6833,7 +6833,7 @@
     },
     {
       "identifier": "B34",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6908,7 +6908,7 @@
     },
     {
       "identifier": "B35",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -6983,7 +6983,7 @@
     },
     {
       "identifier": "B36",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7058,7 +7058,7 @@
     },
     {
       "identifier": "B37",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7133,7 +7133,7 @@
     },
     {
       "identifier": "B38",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7208,7 +7208,7 @@
     },
     {
       "identifier": "B39",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7283,7 +7283,7 @@
     },
     {
       "identifier": "B40",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7358,7 +7358,7 @@
     },
     {
       "identifier": "B41",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7433,7 +7433,7 @@
     },
     {
       "identifier": "B42",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7508,7 +7508,7 @@
     },
     {
       "identifier": "B43",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7583,7 +7583,7 @@
     },
     {
       "identifier": "B44",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7658,7 +7658,7 @@
     },
     {
       "identifier": "B45",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7733,7 +7733,7 @@
     },
     {
       "identifier": "B46",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7808,7 +7808,7 @@
     },
     {
       "identifier": "B47",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7883,7 +7883,7 @@
     },
     {
       "identifier": "B48",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -7958,7 +7958,7 @@
     },
     {
       "identifier": "B49",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"
@@ -8033,7 +8033,7 @@
     },
     {
       "identifier": "B50",
-      "type": "flankerForm",
+      "type": "form",
       "viewTheme": {
         "viewIdentifier": "FlankerTest",
         "storyboardIdentifier": "Flanker"

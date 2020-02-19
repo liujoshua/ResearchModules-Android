@@ -37,26 +37,38 @@ import static org.sagebionetworks.research.domain.inject.GsonModule.createPassTh
 
 import com.google.gson.JsonDeserializer;
 
+import org.sagebionetworks.research.domain.impl.StepAutoValueModule;
+import org.sagebionetworks.research.domain.inject.ActionModule;
 import org.sagebionetworks.research.domain.inject.GsonModule;
 import org.sagebionetworks.research.domain.inject.GsonModule.ClassKey;
-import org.sagebionetworks.research.domain.inject.TaskModule;
 import org.sagebionetworks.research.domain.task.Task;
 import org.sagebionetworks.research.domain.task.TaskInfoBase;
 import org.sagebionetworks.research.domain.task.TaskInfoView;
 import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory;
 import org.sagebionetworks.research.domain.task.navigation.TaskBase;
+import org.sagebionetworks.research.modules.common.step.instruction.InstructionStepModule;
+import org.sagebionetworks.research.modules.common.step.overview.OverviewStepModule;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import edu.northwestern.mobiletoolbox.flanker_app.FlankerNavigator;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.flanker.FlankerFormStepModule;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInputFieldModule;
 
 /**
  * Overrides SageResearch TaskModule.
  *
  * @see org.sagebionetworks.research.domain.inject.TaskModule
  */
-@Module(includes = {GsonModule.class})
+@Module(includes = {GsonModule.class,
+        FlankerInputFieldModule.class,
+        FlankerFormStepModule.class, // custom Flanker Form Step
+        OverviewStepModule.class,
+        InstructionStepModule.class,
+        FlankerStepModule.class,
+        ActionModule.class,
+        StepAutoValueModule.class})
 public abstract class FlankerTaskModule {
 
     /**

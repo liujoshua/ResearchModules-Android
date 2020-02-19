@@ -51,7 +51,7 @@ import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.MtbFormStepBase;
 
 public class FlankerFormStep extends MtbFormStepBase {
-    public static final String TYPE = "flankerForm";
+    public static final String TYPE = "form";
 
     @Nullable
     private final String stepName;
