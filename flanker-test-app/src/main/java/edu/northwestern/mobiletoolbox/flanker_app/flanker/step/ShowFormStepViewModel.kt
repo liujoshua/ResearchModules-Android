@@ -30,36 +30,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
 
-import android.app.Application
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
-import org.sagebionetworks.research.data.inject.DataModule
-import org.sagebionetworks.research.domain.inject.AsyncActionModule
-import org.sagebionetworks.research.domain.inject.InputFieldsModule
-import org.sagebionetworks.research.domain.inject.TaskModule
-import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
+import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
+import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
 
-//@Component(modules = [
-//	AndroidSupportInjectionModule::class,
-//	AsyncActionModule::class,
-//	DataModule::class,
-//	FlankerStepModule::class,
-//	FlankerAppModule::class,
-//	InputFieldsModule::class,
-//	PerformTaskModule::class,
-//	TaskModule::class
-//])
-//interface FlankerAppComponent : AndroidInjector<FlankerApp> {
-//	@Component.Builder
-//	interface Builder {
-//		@BindsInstance
-//		fun application(application: Application): Builder
-//		fun build(): FlankerAppComponent
-//	}
-//}
+class ShowFormStepViewModel(
+        performTaskViewModel: PerformTaskViewModel,
+        formStepView: FormStepView
+): ShowUIStepViewModel<FormStepView>(
+        performTaskViewModel,
+        formStepView
+) {
+
+    override fun handleAction(actionType: String?) {
+        super.handleAction(actionType)
+
+    }
+}
+
+class ShowFormStepViewModelFactory: ShowStepViewModelFactory<ShowFormStepViewModel, FormStepView> {
+    override fun create(performTaskViewModel: PerformTaskViewModel, stepView: FormStepView): ShowFormStepViewModel {
+        return ShowFormStepViewModel(
+                performTaskViewModel, stepView)
+    }
+
+    override fun getViewModelClass(): Class<ShowFormStepViewModel> {
+        return ShowFormStepViewModel::class.java
+    }
+}

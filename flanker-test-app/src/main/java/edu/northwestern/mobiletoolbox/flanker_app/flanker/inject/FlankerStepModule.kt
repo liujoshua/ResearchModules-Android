@@ -34,14 +34,21 @@ package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.IntoSet
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.FormStepModule
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.Navigator
+import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
 
 @Module(includes = [
 	FormStepModule::class
 ])
 class FlankerStepModule {
-	@Provides
-	@IntoSet
-	fun provideFlankerAutoValueTypeAdapterFactory() = FlankerAutoValueTypeAdapterFactory.create()
+//	@Provides
+//	@IntoSet
+//	fun provideFlankerAutoValueTypeAdapterFactory() = FlankerAutoValueTypeAdapterFactory.create()
+
+	@Module
+	companion object {
+		@Provides
+		fun provideStepNavigatorFactory(): StepNavigatorFactory = Navigator.Factory()
+	}
 }

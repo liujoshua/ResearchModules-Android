@@ -38,25 +38,26 @@ import edu.northwestern.mobiletoolbox.flanker_app.activity.MainActivity
 import dagger.Module
 import dagger.Provides
 import dagger.android.ContributesAndroidInjector
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-@Module
-abstract class FlankerAppModule {
-
-//    @ContributesAndroidInjector
-//    abstract fun contributePerformTaskActivityInjector(): PerformTaskActivity
-
-	@ContributesAndroidInjector
-	abstract fun contributeMainActivityInjector(): MainActivity
-
-	@Module
-	companion object {
-		@JvmStatic
-		val LOG: Logger = LoggerFactory.getLogger(FlankerAppModule::class.java)
-
-		@JvmStatic
-		@Provides
-		fun getApplicationContext(application: Application): Context = application.applicationContext
-	}
-}
+//@Module
+//abstract class FlankerAppModule {
+//
+////    @ContributesAndroidInjector
+////    abstract fun contributePerformTaskActivityInjector(): PerformTaskActivity
+//
+//	@ContributesAndroidInjector
+//	abstract fun contributeMainActivityInjector(): MainActivity
+//
+//	@Module
+//	companion object {
+//		@JvmStatic
+//		val LOG: Logger = LoggerFactory.getLogger(FlankerAppModule::class.java)
+//
+//		@JvmStatic
+//		@Provides
+//		fun getApplicationContext(application: Application): Context = application.applicationContext
+//	}
+//}

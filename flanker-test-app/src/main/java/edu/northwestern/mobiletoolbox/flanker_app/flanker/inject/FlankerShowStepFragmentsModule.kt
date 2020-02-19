@@ -30,36 +30,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
-import android.app.Application
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
-import org.sagebionetworks.research.data.inject.DataModule
-import org.sagebionetworks.research.domain.inject.AsyncActionModule
-import org.sagebionetworks.research.domain.inject.InputFieldsModule
-import org.sagebionetworks.research.domain.inject.TaskModule
-import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ShowFormStepFragment
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope
 
-//@Component(modules = [
-//	AndroidSupportInjectionModule::class,
-//	AsyncActionModule::class,
-//	DataModule::class,
-//	FlankerStepModule::class,
-//	FlankerAppModule::class,
-//	InputFieldsModule::class,
-//	PerformTaskModule::class,
-//	TaskModule::class
-//])
-//interface FlankerAppComponent : AndroidInjector<FlankerApp> {
-//	@Component.Builder
-//	interface Builder {
-//		@BindsInstance
-//		fun application(application: Application): Builder
-//		fun build(): FlankerAppComponent
-//	}
-//}
+@Module
+abstract class FlankerShowStepFragmentsModule {
+    @ContributesAndroidInjector
+    @ShowStepFragmentScope
+    abstract fun contributeShowFormStepFragmentInjector(): ShowFormStepFragment
+}

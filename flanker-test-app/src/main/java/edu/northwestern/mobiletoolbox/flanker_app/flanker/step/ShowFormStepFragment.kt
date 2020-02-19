@@ -30,36 +30,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
 
-import android.app.Application
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
-import org.sagebionetworks.research.data.inject.DataModule
-import org.sagebionetworks.research.domain.inject.AsyncActionModule
-import org.sagebionetworks.research.domain.inject.InputFieldsModule
-import org.sagebionetworks.research.domain.inject.TaskModule
-import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
+import android.view.View
+import androidx.fragment.app.Fragment
+import edu.northwestern.mobiletoolbox.flanker_app.R
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragmentBase
+import org.sagebionetworks.research.mobile_ui.show_step.view.view_binding.UIStepViewBinding
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
-//@Component(modules = [
-//	AndroidSupportInjectionModule::class,
-//	AsyncActionModule::class,
-//	DataModule::class,
-//	FlankerStepModule::class,
-//	FlankerAppModule::class,
-//	InputFieldsModule::class,
-//	PerformTaskModule::class,
-//	TaskModule::class
-//])
-//interface FlankerAppComponent : AndroidInjector<FlankerApp> {
-//	@Component.Builder
-//	interface Builder {
-//		@BindsInstance
-//		fun application(application: Application): Builder
-//		fun build(): FlankerAppComponent
-//	}
-//}
+class ShowFormStepFragment: ShowUIStepFragmentBase<FormStepView, ShowFormStepViewModel, UIStepViewBinding<FormStepView>>() {
+
+    override fun getLayoutId(): Int {
+        return R.layout.show_form_step_fragment
+    }
+
+    override fun instantiateAndBindBinding(view: View?): UIStepViewBinding<FormStepView> {
+        return UIStepViewBinding(view)
+    }
+    
+    companion object {
+        @JvmStatic
+        private fun make(stepView: StepView): ShowFormStepFragment {
+            val fragment = ShowFormStepFragment()
+            val args = ShowStepFragmentBase.createArguments(stepView)
+            fragment.arguments = args
+            return fragment
+        }
+
+        val newInstance = object: ShowStepFragmentFactory {
+            override fun create(stepView: StepView): Fragment {
+                return make(
+                        stepView)
+            }
+        }
+    }
+}

@@ -37,6 +37,7 @@ import android.util.Log
 import dagger.android.support.DaggerAppCompatActivity
 import edu.northwestern.mobiletoolbox.flanker_app.R.layout
 import org.sagebionetworks.research.domain.repository.TaskRepository
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
 import org.sagebionetworks.research.presentation.model.TaskView
 import java.util.UUID
 import javax.inject.Inject
@@ -60,12 +61,11 @@ class MainActivity : DaggerAppCompatActivity() {
 
         val task = taskRepository.getTask(taskIdentifier).blockingGet()
 
-
         //TODO: mapper
         val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
         Log.d(TAG, "Task: $task")
-//        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
-//        this.startActivity(intent)
+        val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
+        this.startActivity(intent)
     }
 
     companion object {

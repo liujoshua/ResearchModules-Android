@@ -30,36 +30,46 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject
+package edu.northwestern.mobiletoolbox.flanker_app.inject;
 
-import android.app.Application
-import dagger.BindsInstance
-import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
-import org.sagebionetworks.research.data.inject.DataModule
-import org.sagebionetworks.research.domain.inject.AsyncActionModule
-import org.sagebionetworks.research.domain.inject.InputFieldsModule
-import org.sagebionetworks.research.domain.inject.TaskModule
-import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
+import android.app.Application;
+import android.content.Context;
 
-//@Component(modules = [
-//	AndroidSupportInjectionModule::class,
-//	AsyncActionModule::class,
-//	DataModule::class,
-//	FlankerStepModule::class,
-//	FlankerAppModule::class,
-//	InputFieldsModule::class,
-//	PerformTaskModule::class,
-//	TaskModule::class
-//])
-//interface FlankerAppComponent : AndroidInjector<FlankerApp> {
-//	@Component.Builder
-//	interface Builder {
-//		@BindsInstance
-//		fun application(application: Application): Builder
-//		fun build(): FlankerAppComponent
-//	}
-//}
+import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule;
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentModule;
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity;
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import dagger.Module;
+import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
+import edu.northwestern.mobiletoolbox.flanker_app.activity.MainActivity;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule;
+
+@Module(includes = {
+        FlankerStepModule.class,
+        PerformTaskModule.class
+})
+public abstract class FlankerAppModule {
+    private static final Logger LOG = LoggerFactory.getLogger(FlankerAppModule.class);
+
+    @ContributesAndroidInjector(modules = {ShowStepFragmentModule.class})
+    abstract PerformTaskFragment contributesPerformTaskFragmentInjector();
+
+    @ContributesAndroidInjector
+    abstract PerformTaskActivity contributePerformTaskActivityInjector();
+
+
+    @ContributesAndroidInjector
+    public abstract MainActivity contributeMainActivityInjector();
+
+    @Provides
+    static Context getApplicationContext(Application application) {
+        return application.getApplicationContext();
+    }
+
+}
+
+

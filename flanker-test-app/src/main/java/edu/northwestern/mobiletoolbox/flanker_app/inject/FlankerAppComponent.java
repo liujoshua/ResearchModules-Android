@@ -30,9 +30,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step;
+package edu.northwestern.mobiletoolbox.flanker_app.inject;
 
-import org.sagebionetworks.research.domain.form.implementations.ChoiceInputField;
+import android.app.Application;
 
-public class ChoiceInputFieldObject extends ChoiceInputField {
+import org.sagebionetworks.research.data.inject.DataModule;
+import org.sagebionetworks.research.domain.inject.AsyncActionModule;
+
+import dagger.BindsInstance;
+import dagger.Component;
+import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjectionModule;
+import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp;
+
+@Component(modules = {
+        AndroidSupportInjectionModule.class,
+        AsyncActionModule.class,
+        DataModule.class,
+        FlankerAppModule.class,
+})
+public interface FlankerAppComponent extends AndroidInjector<FlankerApp> {
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
+        FlankerAppComponent build();
+    }
 }
