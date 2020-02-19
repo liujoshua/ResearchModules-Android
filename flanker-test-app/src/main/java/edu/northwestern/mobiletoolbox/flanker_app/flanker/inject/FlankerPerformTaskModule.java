@@ -45,12 +45,10 @@ import dagger.Module;
         FlankerTaskModule.class,
         FlankerStepViewModule.class,
         FlankerShowStepModule.class,
-//        FlankerStepModule.class,
         RecorderModule.class,
         TextToSpeechModule.class,
         RecorderConfigPresentationModule.class,
         ShowStepViewModelModule.class,
-//        ShowStepModule.class,
         TaskResultModule.class})
 public class FlankerPerformTaskModule {
 }

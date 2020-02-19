@@ -136,8 +136,6 @@ public class FlankerStepModule {
         return createPassThroughDeserializer(FormUIStepBase.class);
     }
 
-    // endregion
-
     /**
      * @return GSON runtime type adapter factory for polymorphic deserialization of Step classes
      */
