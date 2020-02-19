@@ -66,12 +66,12 @@ class FlankerTaskDeserializeTest : JsonDeserializationTestBase() {
             val inputFieldMap = inputFields.map { it.getIdentifier() to it }.toMap()
 
             (inputFieldMap["A01a"] as FlankerChoiceInputField).run {
-                assertEquals("interimStar", flankerType)
-                assertEquals(1250, delayToNextInputField)
-                assertEquals(ImmutableList.of("", "", "⭐️", "", ""), flankers)
-                assertTrue(text!!.startsWith("[yellow star"))
+                assertEquals("interimStar", getFlankerType())
+                assertEquals(1250, getDelayToNextInputField())
+                assertEquals(ImmutableList.of("", "", "⭐️", "", ""), getFlankers())
+                assertTrue(getText()!!.startsWith("[yellow star"))
 
-                (choices[0] as FlankerChoice<*>).run {
+                (getChoices()[0] as FlankerChoice<*>).run {
                     assertEquals("B3C6D4A2-CB57-E3AA-874A-F371871D523D", itemResponseOID)
                     assertEquals("[arrow left]", text)
                     assertEquals(1.0, answerValue)
