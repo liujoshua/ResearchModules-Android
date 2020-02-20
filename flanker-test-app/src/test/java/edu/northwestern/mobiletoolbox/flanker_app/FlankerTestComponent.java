@@ -30,16 +30,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
+package edu.northwestern.mobiletoolbox.flanker_app;
 
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ShowFormStepFragment
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope
+import com.google.gson.Gson;
 
-@Module
-abstract class FlankerShowStepFragmentsModule {
-    @ContributesAndroidInjector
-    @ShowStepFragmentScope
-    abstract fun contributeShowFormStepFragmentInjector(): ShowFormStepFragment
+import dagger.Component;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerTaskModule;
+
+@Component(modules = {FlankerTaskModule.class})
+public interface FlankerTestComponent {
+    Gson gson();
 }

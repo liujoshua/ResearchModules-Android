@@ -52,7 +52,6 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(layout.activity_main)
 
         launchTask("Flanker", UUID.randomUUID())
-
     }
 
     private fun launchTask(taskIdentifier: String,
@@ -63,6 +62,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         //TODO: mapper
         val taskView = TaskView.builder().setIdentifier(taskInfoView.identifier).build()
+
         Log.d(TAG, "Task: $task")
         val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
         this.startActivity(intent)

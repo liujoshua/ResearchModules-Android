@@ -31,6 +31,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	package="edu.northwestern.mobiletoolbox.flanker_app">
 
 	<application
@@ -41,7 +42,11 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme" >
-		<activity android:name=".activity.MainActivity">
+		<activity android:name="org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity"
+			android:screenOrientation="landscape"
+			tools:replace="android:screenOrientation"/>
+		<activity android:name=".activity.MainActivity"
+			android:screenOrientation="landscape">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 

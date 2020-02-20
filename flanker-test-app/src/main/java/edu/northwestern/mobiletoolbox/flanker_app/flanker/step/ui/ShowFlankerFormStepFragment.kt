@@ -30,33 +30,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ui
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import edu.northwestern.mobiletoolbox.flanker_app.R
+import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
-import org.sagebionetworks.research.presentation.show_step.show_step_view_model_factories.ShowStepViewModelFactory
-import org.sagebionetworks.research.presentation.show_step.show_step_view_models.ShowUIStepViewModel
 
-class ShowFormStepViewModel(
-        performTaskViewModel: PerformTaskViewModel,
-        formStepView: FormStepView
-): ShowUIStepViewModel<FormStepView>(
-        performTaskViewModel,
-        formStepView
-) {
+class ShowFlankerFormStepFragment : Fragment() {
 
-    override fun handleAction(actionType: String?) {
-        super.handleAction(actionType)
 
-    }
-}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_show_flanker_form_step, container, false)
 
-class ShowFormStepViewModelFactory: ShowStepViewModelFactory<ShowFormStepViewModel, FormStepView> {
-    override fun create(performTaskViewModel: PerformTaskViewModel, stepView: FormStepView): ShowFormStepViewModel {
-        return ShowFormStepViewModel(
-                performTaskViewModel, stepView)
+        val stepView = arguments!!.getSerializable("STEP_VIEW")
+
+        val performTaskFragment = (parentFragment as PerformTaskFragment)
+        val performTaskViewModel = ViewModelProviders.of(performTaskFragment)
+                .get<PerformTaskViewModel>(PerformTaskViewModel::class.java)
+
+//        view.button.setOnClickListener { v -> performTaskFragment.goForward() }
+//
+//        view.text.text = stepView.toString()
+        return view
     }
 
-    override fun getViewModelClass(): Class<ShowFormStepViewModel> {
-        return ShowFormStepViewModel::class.java
+    companion object {
+        @JvmStatic
+        fun newInstance(stepView: StepView) =
+                ShowFlankerFormStepFragment().apply {
+                    arguments = ShowStepFragmentBase.createArguments(stepView)
+                }
     }
 }

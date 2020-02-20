@@ -30,68 +30,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form
 
-import android.util.Log
-import com.google.gson.JsonDeserializer
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
-import dagger.multibindings.IntoSet
-import org.sagebionetworks.research.domain.RuntimeTypeAdapterFactory
-import org.sagebionetworks.research.domain.inject.GsonModule.createPassThroughDeserializer
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ui.ShowFlankerFormStepFragment
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
 import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
-import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule.StepViewClassKey
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
 import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey
+import org.sagebionetworks.research.presentation.mapper.DrawableMapper
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
 @Module
-class FormStepModule {
-	@Module
-	companion object {
-		@Provides
-		@IntoMap
-		@StepClassKey(FormStep::class)
-		fun provideFormStepTypeKey(): String = FormStep.TYPE_KEY
+class FlankerFormStepModule {
 
-		@Provides
-		@IntoMap
-		@ClassKey(FormStep::class)
-		fun provideFormStepDeserializer(): JsonDeserializer<FormStep> = createPassThroughDeserializer(
-				FormStep::class.java)
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerFormStep::class)
+    fun provideFormStepTypeKey(): String = FlankerFormStep.TYPE
 
-		@Provides
-		@IntoMap
-		@StepTypeKey(FormStep.TYPE_KEY)
-		fun provideFormStepViewFactory(): InternalStepViewFactory = FormStepView.fromFormStep
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepViewFactory(): InternalStepViewFactory {
+        return InternalStepViewFactory { step: Step, mapper: DrawableMapper ->
+            FlankerFormStepView.fromFlankerFormStep(
+                    step, mapper)
+        }
+    }
 
-		@Provides
-		@IntoMap
-		@StepViewKey(
-				FormStepView.TYPE)
-		fun provideFormStepFactory(): ShowStepFragmentFactory = ShowFormStepFragment.newInstance
-
-		@Provides
-		@IntoMap
-		@StepViewClassKey(
-				FormStepView.TYPE)
-		fun provideFormStepVMF() = ShowFormStepViewModelFactory()
-
-		@Provides
-		@IntoSet
-		fun provideType(stepClassKeys: Map<Class<out Step>, String>): RuntimeTypeAdapterFactory<out Step> {
-			val stepAdapterFactory: RuntimeTypeAdapterFactory<Step> = RuntimeTypeAdapterFactory.of(Step::class.java, Step.KEY_TYPE)
-			stepClassKeys.entries.forEach {
-				Log.d("FormStepModule", "Registering key: ${it.key} value: ${it.value}")
-				stepAdapterFactory.registerSubtype(it.key, it.value)
-			}
-
-			return stepAdapterFactory
-		}
-	}
-
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepFragmentFactory(): ShowStepFragmentFactory {
+        return ShowStepFragmentFactory { stepView: StepView -> ShowFlankerFormStepFragment.newInstance(stepView) }
+    }
 }

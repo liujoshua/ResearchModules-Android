@@ -29,31 +29,23 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject
 
-package edu.northwestern.mobiletoolbox.flanker_app.inject;
+import dagger.Module
+import org.sagebionetworks.research.mobile_ui.inject.TaskResultModule
+import org.sagebionetworks.research.presentation.inject.RecorderConfigPresentationModule
+import org.sagebionetworks.research.presentation.inject.RecorderModule
+import org.sagebionetworks.research.presentation.inject.ShowStepViewModelModule
+import org.sagebionetworks.research.presentation.inject.TextToSpeechModule
 
-import android.app.Application;
-
-import org.sagebionetworks.research.data.inject.DataModule;
-import org.sagebionetworks.research.domain.inject.AsyncActionModule;
-
-import dagger.BindsInstance;
-import dagger.Component;
-import dagger.android.AndroidInjector;
-import dagger.android.support.AndroidSupportInjectionModule;
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp;
-
-@Component(modules = {
-        AndroidSupportInjectionModule.class,
-        AsyncActionModule.class,
-        DataModule.class,
-        FlankerAppModule.class,
-})
-public interface FlankerAppComponent extends AndroidInjector<FlankerApp> {
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        Builder application(Application application);
-        FlankerAppComponent build();
-    }
-}
+@Module(includes = [
+    FlankerTaskModule::class,
+    FlankerStepViewModule::class,
+    FlankerShowStepModule::class,
+    RecorderModule::class,
+    TextToSpeechModule::class,
+    RecorderConfigPresentationModule::class,
+    ShowStepViewModelModule::class,
+    TaskResultModule::class
+])
+class FlankerPerformTaskModule

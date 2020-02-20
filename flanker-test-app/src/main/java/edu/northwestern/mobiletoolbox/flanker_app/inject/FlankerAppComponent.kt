@@ -41,25 +41,21 @@ import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.inject.FlankerStepModule
 import org.sagebionetworks.research.data.inject.DataModule
 import org.sagebionetworks.research.domain.inject.AsyncActionModule
-import org.sagebionetworks.research.domain.inject.InputFieldsModule
-import org.sagebionetworks.research.domain.inject.TaskModule
-import org.sagebionetworks.research.mobile_ui.inject.PerformTaskModule
 
-//@Component(modules = [
-//	AndroidSupportInjectionModule::class,
-//	AsyncActionModule::class,
-//	DataModule::class,
-//	FlankerStepModule::class,
-//	FlankerAppModule::class,
-//	InputFieldsModule::class,
-//	PerformTaskModule::class,
-//	TaskModule::class
-//])
-//interface FlankerAppComponent : AndroidInjector<FlankerApp> {
-//	@Component.Builder
-//	interface Builder {
-//		@BindsInstance
-//		fun application(application: Application): Builder
-//		fun build(): FlankerAppComponent
-//	}
-//}
+@Component(modules = [
+    AndroidSupportInjectionModule::class,
+    AsyncActionModule::class,
+    DataModule::class,
+    FlankerAppModule::class
+])
+interface FlankerAppComponent : AndroidInjector<FlankerApp> {
+
+    @Component.Builder
+    interface Builder {
+
+        @BindsInstance
+        fun application(application: Application): Builder
+
+        fun build(): FlankerAppComponent
+    }
+}
