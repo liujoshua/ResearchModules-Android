@@ -48,6 +48,9 @@ import org.sagebionetworks.research.presentation.model.interfaces.StepView
 @Module
 class FlankerFormStepModule {
 
+    // wrapping this with @Module companion object {} seems to break dagger
+    //
+
     @Provides
     @IntoMap
     @StepClassKey(FlankerFormStep::class)

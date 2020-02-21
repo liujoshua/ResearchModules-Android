@@ -39,7 +39,7 @@
     android:layout_height="match_parent">
 
     <ProgressBar
-        android:id="@+id/rs2_progress_bar"
+        android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -119,16 +119,16 @@
         android:gravity="center"
         >
 
-        <org.sagebionetworks.research.mobile_ui.widget.ActionButton
-            android:id="@+id/rs2_step_navigation_action_backward"
+        <edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ui.FlankerResponseButton
+            android:id="@+id/leftResponseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="←"
             android:textSize="70dp"
             android:gravity="center"/>
 
-        <org.sagebionetworks.research.mobile_ui.widget.ActionButton
-            android:id="@+id/rs2_step_navigation_action_forward"
+        <edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ui.FlankerResponseButton
+            android:id="@+id/rightResponseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"

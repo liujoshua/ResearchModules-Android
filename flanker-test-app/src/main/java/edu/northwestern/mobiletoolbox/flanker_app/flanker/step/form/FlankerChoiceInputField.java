@@ -41,9 +41,11 @@ import org.sagebionetworks.research.domain.form.TextField.TextFieldOptions;
 import org.sagebionetworks.research.domain.form.data_types.InputDataType;
 import org.sagebionetworks.research.domain.form.interfaces.Choice;
 
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.FlankerType;
+
 public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInputFieldBase<E> {
 
-    private final String flankerType;
+    private final FlankerType flankerType;
 
     private final int delayToNextInputField;
 
@@ -57,7 +59,7 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
             final String promptDetail, final Range range,
             final ImmutableList immutableList,
             final TextFieldOptions textFieldOptions,
-            final ImmutableList<Choice<E>> choices, final E defaultAnswer, final boolean optional, final String flankerType, final int delayToNextInputField,
+            final ImmutableList<Choice<E>> choices, final E defaultAnswer, final boolean optional, final FlankerType flankerType, final int delayToNextInputField,
             final ImmutableList<String> flankers, final String text) {
         super(identifier, formDataType, formUIHint, placeholderText, prompt, promptDetail, range, immutableList,
                 textFieldOptions, choices, defaultAnswer, optional);
@@ -67,7 +69,7 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
         this.text = text;
     }
 
-    public String getFlankerType() {
+    public FlankerType getFlankerType() {
         return flankerType;
     }
 
