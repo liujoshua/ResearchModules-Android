@@ -35,7 +35,35 @@ apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-//apply plugin: 'com.readdle.android.swift'
+apply plugin: 'com.readdle.android.swift'
+
+swift {
+    // helpers to forward flags from Swift Package Manager to Swift Compiler Frontend
+    def passToFrontend = ["-Xswiftc", "-Xfrontend", "-Xswiftc"]
+    def disableObjcAttr = passToFrontend + "-experimental-disable-objc-attr"
+
+    // Enables swift clean when ./gradlew clean invoked. Default true
+    cleanEnabled = true
+    useKapt = true
+    // Custom swift flags for debug build
+    debug {
+        // Set custom preprocessor flags
+        extraBuildFlags "-Xswiftc", "-DDEBUG"
+        // Disable @objc and dynamic
+        // extraBuildFlags disableObjcAttr
+
+        abiFilters 'armeabi-v7a', 'arm64-v8a'
+    }
+
+    // Custom swift flags for release build
+    release {
+        // enable symbols in relase modes
+        extraBuildFlags "-Xswiftc", "-g"
+        // Disable @objc and dynamic
+        extraBuildFlags disableObjcAttr
+        abiFilters 'armeabi-v7a', 'arm64-v8a'
+    }
+}
 
 android {
     compileSdkVersion 29

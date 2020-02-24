@@ -30,18 +30,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.step
+package edu.northwestern.mobiletoolbox.flanker_app.flanker.model
 
+import org.sagebionetworks.research.domain.result.interfaces.TaskResult
+import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.domain.task.Task
+import org.sagebionetworks.research.domain.task.navigation.StepAndNavDirection
 import org.sagebionetworks.research.domain.task.navigation.StepNavigator
 import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
+import org.sagebionetworks.research.domain.task.navigation.TaskProgress
 import org.sagebionetworks.research.domain.task.navigation.strategy.StrategyBasedNavigator
 
-class Navigator(task: Task, progressMarkers: List<String>?): StrategyBasedNavigator(task, progressMarkers) {
+class Navigator(val task: Task): StepNavigator {
     class Factory: StepNavigatorFactory {
         override fun create(task: Task, progressMarkers: List<String>?): StepNavigator {
-            return Navigator(task,
-                    progressMarkers)
+            return Navigator(task)
         }
+    }
+
+    override fun getNextStep(step: Step?, taskResult: TaskResult): StepAndNavDirection {
+        return StepAndNavDirection(step, -1)
+    }
+
+    override fun getPreviousStep(step: Step, taskResult: TaskResult): Step? {
+        return null
+    }
+
+    override fun getProgress(step: Step, taskResult: TaskResult): TaskProgress? {
+        return null
+    }
+
+    override fun getStep(identifier: String): Step? {
+        return null
+    }
+
+    override fun getSteps(): List<Step> {
+        return task.steps
     }
 }

@@ -52,7 +52,7 @@ import org.sagebionetworks.research.modules.common.step.overview.OverviewStepMod
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
-import edu.northwestern.mobiletoolbox.flanker_app.FlankerNavigator;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.Navigator;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerFormStepModule;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInputFieldModule;
 
@@ -76,7 +76,7 @@ public abstract class FlankerTaskModule {
      */
     @Provides
     static StepNavigatorFactory provideStepNavigatorFactory() {
-        return new FlankerNavigator.Factory();
+        return new Navigator.Factory();
     }
 
     /**
