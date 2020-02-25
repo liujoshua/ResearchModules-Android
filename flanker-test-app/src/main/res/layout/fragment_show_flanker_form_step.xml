@@ -58,53 +58,39 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/nav"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="50dp"
+        android:weightSum="5">
+
 
         <TextView
             android:id="@+id/flankerLeftTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="←"
-            android:fontFamily="@font/lato_black"
-            android:textSize="70dp"
-            android:gravity="center_vertical"/>
+            style="@style/Flanker"/>
 
         <TextView
             android:id="@+id/flankerLeftTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="←"
-            android:fontFamily="@font/lato_black"
-            android:textSize="70dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="30dp"/>
+            style="@style/Flanker"/>
+
         <TextView
             android:id="@+id/flankerTargetTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="←"
-            android:fontFamily="@font/lato_black"
-            android:textSize="70dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="30dp"/>
+            style="@style/Flanker"/>
+
         <TextView
             android:id="@+id/flankerRightTextView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="←"
-            android:fontFamily="@font/lato_black"
-            android:textSize="70dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="30dp"/>
+            style="@style/Flanker"/>
+
         <TextView
             android:id="@+id/flankerRightTextView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="←"
-            android:fontFamily="@font/lato_black"
-            android:textSize="70dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="30dp"/>
+            style="@style/Flanker"/>
 
 
     </LinearLayout>
