@@ -30,47 +30,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.model
+package edu.northwestern.mobiletoolbox.flanker_app.jni;
 
-import org.sagebionetworks.research.domain.result.interfaces.TaskResult
-import org.sagebionetworks.research.domain.step.interfaces.Step
-import org.sagebionetworks.research.domain.task.Task
-import org.sagebionetworks.research.domain.task.navigation.StepAndNavDirection
-import org.sagebionetworks.research.domain.task.navigation.StepNavigator
-import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
-import org.sagebionetworks.research.domain.task.navigation.TaskProgress
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-class Navigator(val task: Task): StepNavigator {
+import com.readdle.codegen.anotation.SwiftCallbackFunc;
+import com.readdle.codegen.anotation.SwiftDelegate;
 
-//    private var steps: ArrayList<FlankerStepType>
-
-    class Factory: StepNavigatorFactory {
-        override fun create(task: Task, progressMarkers: List<String>?): StepNavigator {
-            return Navigator(task)
-        }
-    }
-
-    init {
-//        steps = ArrayList(task.steps.map { it as FlankerStepType })
-    }
-
-    override fun getNextStep(step: Step?, taskResult: TaskResult): StepAndNavDirection {
-        return StepAndNavDirection(step, -1)
-    }
-
-    override fun getPreviousStep(step: Step, taskResult: TaskResult): Step? {
-        return null
-    }
-
-    override fun getProgress(step: Step, taskResult: TaskResult): TaskProgress? {
-        return null
-    }
-
-    override fun getStep(identifier: String): Step? {
-        return null
-    }
-
-    override fun getSteps(): List<Step> {
-        return task.steps
-    }
-}
+//@SwiftDelegate(protocols = {"FlankerStepProtocol"})
+//public interface FlankerStepType {
+//
+//    @NonNull
+//    @SwiftCallbackFunc
+//    String getIdentifier();
+//
+//    @Nullable
+//    @SwiftCallbackFunc
+//    String getNextStepIdentifier();
+//
+//    @Nullable
+//    @SwiftCallbackFunc
+//    String getStepName();
+//
+//    @Nullable
+//    @SwiftCallbackFunc
+//    FlankerStepGroup getStepGroup();
+//
+//    @Nullable
+//    @SwiftCallbackFunc
+//    String getStepBackTo();
+//}

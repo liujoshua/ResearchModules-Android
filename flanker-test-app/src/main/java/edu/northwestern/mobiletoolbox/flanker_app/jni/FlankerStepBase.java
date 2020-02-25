@@ -41,7 +41,7 @@ import com.readdle.codegen.anotation.SwiftGetter;
 
 import java.util.ArrayList;
 
-//@SwiftDelegate(protocols = {"FlankerStepProtocol"})
+//@SwiftDelegate(protocols = {"FlankerStepType"})
 //public abstract class FlankerStepBase {
 //
 //    @NonNull

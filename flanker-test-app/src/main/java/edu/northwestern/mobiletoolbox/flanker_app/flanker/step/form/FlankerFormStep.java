@@ -48,6 +48,9 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule;
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup;
+
 public class FlankerFormStep extends MtbFormStepBase {
     public static final String TYPE = "form";
 
@@ -55,7 +58,16 @@ public class FlankerFormStep extends MtbFormStepBase {
     private final String stepName;
 
     @Nullable
-    private final String stepGroup;
+    private final FlankerStepGroup stepGroup;
+
+    @Nullable
+    private final String stepBackTo;
+
+    @Nullable
+    private final Integer delayToNextStep;
+
+    @Nullable
+    private final ImmutableList<FlankerStepBranchingRule> branchingNavigationRules;
 
     public FlankerFormStep(@NonNull final String identifier,
             @Nullable final ImmutableList<InputField> inputFields,
@@ -69,11 +81,17 @@ public class FlankerFormStep extends MtbFormStepBase {
             @Nullable final ImmutableMap<String, Action> actions,
             @Nullable final ImmutableSet<String> hiddenActions,
             @Nullable final String stepName,
-            @Nullable final String stepGroup) {
+            @Nullable final FlankerStepGroup stepGroup,
+            @Nullable final String stepBackTo,
+            @Nullable final Integer delayToNextStep,
+            @Nullable final ImmutableList<FlankerStepBranchingRule> branchingNavigationRules) {
         super(identifier, inputFields, colorTheme, imageTheme, detail, footnote, text, title, asyncActions, actions,
                 hiddenActions);
         this.stepName = stepName;
         this.stepGroup = stepGroup;
+        this.stepBackTo = stepBackTo;
+        this.delayToNextStep = delayToNextStep;
+        this.branchingNavigationRules = branchingNavigationRules;
     }
 
     @NonNull
@@ -85,9 +103,34 @@ public class FlankerFormStep extends MtbFormStepBase {
     @NonNull
     @Override
     public Step copyWithIdentifier(@NonNull final String identifier) {
-        return new FlankerFormStep(identifier, getInputFields(), getColorTheme(), getImageTheme(), getDetail(),
-                getFootnote(), getText(), getTitle(), getAsyncActions(), getActions(), getHiddenActions(), stepName,
-                stepGroup);
+        return new FlankerFormStep(
+                identifier,
+                getInputFields(),
+                getColorTheme(),
+                getImageTheme(),
+                getDetail(),
+                getFootnote(),
+                getText(),
+                getTitle(),
+                getAsyncActions(),
+                getActions(),
+                getHiddenActions(),
+                stepName,
+                stepGroup,
+                stepBackTo,
+                delayToNextStep,
+                branchingNavigationRules);
+    }
+
+    @NonNull
+    @Override
+    public String getIdentifier() {
+        return super.getIdentifier();
+    }
+
+    @Nullable
+    public String getNextStepIdentifier() {
+        return null;
     }
 
     @Nullable
@@ -96,16 +139,24 @@ public class FlankerFormStep extends MtbFormStepBase {
     }
 
     @Nullable
-    public String getStepGroup() {
+    public FlankerStepGroup getStepGroup() {
+//        return FlankerStepGroup.fromString(stepGroup);
         return stepGroup;
     }
+
+    @Nullable
+    public String getStepBackTo() { return stepBackTo; }
+
+    @Nullable
+    public Integer getDelayToNextStep() { return delayToNextStep; }
+
+    @Nullable
+    public ImmutableList<FlankerStepBranchingRule> getBranchingNavigationRules() { return branchingNavigationRules; }
 
     @NonNull
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("stepName", stepName)
-                .add("stepGroup", stepGroup)
                 .add("type", getType())
                 .add("identifier", getIdentifier())
                 .add("inputFields", getInputFields())
@@ -118,6 +169,11 @@ public class FlankerFormStep extends MtbFormStepBase {
                 .add("asyncActions", getAsyncActions())
                 .add("actions", getActions())
                 .add("hiddenActions", getHiddenActions())
+                .add("stepName", getStepName())
+                .add("stepGroup", getStepGroup())
+                .add("stepBackTo", getStepBackTo())
+                .add("delayToNextStep", getDelayToNextStep())
+                .add("branchingNavigationRules", getBranchingNavigationRules())
                 .toString();
     }
 
@@ -133,12 +189,22 @@ public class FlankerFormStep extends MtbFormStepBase {
             return false;
         }
         final FlankerFormStep that = (FlankerFormStep) o;
-        return Objects.equal(stepName, that.stepName) &&
-                Objects.equal(stepGroup, that.stepGroup);
+        return
+                Objects.equal(stepName, that.stepName) &&
+                Objects.equal(stepGroup, that.stepGroup) &&
+                Objects.equal(stepBackTo, that.stepBackTo) &&
+                Objects.equal(delayToNextStep, that.delayToNextStep) &&
+                Objects.equal(branchingNavigationRules, that.branchingNavigationRules);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), stepName, stepGroup);
+        return Objects.hashCode(
+                super.hashCode(),
+                stepName,
+                stepGroup,
+                stepBackTo,
+                delayToNextStep,
+                branchingNavigationRules);
     }
 }

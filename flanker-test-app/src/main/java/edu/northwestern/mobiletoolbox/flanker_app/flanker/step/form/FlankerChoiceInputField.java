@@ -32,6 +32,8 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form;
 
+import androidx.annotation.Nullable;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
@@ -47,7 +49,11 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
 
     private final FlankerType flankerType;
 
-    private final int delayToNextInputField;
+    @Nullable
+    private final Integer delayToNextInputField;
+
+    @Nullable
+    private final Integer timeout;
 
     private final ImmutableList<String> flankers;
 
@@ -59,12 +65,34 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
             final String promptDetail, final Range range,
             final ImmutableList immutableList,
             final TextFieldOptions textFieldOptions,
-            final ImmutableList<Choice<E>> choices, final E defaultAnswer, final boolean optional, final FlankerType flankerType, final int delayToNextInputField,
-            final ImmutableList<String> flankers, final String text) {
-        super(identifier, formDataType, formUIHint, placeholderText, prompt, promptDetail, range, immutableList,
-                textFieldOptions, choices, defaultAnswer, optional);
+            final ImmutableList<Choice<E>> choices,
+            final E defaultAnswer,
+            final boolean optional,
+            final FlankerType flankerType,
+            @Nullable
+            final Integer delayToNextInputField,
+            @Nullable
+            final Integer timeout,
+            final ImmutableList<String> flankers,
+            final String text) {
+        super(
+            identifier,
+            formDataType,
+            formUIHint,
+            placeholderText,
+            prompt,
+            promptDetail,
+            range,
+            immutableList,
+            textFieldOptions,
+            choices,
+            defaultAnswer,
+            optional
+        );
+
         this.flankerType = flankerType;
         this.delayToNextInputField = delayToNextInputField;
+        this.timeout = timeout;
         this.flankers = flankers;
         this.text = text;
     }
@@ -73,9 +101,13 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
         return flankerType;
     }
 
-    public int getDelayToNextInputField() {
+    @Nullable
+    public Integer getDelayToNextInputField() {
         return delayToNextInputField;
     }
+
+    @Nullable
+    public Integer getTimeout() { return timeout; }
 
     public ImmutableList<String> getFlankers() {
         return flankers;
@@ -90,6 +122,7 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
         return MoreObjects.toStringHelper(this)
                 .add("flankerType", flankerType)
                 .add("delayToNextInputField", delayToNextInputField)
+                .add("timeout", timeout)
                 .add("flankers", flankers)
                 .add("identifier", getIdentifier())
                 .add("formDataType", getFormDataType())
@@ -119,6 +152,7 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
         }
         final FlankerChoiceInputField that = (FlankerChoiceInputField) o;
         return delayToNextInputField == that.delayToNextInputField &&
+                Objects.equal(timeout, that.timeout) &&
                 Objects.equal(flankerType, that.flankerType) &&
                 Objects.equal(flankers, that.flankers) &&
                 Objects.equal(text, that.text);
@@ -126,6 +160,6 @@ public class FlankerChoiceInputField<E extends Comparable<E>> extends ChoiceInpu
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(super.hashCode(), flankerType, delayToNextInputField, flankers, text);
+        return Objects.hashCode(super.hashCode(), flankerType, delayToNextInputField, timeout, flankers, text);
     }
 }

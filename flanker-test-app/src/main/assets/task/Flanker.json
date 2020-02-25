@@ -1768,7 +1768,7 @@
       "inputFields": [
         {
           "identifier": "A24a",
-          "type": "singleChoice=",
+          "type": "singleChoice",
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,

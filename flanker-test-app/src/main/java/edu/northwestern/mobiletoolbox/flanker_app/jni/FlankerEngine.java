@@ -30,47 +30,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.model
+package edu.northwestern.mobiletoolbox.flanker_app.jni;
 
-import org.sagebionetworks.research.domain.result.interfaces.TaskResult
-import org.sagebionetworks.research.domain.step.interfaces.Step
-import org.sagebionetworks.research.domain.task.Task
-import org.sagebionetworks.research.domain.task.navigation.StepAndNavDirection
-import org.sagebionetworks.research.domain.task.navigation.StepNavigator
-import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
-import org.sagebionetworks.research.domain.task.navigation.TaskProgress
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-class Navigator(val task: Task): StepNavigator {
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftReference;
 
-//    private var steps: ArrayList<FlankerStepType>
+import java.util.ArrayList;
 
-    class Factory: StepNavigatorFactory {
-        override fun create(task: Task, progressMarkers: List<String>?): StepNavigator {
-            return Navigator(task)
-        }
-    }
-
-    init {
-//        steps = ArrayList(task.steps.map { it as FlankerStepType })
-    }
-
-    override fun getNextStep(step: Step?, taskResult: TaskResult): StepAndNavDirection {
-        return StepAndNavDirection(step, -1)
-    }
-
-    override fun getPreviousStep(step: Step, taskResult: TaskResult): Step? {
-        return null
-    }
-
-    override fun getProgress(step: Step, taskResult: TaskResult): TaskProgress? {
-        return null
-    }
-
-    override fun getStep(identifier: String): Step? {
-        return null
-    }
-
-    override fun getSteps(): List<Step> {
-        return task.steps
-    }
-}
+//@SwiftReference
+//public class FlankerEngine {
+//
+//    @Nullable
+//    @SwiftFunc("getNextStep(step:)")
+//    public native FlankerStep getNextStep(@Nullable FlankerStep step);
+//
+//    @Nullable
+//    @SwiftFunc("getPreviousStep(step:)")
+//    public native FlankerStep getPreviousStep(@Nullable FlankerStep step);
+//
+//    @NonNull
+//    @SwiftFunc("init(with:localPersistentData:)")
+//    public native static FlankerEngine init(
+//            @NonNull ArrayList<FlankerStep> steps,
+//            @Nullable FlankerLocalPersistentData localPersistentData
+//    );
+//
+//    private long nativePointer = 0L;
+//    public native void release();
+//    private FlankerEngine() {}
+//}

@@ -30,47 +30,44 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.flanker.model
+package edu.northwestern.mobiletoolbox.flanker_app.jni;
 
-import org.sagebionetworks.research.domain.result.interfaces.TaskResult
-import org.sagebionetworks.research.domain.step.interfaces.Step
-import org.sagebionetworks.research.domain.task.Task
-import org.sagebionetworks.research.domain.task.navigation.StepAndNavDirection
-import org.sagebionetworks.research.domain.task.navigation.StepNavigator
-import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
-import org.sagebionetworks.research.domain.task.navigation.TaskProgress
+import androidx.annotation.NonNull;
 
-class Navigator(val task: Task): StepNavigator {
+import com.readdle.codegen.anotation.SwiftFunc;
+import com.readdle.codegen.anotation.SwiftGetter;
+import com.readdle.codegen.anotation.SwiftValue;
 
-//    private var steps: ArrayList<FlankerStepType>
+@SwiftValue
+public class FlankerDefaultSteps {
+    @NonNull
+    private Integer numberOfSteps;
 
-    class Factory: StepNavigatorFactory {
-        override fun create(task: Task, progressMarkers: List<String>?): StepNavigator {
-            return Navigator(task)
-        }
+    @NonNull
+    @SwiftGetter("numberOfSteps")
+    public native Integer getNumberOfSteps();
+
+    @NonNull
+    private FlankerStepGroup startingStepGroup;
+
+    @NonNull
+    @SwiftGetter("startingStepGroup")
+    public native FlankerStepGroup getStartingStepGroup();
+
+    @NonNull
+    @SwiftFunc("init(numberOfSteps:startingStepGroup:)")
+    public static native FlankerDefaultSteps init(
+        @NonNull Integer numberOfSteps,
+        @NonNull FlankerStepGroup startingStepGroup
+    );
+
+    public FlankerDefaultSteps(
+        @NonNull Integer numberOfSteps,
+        @NonNull FlankerStepGroup startingStepGroup
+    ) {
+        this.numberOfSteps = numberOfSteps;
+        this.startingStepGroup = startingStepGroup;
     }
 
-    init {
-//        steps = ArrayList(task.steps.map { it as FlankerStepType })
-    }
-
-    override fun getNextStep(step: Step?, taskResult: TaskResult): StepAndNavDirection {
-        return StepAndNavDirection(step, -1)
-    }
-
-    override fun getPreviousStep(step: Step, taskResult: TaskResult): Step? {
-        return null
-    }
-
-    override fun getProgress(step: Step, taskResult: TaskResult): TaskProgress? {
-        return null
-    }
-
-    override fun getStep(identifier: String): Step? {
-        return null
-    }
-
-    override fun getSteps(): List<Step> {
-        return task.steps
-    }
+    private FlankerDefaultSteps() {}
 }

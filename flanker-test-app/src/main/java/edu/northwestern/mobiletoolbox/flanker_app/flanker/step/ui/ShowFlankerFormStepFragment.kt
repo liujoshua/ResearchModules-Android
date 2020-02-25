@@ -33,6 +33,8 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -45,8 +47,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import edu.northwestern.mobiletoolbox.flanker_app.R
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.FlankerType
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.FlankerType.FLANKERS
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.FlankerType.INTERIM_STAR
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.FlankerType.TEST_STIMULI
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoice
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerChoiceInputField
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerFormStepView
+import kotlin.concurrent.schedule
 import kotlinx.android.synthetic.main.fragment_show_flanker_form_step.flankerLeftTextView1
 import kotlinx.android.synthetic.main.fragment_show_flanker_form_step.flankerLeftTextView2
 import kotlinx.android.synthetic.main.fragment_show_flanker_form_step.flankerRightTextView1
@@ -60,11 +67,23 @@ import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
+import java.util.Timer
+import java.util.UUID
 
 class ShowFlankerFormStepFragment : Fragment() {
 
     lateinit var stepView: FlankerFormStepView
     lateinit var taskViewModel: PerformTaskViewModel
+    lateinit var performTaskFragment: PerformTaskFragment
+
+    private var currentInputField: FlankerChoiceInputField<*>? = null
+    private var inputFieldIdentifierForTouchDown: String? = null
+
+    private var didTouchUp: Boolean = false
+
+    private var delayHandler = Handler()
+    private var timeoutHandler = Handler()
+    private val handler = Handler(Looper.getMainLooper())
 
     val flankers: Array<TextView> by lazy {
         arrayOf(
@@ -85,13 +104,9 @@ class ShowFlankerFormStepFragment : Fragment() {
 
         this.stepView = arguments!!.getSerializable("STEP_VIEW") as FlankerFormStepView
 
-        val performTaskFragment = (parentFragment as PerformTaskFragment)
+        this.performTaskFragment = (parentFragment as PerformTaskFragment)
         this.taskViewModel = ViewModelProviders.of(performTaskFragment)
                 .get<PerformTaskViewModel>(PerformTaskViewModel::class.java)
-
-//        view.button.setOnClickListener { v -> performTaskFragment.goForward() }
-//
-//        view.text.text = stepView.toString()
         return view
     }
 
@@ -107,14 +122,16 @@ class ShowFlankerFormStepFragment : Fragment() {
         arrayOf(leftResponseButton, rightResponseButton).forEach {
             it.setOnTouchListener { button, event ->
                 when (event.action) {
-                    MotionEvent.ACTION_DOWN -> processTouchDown(button as FlankerResponseButton)
-                    MotionEvent.ACTION_UP -> processTouchUp(button as FlankerResponseButton)
-                    else -> Log.d(TAG, "$button received other action ${event.action}")
+                    MotionEvent.ACTION_DOWN -> processTouchDown(it)
+                    MotionEvent.ACTION_UP -> processTouchUp(it)
+                    else -> Log.d(TAG, "$it received other action ${event.action}")
                 }
 
                 true
             }
         }
+
+        configureStep()
     }
 
     private fun configureStep() {
@@ -123,17 +140,87 @@ class ShowFlankerFormStepFragment : Fragment() {
 
     private fun processTouchDown(button: FlankerResponseButton) {
         Log.d(TAG, "Button response OID: ${button.itemResponseOID}")
+
+        if (currentInputField?.getIdentifier() == inputFieldIdentifierForTouchDown) {
+            return
+        }
+
+        inputFieldIdentifierForTouchDown = currentInputField?.getIdentifier()
     }
 
     private fun processTouchUp(button: FlankerResponseButton) {
         Log.d(TAG, "Button response OID: ${button.itemResponseOID}")
+
+        currentInputField?.let {
+//            it.getFlankerType() == TEST_STIMULI &&
+            if (it.getIdentifier() == inputFieldIdentifierForTouchDown) {
+                didTouchUp = true
+                processEndOfStep()
+            }
+        }
+    }
+
+    private fun delayedCall() {
+        handler.removeCallbacksAndMessages(null)
+
+        Log.d(TAG, "left button: $leftResponseButton")
+        Log.d(TAG, "right button: $rightResponseButton")
+
+        leftResponseButton.itemResponseOID = null
+        rightResponseButton.itemResponseOID = null
+
+
     }
 
     private fun startFlankerAnimation() {
+        handler.removeCallbacksAndMessages(null)
         // reset flankers
         flankers.forEach { it.text = "" }
         leftResponseButton.itemResponseOID = null
         rightResponseButton.itemResponseOID = null
+
+        val inputField = stepView.inputFields.map { it as FlankerChoiceInputField }.find { (it as FlankerChoiceInputField).getFlankerType() == flankerTypeToDisplay }
+
+        inputField?.let {
+            this.flankerTypeToDisplay = when(it.getFlankerType()) {
+                INTERIM_STAR -> FLANKERS
+                FLANKERS -> TEST_STIMULI
+                else -> INTERIM_STAR
+            }
+
+            Log.d(TAG, "Next flanker type: $flankerTypeToDisplay")
+
+            it.getFlankers().forEachIndexed { idx, flanker ->
+                flankers[idx].text = flanker
+            }
+
+            this.currentInputField = it
+
+            val choices = it.getChoices().map { it as FlankerChoice }
+
+            choices.forEach {
+                when(it.answerValue) {
+                    1.0 -> leftResponseButton.itemResponseOID = UUID.fromString(it.itemResponseOID)
+                    2.0 -> rightResponseButton.itemResponseOID = UUID.fromString(it.itemResponseOID)
+                }
+            }
+
+            inputField.getDelayToNextInputField()?.let {
+                handler.postDelayed({
+                    startFlankerAnimation()
+                }, it.toLong())
+            }
+
+            inputField.getTimeout()?.let {
+                handler.postDelayed({
+                    processEndOfStep()
+                }, it.toLong())
+            }
+        }
+    }
+
+    private fun processEndOfStep() {
+        performTaskFragment.goForward()
     }
 
     companion object {

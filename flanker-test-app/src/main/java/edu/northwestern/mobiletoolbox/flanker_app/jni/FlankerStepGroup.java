@@ -33,12 +33,16 @@
 package edu.northwestern.mobiletoolbox.flanker_app.jni;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.gson.annotations.SerializedName;
 import com.readdle.codegen.anotation.SwiftValue;
 
 @SwiftValue
 public enum FlankerStepGroup {
+    @SerializedName("setA")
     setA("setA"),
+    @SerializedName("setB")
     setB("setB");
 
 
@@ -49,5 +53,14 @@ public enum FlankerStepGroup {
 
     FlankerStepGroup(@NonNull String rawValue) {
         this.rawValue = rawValue;
+    }
+
+    @Nullable
+    public static FlankerStepGroup fromString(@NonNull String stepGroup) {
+        try {
+            return FlankerStepGroup.valueOf(stepGroup);
+        } catch(IllegalArgumentException e) {
+            return null;
+        }
     }
 }
