@@ -56,6 +56,8 @@ import edu.northwestern.mobiletoolbox.flanker_app.FlankerNavigator;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.model.Navigator;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerFormStepModule;
 import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInputFieldModule;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.overview.FlankerOverviewStep;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.overview.FlankerOverviewStepModule;
 
 /**
  * Overrides SageResearch TaskModule.
@@ -65,7 +67,7 @@ import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerInput
 @Module(includes = {GsonModule.class,
         FlankerInputFieldModule.class,
         FlankerFormStepModule.class, // custom Flanker Form Step
-        OverviewStepModule.class,
+        FlankerOverviewStepModule.class, // custom Flanker Overview Step
         InstructionStepModule.class,
         FlankerStepModule.class,
         ActionModule.class,

@@ -67,7 +67,8 @@ import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowStepFragmentBase
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
 import org.sagebionetworks.research.presentation.perform_task.PerformTaskViewModel
-import java.util.Timer
+import org.threeten.bp.Instant
+import org.threeten.bp.ZonedDateTime
 import java.util.UUID
 
 class ShowFlankerFormStepFragment : Fragment() {
@@ -81,9 +82,9 @@ class ShowFlankerFormStepFragment : Fragment() {
 
     private var didTouchUp: Boolean = false
 
-    private var delayHandler = Handler()
-    private var timeoutHandler = Handler()
     private val handler = Handler(Looper.getMainLooper())
+
+    private val startStepDate: Instant = ZonedDateTime.now().toInstant()
 
     val flankers: Array<TextView> by lazy {
         arrayOf(
@@ -160,15 +161,7 @@ class ShowFlankerFormStepFragment : Fragment() {
         }
     }
 
-    private fun delayedCall() {
-        handler.removeCallbacksAndMessages(null)
-
-        Log.d(TAG, "left button: $leftResponseButton")
-        Log.d(TAG, "right button: $rightResponseButton")
-
-        leftResponseButton.itemResponseOID = null
-        rightResponseButton.itemResponseOID = null
-
+    private fun updateInputFieldResult() {
 
     }
 

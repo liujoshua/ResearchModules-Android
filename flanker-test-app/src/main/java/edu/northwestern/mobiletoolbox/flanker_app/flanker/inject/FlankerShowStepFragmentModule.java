@@ -37,12 +37,12 @@ import org.sagebionetworks.research.mobile_ui.show_step.view.ShowActiveUIStepFra
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowCountdownStepFragment;
 import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragment;
 import org.sagebionetworks.research.modules.common.step.instruction.ShowInstructionStepFragment;
-import org.sagebionetworks.research.modules.common.step.overview.ShowOverviewStepFragment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
+import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.overview.FlankerOverviewStepFragment;
 
 @Module
 public abstract class FlankerShowStepFragmentModule {
@@ -54,7 +54,7 @@ public abstract class FlankerShowStepFragmentModule {
 
     @ContributesAndroidInjector
     @ShowStepFragmentScope
-    abstract ShowOverviewStepFragment contributeShowOverviewStepFragmentInjector();
+    abstract FlankerOverviewStepFragment contributeShowFlankerOverviewStepFragmentInjector();
 
     // below are from SageResearch's ShowStepFragmentModule, with FormUIStepFragment commented out
 
