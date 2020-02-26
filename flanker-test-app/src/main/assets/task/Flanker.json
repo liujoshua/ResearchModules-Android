@@ -1,15 +1,15 @@
 {
-  "comments" : "timeout and delayToNextStep are defined in miliseconds;",
-  "identifier" : "Flanker Inhibitory Control",
-  "type" : "Flanker",
-  "hideActions" : ["goBackward"],
-  "defaultSteps": { "numberOfSteps" : 50, "startingStepGroup": "setA"},
-  "stepRules" : [
+  "comments": "timeout and delayToNextStep are defined in miliseconds;",
+  "identifier": "Flanker Inhibitory Control",
+  "type": "Flanker",
+  "hideActions": ["goBackward"],
+  "defaultSteps": { "numberOfSteps": 50, "startingStepGroup": "setA" },
+  "stepRules": [
     {
       "description": "If last administered step was between A01 and A50 than live steps would be B01 - B50",
       "nextStepName": "firstLiveStep",
-      "stepGroup" : "setB",
-      "criteria":[
+      "stepGroup": "setB",
+      "criteria": [
         {
           "name": "lastStepIdentifierInSetA",
           "description": "If last administered step was in set A"
@@ -20,434 +20,133 @@
       "description": "If last administered step was between B01 and B50 than live steps would be A01 - A50",
       "nextStepName": "firstLiveStep",
       "stepGroup": "setA",
-      "criteria":[
+      "criteria": [
         {
           "name": "lastStepIdentifierInSetB",
           "description": "If last administered step was in set B"
         }
       ]
     }
-
   ],
-  "steps" : [
+  "steps": [
     {
-      "identifier" : "I.0",
-      "title" : "Arrows Task",
-      "text" : "This test measures how well you follow directions.",
-      "type" : "overview",
+      "identifier": "I.0",
+      "title": "Arrows Task",
+      "text": "This test measures how well you follow directions.",
+      "type": "overview",
       "asyncActions": [],
-      "actions" : { "goForward": { "type":"default", "buttonTitle": "Start" },
-        "cancel": { "type":"default", "iconName":"Cancel-Black"}
+      "actions": {
+        "goForward": { "type": "default", "buttonTitle": "Start" },
+        "cancel": { "type": "default", "iconName": "Cancel-Black" }
       },
-      "shouldHideActions" : ["goBackward"],
-      "viewTheme"      : { "viewIdentifier":"FlankerWelcome", "storyboardIdentifier":"Flanker" },
-      "flanker" : {
-        "interimStar": ["","","⭐️","",""],
-        "starDelay" : 3500,
-        "flankers" : ["→","→","","→","→"],
-        "flankerDelay":750,
-        "testStimuli": ["→","→","→","→","→"]
+      "shouldHideActions": ["goBackward"],
+      "viewTheme": {
+        "viewIdentifier": "FlankerWelcome",
+        "storyboardIdentifier": "Flanker"
       },
-      "branchingNavigationRules" : [
+      "flanker": {
+        "interimStar": ["", "", "⭐️", "", ""],
+        "starDelay": 3500,
+        "flankers": ["→", "→", "", "→", "→"],
+        "flankerDelay": 750,
+        "testStimuli": ["→", "→", "→", "→", "→"]
+      },
+      "branchingNavigationRules": [
         {
           "description": "If last administration was within last 90 days than administer T.1L",
-          "nextStepName":"repeatInstruction",
-          "criteria":[
+          "nextStepName": "repeatInstruction",
+          "criteria": [
             {
               "name": "lastAdministrationlessThanDays",
               "description": "If last administration was within last 90 days",
-              "duration":90
+              "duration": 90
             }
           ]
         },
         {
           "description": "If last administration was 90 or more days ago than administer I.1",
-          "nextStepName":"firstInstruction",
-          "criteria":[
+          "nextStepName": "firstInstruction",
+          "criteria": [
             {
               "name": "lastAdministrationGreaterThanEqualToDays",
               "description": "If last administration was 90 or more days ago",
-              "duration":90
+              "duration": 90
             }
           ]
         }
       ]
     },
     {
-      "identifier" : "I.1",
-      "type" : "instructionForm",
-      "isInstruction" : true,
-      "text" : "In this task you will see a row of arrows. You should choose the button that matches the way the MIDDLE arrow is pointing.",
-      "flankers" : ["←","←","←","←","←"],
-      "viewTheme"      : { "viewIdentifier":"FlankerInstruction", "storyboardIdentifier":"Flanker" },
-      "stepName":"firstInstruction",
-      "inputFields" : [
-        {
-          "identifier" : "I.1",
-          "type" : "singleChoice",
-          "choices" : [
-            {
-              "itemResponseOID" : "3FB8E74E-0350-4CC7-B32C-01C2B3276B23",
-              "score" : 1,
-              "text" : "Left",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "F670EF54-105B-4B61-B054-DF670F116140",
-              "score" : 0,
-              "text" : "Right",
-              "value" : 2
-            }
-          ]
-
-        }
-      ]
-    },
-    {
-      "identifier" : "I.2",
-      "type" : "instructionForm",
-      "isInstruction" : true,
-      "text" : "Sometimes all of the arrows point in the same direction",
-      "flankers" : ["→","→","→","→","→"],
-      "viewTheme"      : { "viewIdentifier":"FlankerInstruction", "storyboardIdentifier":"Flanker" },
-      "inputFields" : [
-        {
-          "identifier" : "I.2",
-          "type" : "singleChoice",
-          "choices" : [
-            {
-              "itemResponseOID" : "DBA523AB-8D3D-488B-81DB-67A6E12381C4",
-              "score" : 0,
-              "text" : "Left",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "C3ADE0B6-851F-4BA8-885E-FD7051AB236B",
-              "score" : 1,
-              "text" : "Right",
-              "value" : 2
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier" : "I.3",
-      "type" : "instructionForm",
-      "isInstruction" : true,
-      "text" : "Always click the direction of the center arrow, even when they point in different directions.",
-      "flankers" : ["←","←","→","←","←"],
-      "viewTheme"      : { "viewIdentifier":"FlankerInstruction", "storyboardIdentifier":"Flanker" },
-      "inputFields" : [
-        {
-          "identifier" : "I.3",
-          "type" : "singleChoice",
-          "choices" : [
-            {
-              "itemResponseOID" : "8724E151-3A12-4107-B77C-74815CA7E739",
-              "score" : 0,
-              "text" : "Left",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "882ADB11-EA74-4ACF-8F3E-56EF1FCBC823",
-              "score" : 1,
-              "text" : "Right",
-              "value" : 2
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier" : "T.1I",
-      "text" : "Now let's try some more. Work as fast as you can without making mistakes.",
-      "type" : "instruction",
-      "actions"        : { "goForward": { "type":"default", "buttonTitle": "Next" }},
-      "shouldHideActions" : ["goBackward"],
-      "viewTheme"      : { "viewIdentifier":"FlankerAdditionalInstructions", "storyboardIdentifier":"Flanker" },
-      "nextStepIdentifier": "P.1"
-    },
-    {
-      "identifier" : "T.1L",
-      "type" : "instruction",
-      "text" : "Now we're going to take the Arrows test. Click \"Repeat Instructions\" if you want to repeat the instructions for this test. Otherwise click the \"Begin Test\" button to start the test.",
-      "actions"        : { "goForward": { "type":"default", "buttonTitle": "Begin Test" }, "goBackward": { "type":"default", "buttonTitle": "Repeat Instructions" }},
-      "viewTheme"      : { "viewIdentifier":"FlankerAdditionalInstructions", "storyboardIdentifier":"Flanker" },
-      "stepName":"repeatInstruction",
-      "stepBackTo": "firstInstruction",
-      "inputFields" : [
-        {
-          "identifier" : "T.1L",
-          "type" : "singleChoice",
-          "choices" : [
-            {
-              "itemResponseOID" : "E3BF01F4-1BBD-4A96-9E95-75C04A0F0D92",
-              "text" : "Repeat Instructions",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "319DADAE-AAB0-4464-B2D8-A14E131DB116",
-              "text" : "Begin Test",
-              "value" : 2
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier" : "T.2L",
-      "text" : "Remember to click the button pointing the same direction as the center arrow. Work as fast as you can without making mistakes.",
-      "type" : "instruction",
-      "actions"        : { "goForward": { "type":"default", "buttonTitle": "Next" }},
-      "shouldHideActions" : ["goBackward"],
-      "viewTheme"      : { "viewIdentifier":"FlankerAdditionalInstructions", "storyboardIdentifier":"Flanker" },
-      "branchingNavigationRules" : [
-        {
-          "description": "If last administration was more than a day ago than administer P.1",
-          "nextStepName": "firstPracticeInstruction",
-          "criteria":[
-            {
-              "name": "lastAdministrationGreaterThanDays",
-              "description": "If last administration was more than 1 day",
-              "duration":1
-            }
-          ]
-        },
-        {
-          "description": "If last administration was within a day and go to live step",
-          "nextStepName": "firstLiveStep",
-          "criteria":[
-            {
-              "name": "lastAdministrationLessThanEqualToDays",
-              "description": "If last administration was within a day",
-              "duration":1
-            }
-          ]
-        }
-      ]
-
-    },
-    {
-      "identifier" : "P.1",
-      "type" : "form",
-      "isPractice" : true,
-      "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
+      "identifier": "P.1",
+      "type": "form",
+      "isPractice": true,
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
       "stepName": "firstPracticeInstruction",
-      "inputFields" : [
+      "inputFields": [
         {
-          "identifier" : "P.1a",
-          "type" : "singleChoice",
-          "flankerType" : "interimStar",
-          "text" : "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
-          "delayToNextInputField":1250,
-          "flankers": ["","","⭐️","",""],
-          "choices" : [
+          "identifier": "P.1a",
+          "type": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 1250,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
             {
-              "itemResponseOID" : "D6503C3C-40F0-47E0-9E70-F5AEE636175E",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "D6503C3C-40F0-47E0-9E70-F5AEE636175E",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "AB74904B-6339-4C04-95EF-45C6642E5F2C",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "AB74904B-6339-4C04-95EF-45C6642E5F2C",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
-
         },
 
         {
-          "identifier" : "P.1b",
-          "type" : "singleChoice",
-          "flankerType" : "flankers",
-          "text" : "[flanking arrows on screen, pointing right]",
-          "delayToNextInputField":200,
-          "flankers": ["→","→","","→","→"],
-          "choices" : [
+          "identifier": "P.1b",
+          "type": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing right]",
+          "delayToNextInputField": 200,
+          "flankers": ["→", "→", "", "→", "→"],
+          "choices": [
             {
-              "itemResponseOID" : "664593CC-67FC-415C-B13D-87C99E093A66",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "664593CC-67FC-415C-B13D-87C99E093A66",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "AB40FB1C-68AB-40F1-8C92-8170ECA238B8",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "AB40FB1C-68AB-40F1-8C92-8170ECA238B8",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
-
         },
 
         {
-          "identifier" : "P.1c",
-          "type" : "singleChoice",
-          "flankerType" : "testStimuli",
-          "text" : "[both flanking and center arrows pointing right]",
+          "identifier": "P.1c",
+          "type": "singleChoice",
+          "flankerType": "testStimuli",
+          "text": "[both flanking and center arrows pointing right]",
           "timeout": 20000,
-          "flankers": ["→","→","→","→","→"],
-          "choices" : [
+          "flankers": ["→", "→", "→", "→", "→"],
+          "choices": [
             {
-              "itemResponseOID" : "B6D03AF2-7D1D-4ED7-A775-7B68DE9F6F32",
-              "score" : 0,
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "B6D03AF2-7D1D-4ED7-A775-7B68DE9F6F32",
+              "score": 0,
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "14FF81D9-A168-4056-9146-54C10034C67C",
-              "score" : 1,
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-
-        }
-      ]
-    },
-
-
-    {
-      "identifier" : "P.2",
-      "type" : "form",
-      "isPractice" : true,
-      "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
-      "inputFields" : [
-        {
-          "identifier" : "P.2a",
-          "type" : "singleChoice",
-          "flankerType" : "interimStar",
-          "text" : "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
-          "delayToNextInputField":1250,
-          "flankers": ["","","⭐️","",""],
-          "choices" : [
-            {
-              "itemResponseOID" : "D3D2BD9D-5235-484C-99CD-1B0D62A5121A",
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "BD807F78-AC31-4289-B118-D92015672C5D",
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-        },
-
-        {
-          "identifier" : "P.2b",
-          "type" : "singleChoice",
-          "flankerType" : "flankers",
-          "text" : "[flanking arrows on screen, pointing left]",
-          "delayToNextInputField":200,
-          "flankers": ["←","←","","←","←"],
-          "choices" : [
-            {
-              "itemResponseOID" : "CE2962F8-A168-4155-A197-8F3BCC0156D6",
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "9AF75B18-B331-45E9-97C0-83936F52E682",
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-        },
-
-        {
-          "identifier" : "P.2c",
-          "type" : "singleChoice",
-          "flankerType" : "testStimuli",
-          "text" : "[both flanking and center arrows pointing left]",
-          "timeout": 20000,
-          "flankers": ["←","←","←","←","←"],
-          "choices" : [
-            {
-              "itemResponseOID" : "429FC66E-1B7C-4BD5-8025-9C1E87F5CF6B",
-              "score" : 1,
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "2643A4AA-DE05-4D4D-BFAD-796F7D7072D1",
-              "score" : 0,
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-        }
-
-      ]
-    },
-
-
-    {
-      "identifier" : "P.3",
-      "type" : "form",
-      "isPractice" : true,
-      "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
-      "inputFields" : [
-        {
-          "identifier" : "P.3a",
-          "type" : "singleChoice",
-          "flankerType" : "interimStar",
-          "text" : "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
-          "delayToNextInputField":2500,
-          "flankers": ["","","⭐️","",""],
-          "choices" : [
-            {
-              "itemResponseOID" : "2684A212-B964-4C94-AA8D-71C10A9945F2",
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "C138B92C-1025-49C7-A6AA-7D1E7B134737",
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-        },
-
-        {
-          "identifier" : "P.3b",
-          "type" : "singleChoice",
-          "flankerType" : "flankers",
-          "text" : "[flanking arrows on screen, pointing left]",
-          "delayToNextInputField":200,
-          "flankers": ["←","←","","←","←"],
-          "choices" : [
-            {
-              "itemResponseOID" : "7E3DD63C-81D1-4F05-BB0C-7C3D19172704",
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "9E94DC77-6634-4112-9C6E-D7520756DC6A",
-              "text" : "[arrow right]",
-              "value" : 2
-            }
-          ]
-        },
-
-        {
-          "identifier" : "P.3c",
-          "type" : "singleChoice",
-          "flankerType" : "testStimuli",
-          "text" : "[flankers point left, center pointing right]",
-          "timeout": 20000,
-          "flankers": ["←","←","→","←","←"],
-          "choices" : [
-            {
-              "itemResponseOID" : "614CE034-FFDB-4606-AFF6-0AD4E34EAF9C",
-              "score" : 0,
-              "text" : "[arrow left]",
-              "value" : 1
-            },
-            {
-              "itemResponseOID" : "2253BEA2-AAB7-49EB-9C25-AAB39F8DC15F",
-              "score" : 1,
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "14FF81D9-A168-4056-9146-54C10034C67C",
+              "score": 1,
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         }
@@ -455,147 +154,304 @@
     },
 
     {
-      "identifier" : "P.4",
-      "type" : "form",
-      "isPractice" : true,
-      "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
-      "inputFields" : [
+      "identifier": "P.2",
+      "type": "form",
+      "isPractice": true,
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
+      "inputFields": [
         {
-          "identifier" : "P.4a",
-          "type" : "singleChoice",
-          "flankerType" : "interimStar",
-          "text" : "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
-          "delayToNextInputField":500,
-          "flankers": ["","","⭐️","",""],
-          "choices" : [
+          "identifier": "P.2a",
+          "type": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 1250,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
             {
-              "itemResponseOID" : "9FE4BF5F-78B0-4C41-B0D2-66BD16E390AF",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "D3D2BD9D-5235-484C-99CD-1B0D62A5121A",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "F2E11D84-867D-4FCF-8CAD-28990673CA32",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "BD807F78-AC31-4289-B118-D92015672C5D",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         },
 
         {
-          "identifier" : "P.4b",
-          "type" : "singleChoice",
-          "flankerType" : "flankers",
-          "text" : "[flanking arrows on screen, pointing right]",
-          "delayToNextInputField":200,
-          "flankers": ["→","→","","→","→"],
-          "choices" : [
+          "identifier": "P.2b",
+          "type": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing left]",
+          "delayToNextInputField": 200,
+          "flankers": ["←", "←", "", "←", "←"],
+          "choices": [
             {
-              "itemResponseOID" : "ED2657AD-936D-4B06-929A-C3ECDB1FC835",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "CE2962F8-A168-4155-A197-8F3BCC0156D6",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "4443539D-3657-447B-A998-2F52061C75D2",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "9AF75B18-B331-45E9-97C0-83936F52E682",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         },
 
         {
-          "identifier" : "P.4c",
-          "type" : "singleChoice",
-          "flankerType" : "testStimuli",
-          "text" : "[both flanking and center arrows pointing right]",
+          "identifier": "P.2c",
+          "type": "singleChoice",
+          "flankerType": "testStimuli",
+          "text": "[both flanking and center arrows pointing left]",
           "timeout": 20000,
-          "flankers": ["→","→","→","→","→"],
-          "choices" : [
+          "flankers": ["←", "←", "←", "←", "←"],
+          "choices": [
             {
-              "itemResponseOID" : "8DBE85FD-FBF7-474C-BA19-928982A20CF9",
-              "score" : 0,
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "429FC66E-1B7C-4BD5-8025-9C1E87F5CF6B",
+              "score": 1,
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "B9131E89-6BFD-4597-B01C-32956CB0E6E2",
-              "score" : 1,
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "2643A4AA-DE05-4D4D-BFAD-796F7D7072D1",
+              "score": 0,
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
-
         }
       ]
     },
 
     {
-      "identifier" : "P.5",
-      "type" : "form",
-      "isPractice" : true,
-      "viewTheme"      : { "viewIdentifier":"FlankerTest", "storyboardIdentifier":"Flanker" },
-      "stepName" : "lastPracticeStep",
-      "inputFields" : [
+      "identifier": "P.3",
+      "type": "form",
+      "isPractice": true,
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
+      "inputFields": [
         {
-          "identifier" : "P.5a",
-          "type" : "singleChoice",
-          "flankerType" : "interimStar",
-          "text" : "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
-          "delayToNextInputField":1250,
-          "flankers": ["","","⭐️","",""],
-          "choices" : [
+          "identifier": "P.3a",
+          "type": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 2500,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
             {
-              "itemResponseOID" : "26276400-6F85-4037-BE3F-B83F33FEC3EA",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "2684A212-B964-4C94-AA8D-71C10A9945F2",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "2852D77F-2111-4690-B3E4-B05F6FDD5561",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "C138B92C-1025-49C7-A6AA-7D1E7B134737",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         },
 
         {
-          "identifier" : "P.5b",
-          "type" : "singleChoice",
-          "flankerType" : "flankers",
-          "text" : "[flanking arrows on screen, pointing right]",
-          "delayToNextInputField":200,
-          "flankers": ["→","→","","→","→"],
-          "choices" : [
+          "identifier": "P.3b",
+          "type": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing left]",
+          "delayToNextInputField": 200,
+          "flankers": ["←", "←", "", "←", "←"],
+          "choices": [
             {
-              "itemResponseOID" : "A8232467-BCD9-4A3D-A551-DD2ADE2894D1",
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "7E3DD63C-81D1-4F05-BB0C-7C3D19172704",
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "C2030AE3-5BCF-4851-964F-96085B92880D",
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "9E94DC77-6634-4112-9C6E-D7520756DC6A",
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         },
 
         {
-          "identifier" : "P.5c",
-          "type" : "singleChoice",
-          "flankerType" : "testStimuli",
-          "text" : "[flankers point right, center pointing left]",
+          "identifier": "P.3c",
+          "type": "singleChoice",
+          "flankerType": "testStimuli",
+          "text": "[flankers point left, center pointing right]",
           "timeout": 20000,
-          "flankers": ["→","→","←","→","→"],
-          "choices" : [
+          "flankers": ["←", "←", "→", "←", "←"],
+          "choices": [
             {
-              "itemResponseOID" : "E735E004-D4B3-43DB-A863-F91AE84B9E54",
-              "score" : 1,
-              "text" : "[arrow left]",
-              "value" : 1
+              "itemResponseOID": "614CE034-FFDB-4606-AFF6-0AD4E34EAF9C",
+              "score": 0,
+              "text": "[arrow left]",
+              "value": 1
             },
             {
-              "itemResponseOID" : "AFC4DD71-C1DC-4B39-A93D-E28FC7F891AB",
-              "score" : 0,
-              "text" : "[arrow right]",
-              "value" : 2
+              "itemResponseOID": "2253BEA2-AAB7-49EB-9C25-AAB39F8DC15F",
+              "score": 1,
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "identifier": "P.4",
+      "type": "form",
+      "isPractice": true,
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
+      "inputFields": [
+        {
+          "identifier": "P.4a",
+          "type": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 500,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
+            {
+              "itemResponseOID": "9FE4BF5F-78B0-4C41-B0D2-66BD16E390AF",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "F2E11D84-867D-4FCF-8CAD-28990673CA32",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+
+        {
+          "identifier": "P.4b",
+          "type": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing right]",
+          "delayToNextInputField": 200,
+          "flankers": ["→", "→", "", "→", "→"],
+          "choices": [
+            {
+              "itemResponseOID": "ED2657AD-936D-4B06-929A-C3ECDB1FC835",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "4443539D-3657-447B-A998-2F52061C75D2",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+
+        {
+          "identifier": "P.4c",
+          "type": "singleChoice",
+          "flankerType": "testStimuli",
+          "text": "[both flanking and center arrows pointing right]",
+          "timeout": 20000,
+          "flankers": ["→", "→", "→", "→", "→"],
+          "choices": [
+            {
+              "itemResponseOID": "8DBE85FD-FBF7-474C-BA19-928982A20CF9",
+              "score": 0,
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "B9131E89-6BFD-4597-B01C-32956CB0E6E2",
+              "score": 1,
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "identifier": "P.5",
+      "type": "form",
+      "isPractice": true,
+      "viewTheme": {
+        "viewIdentifier": "FlankerTest",
+        "storyboardIdentifier": "Flanker"
+      },
+      "stepName": "lastPracticeStep",
+      "inputFields": [
+        {
+          "identifier": "P.5a",
+          "type": "singleChoice",
+          "flankerType": "interimStar",
+          "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
+          "delayToNextInputField": 1250,
+          "flankers": ["", "", "⭐️", "", ""],
+          "choices": [
+            {
+              "itemResponseOID": "26276400-6F85-4037-BE3F-B83F33FEC3EA",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "2852D77F-2111-4690-B3E4-B05F6FDD5561",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+
+        {
+          "identifier": "P.5b",
+          "type": "singleChoice",
+          "flankerType": "flankers",
+          "text": "[flanking arrows on screen, pointing right]",
+          "delayToNextInputField": 200,
+          "flankers": ["→", "→", "", "→", "→"],
+          "choices": [
+            {
+              "itemResponseOID": "A8232467-BCD9-4A3D-A551-DD2ADE2894D1",
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "C2030AE3-5BCF-4851-964F-96085B92880D",
+              "text": "[arrow right]",
+              "value": 2
+            }
+          ]
+        },
+
+        {
+          "identifier": "P.5c",
+          "type": "singleChoice",
+          "flankerType": "testStimuli",
+          "text": "[flankers point right, center pointing left]",
+          "timeout": 20000,
+          "flankers": ["→", "→", "←", "→", "→"],
+          "choices": [
+            {
+              "itemResponseOID": "E735E004-D4B3-43DB-A863-F91AE84B9E54",
+              "score": 1,
+              "text": "[arrow left]",
+              "value": 1
+            },
+            {
+              "itemResponseOID": "AFC4DD71-C1DC-4B39-A93D-E28FC7F891AB",
+              "score": 0,
+              "text": "[arrow right]",
+              "value": 2
             }
           ]
         }
@@ -610,8 +466,8 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepName" : "firstLiveStep",
-      "stepGroup" : "setA",
+      "stepName": "firstLiveStep",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A01a",
@@ -619,7 +475,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B3C6D4A2-CB57-E3AA-874A-F371871D523D",
@@ -639,7 +495,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4FEFC8E8-ED31-6D28-ADE1-B2D71BA64B27",
@@ -660,7 +516,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "880DC707-BE27-512D-A9CC-665618BC77E9",
@@ -686,7 +542,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A02a",
@@ -694,7 +550,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "DF443630-7460-10DF-9B23-4241C35646D8",
@@ -714,7 +570,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "7AD828B8-623D-DE91-9A26-8ADB8DD6DE07",
@@ -735,7 +591,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9B2CF2E4-BAC4-C295-AA2B-635A7C7F95CB",
@@ -761,7 +617,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A03a",
@@ -769,7 +625,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7956D6E6-C378-5C21-9D66-3101E5789B68",
@@ -789,7 +645,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "65A82B14-BE6E-8468-891B-372429122712",
@@ -810,7 +666,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "8567E370-C3E9-CAA0-A17E-89D74E838B0B",
@@ -836,7 +692,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A04a",
@@ -844,7 +700,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "3BB7A280-534D-453A-B9C3-9B8DA92EEC99",
@@ -864,7 +720,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "AD1B7C76-92AE-484D-A66D-835C8B28AEE1",
@@ -885,7 +741,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "2E798788-B552-071B-BA62-93983BA40664",
@@ -911,7 +767,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A05a",
@@ -919,7 +775,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "D34445D9-009A-B6D8-AB24-2E73CB262628",
@@ -939,7 +795,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "2EBEDADD-B69B-B8FA-9BD8-4B5391B35471",
@@ -960,7 +816,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "252E8AA8-2CBA-4383-B1C2-5C4AEEADC2A2",
@@ -986,7 +842,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A06a",
@@ -994,7 +850,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "2AA78A9E-762A-79E7-8E26-96ADF93AD5D0",
@@ -1014,7 +870,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "748D2ED4-E711-B04A-A847-3CB2149DB16E",
@@ -1034,7 +890,7 @@
           "flankerType": "testStimuli",
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "timeout": 2000,
           "choices": [
             {
@@ -1061,7 +917,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A07a",
@@ -1069,7 +925,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "DF9E1F8B-72AB-3CF1-AF94-ADD91C18E47C",
@@ -1089,7 +945,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "6A33F556-F3C9-FBDB-A646-11759296C385",
@@ -1110,7 +966,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "48447E8F-AA8B-B9B6-A8B7-C1A1170B6BDD",
@@ -1136,7 +992,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A08a",
@@ -1144,7 +1000,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "ADE6CF5B-CEF8-BBE4-9A2A-31C1C28A20BA",
@@ -1164,7 +1020,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "CD7C3BFF-8382-3689-92B3-862805682671",
@@ -1185,7 +1041,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "FD3CE7BE-4A6C-7BFA-91C5-03DCE5D7B143",
@@ -1211,7 +1067,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A09a",
@@ -1219,7 +1075,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "605857DC-29CC-B26A-9B95-EC41D64D1466",
@@ -1239,7 +1095,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5A158D8D-7406-4C1E-A757-77891BBE851D",
@@ -1260,7 +1116,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "1FB7CF25-6E4C-4D4A-A65E-E509A99C569D",
@@ -1286,7 +1142,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A10a",
@@ -1294,7 +1150,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "C48271C8-5DD5-0B32-9EB0-8CD6141D9C3A",
@@ -1314,7 +1170,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "CBB9B6CA-6302-BA38-82DF-80737065CC18",
@@ -1335,7 +1191,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5992C26F-D5E9-CB63-96E1-34D310D7F99A",
@@ -1361,7 +1217,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A11a",
@@ -1369,7 +1225,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "946FEADB-06ED-4525-8E48-CB8C29B776D4",
@@ -1389,7 +1245,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "DC457173-2B33-8B92-AF18-8C91FE29994B",
@@ -1409,7 +1265,7 @@
           "flankerType": "testStimuli",
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "timeout": 2000,
           "choices": [
             {
@@ -1436,7 +1292,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A12a",
@@ -1444,7 +1300,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "8C8C8EE3-11B2-5AD0-99E8-78DED0E57C3F",
@@ -1464,7 +1320,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5B659B44-6873-5C28-AA9E-3AAF64B7B644",
@@ -1485,7 +1341,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "396609BF-A576-2A2C-84BE-14DCA42A8465",
@@ -1511,7 +1367,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A13a",
@@ -1519,7 +1375,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "5AD4099A-281D-D720-A98C-5BBAD6653BE7",
@@ -1539,7 +1395,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "F3D3D208-077F-D977-9E5C-438B6BC9EEED",
@@ -1560,7 +1416,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "67D7C55D-96DE-6345-A952-2E745A9BE4CD",
@@ -1586,7 +1442,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A14a",
@@ -1594,7 +1450,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "C9E418BD-199E-A8CF-BBC2-23DA15F18EB9",
@@ -1614,7 +1470,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "8F7DEE7C-A4E4-ED59-89FF-84DFB14CE105",
@@ -1635,7 +1491,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "BC98ACCE-BA02-7637-A82E-96C9A29261D6",
@@ -1661,7 +1517,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A15a",
@@ -1669,7 +1525,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B5A77607-7F3E-778B-BB73-8BEA2B56328F",
@@ -1689,7 +1545,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "BCDE9E5C-29AB-459C-B642-A97842BC8845",
@@ -1710,7 +1566,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "F7746AEF-FAAE-02BC-8DCE-34A668E9A64C",
@@ -1736,7 +1592,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A16a",
@@ -1744,7 +1600,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B9B9FE36-478A-1310-954D-6FB8B450D2E7",
@@ -1764,7 +1620,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "47D4AD53-3464-9CEB-91F2-8E0298056E5B",
@@ -1785,7 +1641,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D337AB8C-149E-D182-9420-C7A8385D81DB",
@@ -1811,7 +1667,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A17a",
@@ -1819,7 +1675,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "A3D75D24-1C5E-2638-840B-6B1DCA8B6BAC",
@@ -1839,7 +1695,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "0948C74E-80D8-AE12-95D9-B15891D36312",
@@ -1860,7 +1716,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "2B7E6C41-947E-A074-99ED-FABADF9AAB5F",
@@ -1886,7 +1742,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A18a",
@@ -1894,7 +1750,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "4CDC416D-AA67-7CA1-A66A-5B99EBD3889A",
@@ -1914,7 +1770,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "A1A8C8D9-D9D4-49CD-AE96-2A17E8123E35",
@@ -1935,7 +1791,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "8C2527E8-842A-4A4D-A7C3-9989395BE365",
@@ -1961,7 +1817,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A19a",
@@ -1969,7 +1825,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "447693DE-DE7E-C336-9536-EC14E304F76D",
@@ -1989,7 +1845,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "E9FF6CE0-1C24-28D9-AA13-781B695E9073",
@@ -2010,7 +1866,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D3D6CA51-724E-6C9C-9C9D-60B2D17E02D8",
@@ -2036,7 +1892,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A20a",
@@ -2044,7 +1900,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "646D0F44-5443-E583-8D2A-F85C9CB972D2",
@@ -2064,7 +1920,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9EDA502E-C554-F501-A4DC-751FB15342A5",
@@ -2085,7 +1941,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "DA700014-49B7-B24A-A218-1B4EA29EA684",
@@ -2111,7 +1967,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A21a",
@@ -2119,7 +1975,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "68724368-D69E-8E74-8C02-2C1D94B1C5B4",
@@ -2139,7 +1995,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "7D256E40-DD50-9EF1-A7DD-DFC1BBFC1F78",
@@ -2160,7 +2016,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4DAC950E-962E-27F5-86FF-76BB5A979B15",
@@ -2186,7 +2042,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A22a",
@@ -2194,7 +2050,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "1D5D3AD9-323E-6BB5-8D8B-4513A7C4BCBE",
@@ -2214,7 +2070,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "307A5412-F5C4-BF85-91C4-611A04E7A6A9",
@@ -2235,7 +2091,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "CA3854DD-3443-4788-A40F-4DE695259C38",
@@ -2261,7 +2117,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A23a",
@@ -2269,7 +2125,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "2FCB6181-13BE-5823-BB71-FD09AFB1E59F",
@@ -2289,7 +2145,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "8497CC5F-E59B-2469-AB5B-D78976EFC203",
@@ -2310,7 +2166,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "3BC1DB6C-DEEE-E0BE-A8E4-3CA84DF477C7",
@@ -2336,7 +2192,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A24a",
@@ -2344,7 +2200,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6AAAB22C-451A-E048-848D-33BC4A233921",
@@ -2364,7 +2220,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5568A4B4-6A54-7859-B55E-1DE8CFB04D42",
@@ -2385,7 +2241,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "4D4FF567-64DE-CB36-AD88-109001DFE671",
@@ -2411,7 +2267,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A25a",
@@ -2419,7 +2275,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "8A84EA68-84ED-2F13-A280-8FE844E5570E",
@@ -2439,7 +2295,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4E78A61C-21C7-A723-A779-9F24BA16D623",
@@ -2460,7 +2316,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "BD527E88-6DBD-B7BA-9189-9488AA94A51E",
@@ -2486,7 +2342,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A26a",
@@ -2494,7 +2350,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "4B55A52F-9DF6-832C-B223-B15857B50917",
@@ -2514,7 +2370,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1CA47015-F5C3-5E8F-A079-59C805BC3660",
@@ -2535,7 +2391,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "65B4129E-B869-6D26-9DB3-833DE6DD715D",
@@ -2561,7 +2417,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A27a",
@@ -2569,7 +2425,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "78A9C0FE-3B1D-E643-B032-A1B9416D0B04",
@@ -2589,7 +2445,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "8BB7DC79-9313-493C-9A2A-E8A2688F2CC7",
@@ -2610,7 +2466,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "E2328D54-319D-8C25-A1C1-AA5A817815EA",
@@ -2636,7 +2492,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A28a",
@@ -2644,7 +2500,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "CE5D15B1-2BE1-2442-A769-0ED7DD9B2B92",
@@ -2664,7 +2520,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "676DA915-C542-33F6-B347-469CB31C6223",
@@ -2685,7 +2541,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1F969B75-63F5-FE66-868E-A6AC452F5EA0",
@@ -2711,7 +2567,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A29a",
@@ -2719,7 +2575,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "0A2C2234-284C-CAD5-9585-837DC829039D",
@@ -2739,7 +2595,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "7C638095-594D-D997-B57C-F133903DB510",
@@ -2760,7 +2616,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "A98E09CD-2A6C-61C2-88AA-6210D0A0D85A",
@@ -2786,7 +2642,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A30a",
@@ -2794,7 +2650,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "D6C3D222-EECC-B4C8-8451-EC59DDB57FB2",
@@ -2814,7 +2670,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "66754DB4-DAC2-17BD-8CA6-D343DAA0E06A",
@@ -2835,7 +2691,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "6CC7821A-3380-9DF6-95ED-7A201DA57DA7",
@@ -2861,7 +2717,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A31a",
@@ -2869,7 +2725,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "2E0DD127-4A6B-ACB7-927A-F635C8294CBB",
@@ -2889,7 +2745,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "E16D9E6F-3589-8743-9671-A996402FA0DD",
@@ -2910,7 +2766,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "053AD1E6-583B-53CF-8725-BAB8A81BDC50",
@@ -2936,7 +2792,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A32a",
@@ -2944,7 +2800,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "91970A21-D7B7-628E-98CB-7BBD56132667",
@@ -2964,7 +2820,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "E7E94E32-2640-F8D5-8DA7-21EB8B77B146",
@@ -2985,7 +2841,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "4D65D35E-472A-5BE8-AB0D-EE856E7ED033",
@@ -3011,7 +2867,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A33a",
@@ -3019,7 +2875,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "D74C0BCA-928A-9DEA-9511-28CE425CC86F",
@@ -3039,7 +2895,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "17C51AD8-57C4-3440-9F17-030C6A55CD41",
@@ -3060,7 +2916,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "E43335CD-BC1A-431D-8D42-C253FAAB24EA",
@@ -3086,7 +2942,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A34a",
@@ -3094,7 +2950,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "DEC9AFDE-25A2-2DA6-A4E7-BA2558A41E91",
@@ -3114,7 +2970,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1CBCAC4E-96CE-E84E-865A-1D879683C3A7",
@@ -3135,7 +2991,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "B2619242-82B5-072A-B9BF-13ED397C8443",
@@ -3161,7 +3017,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A35a",
@@ -3169,7 +3025,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "43D9922B-3DB9-9D7E-904A-EB6B35C4A6A7",
@@ -3189,7 +3045,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "B38BE211-BD1E-EF9D-AF5E-0C56FCCE4D38",
@@ -3210,7 +3066,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "7599D664-65E8-42BC-BA11-7AE1B69EBD09",
@@ -3236,7 +3092,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A36a",
@@ -3244,7 +3100,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "BF59A14B-889C-D82E-A6B5-997FB4894A6E",
@@ -3264,7 +3120,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C5ED8719-5B4D-E6F8-A6AE-AB263AD228AD",
@@ -3285,7 +3141,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "D9BABCE3-1250-B1AD-BE03-C7386DCD8AE8",
@@ -3311,7 +3167,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A37a",
@@ -3319,7 +3175,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "32D4862B-E0E7-9A53-B325-6EEB919FB684",
@@ -3339,7 +3195,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "01BE36E7-4958-A93B-9728-A792197B1FB4",
@@ -3360,7 +3216,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9A6EF399-44B7-4EAB-AF62-D371FAC699BC",
@@ -3386,7 +3242,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A38a",
@@ -3394,7 +3250,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "44461D67-3187-91D7-9125-28AC98A2C7C2",
@@ -3414,7 +3270,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "218BBC84-46CB-E313-9D95-DA974775BF38",
@@ -3435,7 +3291,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "84725344-C6EA-8982-AAF8-4B662A53C423",
@@ -3461,7 +3317,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A39a",
@@ -3469,7 +3325,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B34CE5CA-F716-A778-AC91-826D869E29E6",
@@ -3489,7 +3345,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "E240E78C-1B93-713A-96A3-01C19E7C14C5",
@@ -3510,7 +3366,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "53917B8D-5795-5AEC-8B64-DCD5A831C7F5",
@@ -3536,7 +3392,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A40a",
@@ -3544,7 +3400,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "5B92E832-1E71-68E2-8236-58DC061E97BA",
@@ -3564,7 +3420,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "1F886FAC-7659-0D6E-AB2D-C80BCD4CA848",
@@ -3585,7 +3441,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C3974743-B184-6FA7-9E8F-5197512B5EE2",
@@ -3612,7 +3468,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A41a",
@@ -3620,7 +3476,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "D913B238-3444-B1EE-BDAF-56C3D5C1DEDC",
@@ -3640,7 +3496,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "662F04C1-22DC-567A-BBC1-FBE39DA16A7B",
@@ -3661,7 +3517,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "AE216131-A073-647D-9E18-864ADFDF47C3",
@@ -3687,7 +3543,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A42a",
@@ -3695,7 +3551,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "075B2DAB-226A-4D4C-AAD9-480EDDA0A937",
@@ -3715,7 +3571,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "92D27E85-CBD8-271A-8258-5763CC57D5FC",
@@ -3736,7 +3592,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "B41AA6F2-E12D-342C-B9B8-27AB01283C45",
@@ -3762,7 +3618,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A43a",
@@ -3770,7 +3626,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "9237E955-A572-C9B6-956F-CA3BAD57C567",
@@ -3790,7 +3646,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "7E7C8CB4-5D27-3B1B-998F-97172629F3A6",
@@ -3811,7 +3667,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "9D1EB372-3E51-8C6F-A95D-DF9480C2FA35",
@@ -3837,7 +3693,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A44a",
@@ -3845,7 +3701,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "5562C1D3-7A55-22F8-8A2D-C9142E840D49",
@@ -3865,7 +3721,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "B79AE91B-7665-4E17-9E24-96BC46A56335",
@@ -3886,7 +3742,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "39EB726E-55B8-27E3-9B94-8CB22A785C3E",
@@ -3912,7 +3768,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A45a",
@@ -3920,7 +3776,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "EDB88E11-5CAF-F1CD-95B1-EE76FE121E87",
@@ -3940,7 +3796,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "29277266-CF61-1DEC-AED1-E21E18D6DE66",
@@ -3961,7 +3817,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "216A7183-F22E-A393-AB46-D9DFAAE8FF2C",
@@ -3987,7 +3843,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A46a",
@@ -3995,7 +3851,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "37D7DFBA-084E-13F4-9215-E91CE9ACA5EF",
@@ -4015,7 +3871,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "71B0D151-46D3-6465-9382-76E948473303",
@@ -4036,7 +3892,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "4139AA8A-EF52-191A-9511-93BABC0CBEBB",
@@ -4062,7 +3918,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A47a",
@@ -4070,7 +3926,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "DC988F8B-49DC-2647-9BB5-A4A4C9219B3C",
@@ -4090,7 +3946,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "6820C4B7-86A9-0E3E-AAD3-DD1983C61CBA",
@@ -4111,7 +3967,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4614AB32-EA0C-D726-95BF-841E4D6246A8",
@@ -4137,7 +3993,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A48a",
@@ -4145,7 +4001,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "ABA95A5F-CB37-0452-909D-CA173C199D2A",
@@ -4165,7 +4021,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "CC332545-5B61-9804-8EA1-0629A42D4666",
@@ -4186,7 +4042,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "ECD64E55-CEEA-F973-962E-59A6D8C563BD",
@@ -4212,7 +4068,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A49a",
@@ -4220,7 +4076,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6FD6FCB4-6A1A-59F1-BA5A-29D40D636966",
@@ -4240,7 +4096,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "599682B6-62E3-FDB2-AD87-89F6671A8CA3",
@@ -4261,7 +4117,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "0F3B329F-28D9-2AEA-96EA-DE4F5911D0B8",
@@ -4287,7 +4143,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setA",
+      "stepGroup": "setA",
       "inputFields": [
         {
           "identifier": "A50a",
@@ -4295,7 +4151,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B4EA3284-C321-F3EF-96C8-5BE5E9B9C9DA",
@@ -4315,7 +4171,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "BC15C5D7-96ED-DAF4-A253-364B89479B5D",
@@ -4336,7 +4192,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "3BD140CE-C494-F74B-9EDE-B0856DD16A65",
@@ -4362,8 +4218,8 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepName" : "firstLiveStep",
-      "stepGroup" : "setB",
+      "stepName": "firstLiveStep",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B01a",
@@ -4371,7 +4227,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7581C69B-B247-9B0A-AF92-3EF7BAD88935",
@@ -4391,7 +4247,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "CE6ABB75-933C-FB86-A8CD-C6C6C5824E21",
@@ -4412,7 +4268,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5B9135AC-9CC6-6B20-ADB8-C954DF02BC6E",
@@ -4438,7 +4294,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B02a",
@@ -4446,7 +4302,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6F888587-F129-0FEE-9394-7DC62E9C5730",
@@ -4466,7 +4322,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4E54E239-168A-2B44-9CA6-1651E79533DA",
@@ -4487,7 +4343,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1D48BDF6-2D3C-0455-8E31-C7676B31A381",
@@ -4513,7 +4369,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B03a",
@@ -4521,7 +4377,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "3E9A1C23-5D74-EB66-8C7A-E41DE2A2EC98",
@@ -4541,7 +4397,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D78C43D2-E985-17BA-9AA6-B398AB4D4334",
@@ -4562,7 +4418,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "4B749478-35A3-AB96-9C27-756ADE38EA98",
@@ -4588,7 +4444,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B04a",
@@ -4596,7 +4452,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "AE743529-7413-1A3D-B702-5F89CEC42729",
@@ -4616,7 +4472,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "55E17A3A-CB17-7AC5-AE9A-9768BE372CEB",
@@ -4637,7 +4493,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "830E86DD-9DC5-1EA0-A535-8E2BE4C43E52",
@@ -4663,7 +4519,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B05a",
@@ -4671,7 +4527,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "8BF1BE58-2FA1-3A12-91E6-5A1692AF9281",
@@ -4691,7 +4547,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "832C45ED-85CD-2230-B430-5F6DFB4D9ACB",
@@ -4712,7 +4568,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "CEA560E3-1380-096D-A428-B15557A15B67",
@@ -4738,7 +4594,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B06a",
@@ -4746,7 +4602,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "81DD527A-1C0B-24CE-9312-C240F73F3998",
@@ -4766,7 +4622,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1EEB6FD9-B594-C8B7-B732-C8531F1C5891",
@@ -4787,7 +4643,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9B23CC64-527E-376B-94CB-E6C3E59B1CA7",
@@ -4813,7 +4669,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B07a",
@@ -4821,7 +4677,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7BC6CC4C-26DD-961E-AB13-61F2BAF1990D",
@@ -4841,7 +4697,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "C31AA5B8-5726-3A06-955B-9C16C57133F8",
@@ -4862,7 +4718,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D544981C-366C-6575-A2CA-BC42585E1DBB",
@@ -4888,7 +4744,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B08a",
@@ -4896,7 +4752,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "0696DA8A-FAF4-4CAF-A6B4-E4E998DE8D9B",
@@ -4916,7 +4772,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "6B54B148-E521-34E9-B76A-9941D935D6CC",
@@ -4937,7 +4793,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "47A47EA8-5C16-5E67-A903-EE7C5EA63C81",
@@ -4963,7 +4819,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B09a",
@@ -4971,7 +4827,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "EEE847E0-632A-F26C-AED1-28D15D86D31E",
@@ -4991,7 +4847,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "A5667043-5D6E-612D-AC29-8AA118F71EB9",
@@ -5012,7 +4868,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9E303CE4-7F48-C0ED-A62E-5821B45F13A4",
@@ -5038,7 +4894,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B10a",
@@ -5046,7 +4902,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "1FABCF39-1CFC-63E2-B117-C785A4B23534",
@@ -5066,7 +4922,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5B1A7E55-5AAC-9D7D-BF45-2A112C93978B",
@@ -5087,7 +4943,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "86948C9B-7BBE-74B4-A6DC-A61943059EF1",
@@ -5114,7 +4970,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B11a",
@@ -5122,7 +4978,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "15893E32-D456-6B0B-A832-8EA2695E6EB6",
@@ -5142,7 +4998,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 500,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "2A1FA86A-99B7-8695-AB88-274EC4B33C0F",
@@ -5163,7 +5019,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "EB8A3C7B-1D35-38A7-9315-95E3A8846A22",
@@ -5189,7 +5045,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B12a",
@@ -5197,7 +5053,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "BB3E2196-65E4-9775-831C-4A1448E82D61",
@@ -5217,7 +5073,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "CE3EA821-E549-0642-AEB1-4CD5D933AAD0",
@@ -5238,7 +5094,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "69D1074D-D167-A862-AA67-FF99A09843F4",
@@ -5264,7 +5120,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B13a",
@@ -5272,7 +5128,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "CE777233-8B82-D3FA-9A44-9676FE5B3DE1",
@@ -5292,7 +5148,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "34264C42-1A1E-C95D-A399-66BF09B1ACEA",
@@ -5313,7 +5169,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "CB43A9B1-C111-A0A2-879D-82A816FCF534",
@@ -5339,7 +5195,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B14a",
@@ -5347,7 +5203,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "FA1FEEB3-E3EC-DA58-BB93-6D8556535923",
@@ -5367,7 +5223,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "E5B14E9B-C5C5-8C77-94CE-2E9A10180FC9",
@@ -5388,7 +5244,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "DE8BEE9F-8A0E-EA51-9584-081B866E4A9D",
@@ -5414,7 +5270,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B15a",
@@ -5422,7 +5278,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "1BB332E2-67CD-594A-A3D7-5D2D0CAC5EA1",
@@ -5442,7 +5298,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "C09B5CD8-C156-0B67-914C-4433B8F46E5A",
@@ -5463,7 +5319,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5F688395-C9FC-351C-A2C7-2E60DCA9D1DB",
@@ -5489,7 +5345,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B16a",
@@ -5497,7 +5353,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "DD4E188D-B6E4-2B7C-ABCC-32F9CD02D769",
@@ -5517,7 +5373,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "9F9132B5-CA61-12EC-A28E-9243BF31A747",
@@ -5538,7 +5394,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "E895329E-59A6-3B91-9843-A271D68984BA",
@@ -5564,7 +5420,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B17a",
@@ -5572,7 +5428,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "FC7C5D41-8909-DDCB-932D-A6C78531B106",
@@ -5592,7 +5448,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1F7EB91D-ACAE-5BC2-8582-D399D17A745E",
@@ -5613,7 +5469,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "66DCC848-F7D8-B9B8-B493-6C0A3CA90F07",
@@ -5639,7 +5495,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B18a",
@@ -5647,7 +5503,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "44EBAEF7-BDDB-6AF2-94A7-9651CEE49745",
@@ -5667,7 +5523,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "ECDE919D-24EB-95B4-87E1-B4DED89C815A",
@@ -5688,7 +5544,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "95FBE25D-6E5D-8A31-A3A4-1BC9AED71F7C",
@@ -5714,7 +5570,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B19a",
@@ -5722,7 +5578,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7085D66D-E045-70BD-9A15-BE64760866E0",
@@ -5742,7 +5598,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "E3AE9301-CDF5-997D-A278-12E28244BAE8",
@@ -5763,7 +5619,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "21BD7A8A-6AC3-5BB5-9E11-5A9806DD70C8",
@@ -5789,7 +5645,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B20a",
@@ -5797,7 +5653,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "5DE69120-EBD3-B8C8-A323-BAAB482AAAA5",
@@ -5817,7 +5673,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "CD8A6B24-9487-36DB-93E4-876D8A4CBDE2",
@@ -5838,7 +5694,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C5C01DBB-B8F5-D722-84A6-1514F179DDB4",
@@ -5864,7 +5720,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B21a",
@@ -5872,7 +5728,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "97EACB29-7C80-11EF-A89E-67E3E1155E6E",
@@ -5892,7 +5748,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "694DD8A3-345C-F689-B601-E13D9C425416",
@@ -5913,7 +5769,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "6DED888B-13AE-EB13-9F20-E8184956331D",
@@ -5939,7 +5795,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B22a",
@@ -5947,7 +5803,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "FA5D0007-5ED9-25EF-B932-8FE83B841EAA",
@@ -5967,7 +5823,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5194935A-5922-C644-9689-0BEE95214B2E",
@@ -5988,7 +5844,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "A8F296C8-37AC-4354-9C4A-AF52BC5F0D90",
@@ -6014,7 +5870,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B23a",
@@ -6022,7 +5878,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "42CD2C95-4DBB-A073-AEB9-C065D4649862",
@@ -6042,7 +5898,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "633989F5-CFA4-61D6-813A-816C318430C9",
@@ -6063,7 +5919,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5E9A033B-E199-9AB1-87D1-268B061238F8",
@@ -6089,7 +5945,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B24a",
@@ -6097,7 +5953,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "4A14CB9D-06D1-8F57-86E2-E4279742A644",
@@ -6117,7 +5973,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "68FA474E-43AD-740C-82B1-2E532A480CD0",
@@ -6138,7 +5994,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "2E828A93-EC53-ACE6-9C81-0973E1696001",
@@ -6164,7 +6020,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B25a",
@@ -6172,7 +6028,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "9FFED9BE-54F6-5D57-9B87-C9CA41E824FA",
@@ -6192,7 +6048,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "1F949705-91FA-CA74-84F6-B18D4D196D11",
@@ -6213,7 +6069,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "C395E99A-1484-47A0-B724-15E24B117067",
@@ -6239,7 +6095,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B26a",
@@ -6247,7 +6103,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "1D3813C3-E4D7-E82F-8B44-1A4A7D339F63",
@@ -6267,7 +6123,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "23CF47D3-7348-2117-A4A9-E3BA38A41026",
@@ -6288,7 +6144,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "3870DB1D-E6F9-25C9-9478-F596AFC625F7",
@@ -6314,7 +6170,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B27a",
@@ -6322,7 +6178,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "719D1397-8141-197C-B1E5-733217CFE327",
@@ -6342,7 +6198,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "5F5B12B4-9751-4272-BD74-91A2C5D3DEDD",
@@ -6363,7 +6219,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "EAEE3CA7-5C7E-F3E0-AE29-944AEA551A7B",
@@ -6389,7 +6245,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B28a",
@@ -6397,7 +6253,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "84BAA6B7-06DE-7E39-B747-CF5ECC68CB16",
@@ -6417,7 +6273,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "61E3B435-D8D3-DB72-9C24-6714BF536501",
@@ -6438,7 +6294,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C5CBA836-25A1-9BED-83E2-90ACC7671C81",
@@ -6464,7 +6320,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B29a",
@@ -6472,7 +6328,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "F58AA92E-028B-C4E2-9C06-CC7C77DA14D9",
@@ -6492,7 +6348,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "2361F822-D3A8-C8B2-AE84-22A9C4D0914E",
@@ -6513,7 +6369,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "95B5EB74-EA69-BC81-BCB0-C48612CBE604",
@@ -6539,7 +6395,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B30a",
@@ -6547,7 +6403,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "9DA9B669-5ED5-E493-ABDD-3657A5D2595E",
@@ -6567,7 +6423,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "52739C36-727C-A42D-AD41-7C40A0461C71",
@@ -6588,7 +6444,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "1675C21D-8956-2173-A82D-EBA5784C56A1",
@@ -6614,7 +6470,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B31a",
@@ -6622,7 +6478,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "1CD4AB54-B8C6-9CB8-AFA8-C7BA41396731",
@@ -6642,7 +6498,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "9AE44B3D-540D-5C52-9735-43A44D319645",
@@ -6663,7 +6519,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D3D917EE-AD54-8462-92E8-B3B5B4871532",
@@ -6689,7 +6545,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B32a",
@@ -6697,7 +6553,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "3BE723BA-DCEA-784E-8625-4B42E68E292B",
@@ -6717,7 +6573,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "C762D2D6-5217-7B29-B60E-417F296CE776",
@@ -6738,7 +6594,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "D98C68A4-240C-A449-96EB-D7919266D254",
@@ -6764,7 +6620,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B33a",
@@ -6772,7 +6628,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B79C1949-9510-63D0-8AFC-71DA83BC2C1B",
@@ -6792,7 +6648,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "94C60BF9-1954-DE42-A689-249031B6DCC0",
@@ -6813,7 +6669,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C45B9F19-A64D-5AA4-9FC3-43E6DE8586D4",
@@ -6839,7 +6695,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B34a",
@@ -6847,7 +6703,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7B920BBB-AEE1-1A5A-98FD-0330B28F3C8D",
@@ -6867,7 +6723,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "DEBD8345-57A1-4277-856E-A7921DD8241E",
@@ -6888,7 +6744,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "51026AD9-F3B3-4560-AA5A-837F35C2BF9D",
@@ -6914,7 +6770,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B35a",
@@ -6922,7 +6778,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "05A3D5DC-C659-4858-8BE3-BCFD4E93157C",
@@ -6942,7 +6798,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "42052674-F5BA-7074-BD7D-A5609C8E76EF",
@@ -6963,7 +6819,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "494B84D2-D437-3F37-944E-730A63C8393B",
@@ -6989,7 +6845,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B36a",
@@ -6997,7 +6853,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "409B416A-A7E6-AAA6-A279-6911E6B48284",
@@ -7017,7 +6873,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "89679152-A14A-3625-8B71-CCB67986A23D",
@@ -7038,7 +6894,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5AD5C8CD-1768-E5C7-A65B-CF514263C06B",
@@ -7064,7 +6920,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B37a",
@@ -7072,7 +6928,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "E7371B2F-2C94-2C11-B57B-B71483AD5E71",
@@ -7092,7 +6948,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "73A2AE9C-2610-2E16-8B15-C732729B5394",
@@ -7113,7 +6969,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "5189E569-4722-221B-9E5C-5411705E3E07",
@@ -7139,7 +6995,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B38a",
@@ -7147,7 +7003,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B712E2C8-D4FC-5944-A296-71C4A33C281F",
@@ -7167,7 +7023,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "C87F2B1E-21D5-1814-AA15-82BE5F7863D1",
@@ -7188,7 +7044,7 @@
           "stimuliType": "IncongruentRight",
           "text": "[flankers point left, center pointing right]",
           "timeout": 2000,
-          "flankers": ["←","←","→","←","←"],
+          "flankers": ["←", "←", "→", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "F8159470-511D-8390-A90D-BC15C85733CD",
@@ -7214,7 +7070,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B39a",
@@ -7222,7 +7078,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6B08BF21-B8DC-1D2B-A5A5-531C320CDB0B",
@@ -7242,7 +7098,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "56ACA374-7C65-CCEA-824D-A9F7D0DB81CD",
@@ -7263,7 +7119,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "0C35A2AF-E01A-1331-B21C-C51AF7188778",
@@ -7289,7 +7145,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B40a",
@@ -7297,7 +7153,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B2D610E5-57F2-0642-AA64-3889DAE81220",
@@ -7317,7 +7173,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "BAE5028A-D57D-0854-9F5A-E8B9BE9E7628",
@@ -7338,7 +7194,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "39A4DAB2-D0C4-4FA9-A453-59CCC77FE8B5",
@@ -7364,7 +7220,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B41a",
@@ -7372,7 +7228,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "7448BFD1-8A26-0D76-9D71-AE08699EAA2A",
@@ -7392,7 +7248,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "BD05030B-18CA-881D-AE28-2BAFA77FF19B",
@@ -7413,7 +7269,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "4B3EDA84-CD04-03A6-9C7D-06F7F727116E",
@@ -7439,7 +7295,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B42a",
@@ -7447,7 +7303,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "5F0989A1-FE07-B182-9AB5-81338AE84EC5",
@@ -7467,7 +7323,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "3EB854A4-DF27-F7E4-BB42-FF968719CCF5",
@@ -7488,7 +7344,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "0D917DB3-9478-FA13-9649-976641DBDE41",
@@ -7514,7 +7370,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B43a",
@@ -7522,7 +7378,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "2FD53B30-816F-FC31-ACED-9AD60A74BBDD",
@@ -7542,7 +7398,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "C8CBC041-D820-4393-9394-4E4AF947B4FE",
@@ -7563,7 +7419,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "3D967128-E1ED-017C-AD71-D7D67068EDF9",
@@ -7589,7 +7445,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B44a",
@@ -7597,7 +7453,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "9199702B-DB1C-8A21-81C7-98CEA42CCC0F",
@@ -7617,7 +7473,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "47E9138C-0EB1-05C6-90CB-B677C9B66466",
@@ -7638,7 +7494,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "75EA8D72-8D3D-B3BD-BEC1-8403427B2952",
@@ -7664,7 +7520,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B45a",
@@ -7672,7 +7528,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6ED1144D-CCB8-093D-B30C-37B7249D2E26",
@@ -7692,7 +7548,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "67EFE935-EE85-0B68-BEA3-12D8C353B9E7",
@@ -7713,7 +7569,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "A26B727B-49E6-1C94-8616-59A863EE2C18",
@@ -7739,7 +7595,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B46a",
@@ -7747,7 +7603,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "6587C354-FE21-4312-9E6B-415C47948DCD",
@@ -7767,7 +7623,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing left]",
           "delayToNextInputField": 200,
-          "flankers": ["←","←","","←","←"],
+          "flankers": ["←", "←", "", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "E3883E05-6459-1118-9BE6-2D4994A85E6C",
@@ -7788,7 +7644,7 @@
           "stimuliType": "CongruentLeft",
           "text": "[both flanking and center arrows pointing left]",
           "timeout": 2000,
-          "flankers": ["←","←","←","←","←"],
+          "flankers": ["←", "←", "←", "←", "←"],
           "choices": [
             {
               "itemResponseOID": "70A3F9D0-BCE3-9AC9-9FFB-1283AD6EA5F7",
@@ -7814,7 +7670,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B47a",
@@ -7822,7 +7678,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "4149580A-4D02-148A-81BD-747BB8EBC4E3",
@@ -7842,7 +7698,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "98728EC8-3AE9-D28F-9263-855807A30174",
@@ -7863,7 +7719,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "BB8DD16C-C6DE-271B-865C-8B6DCEA88DCC",
@@ -7889,7 +7745,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B48a",
@@ -7897,7 +7753,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 1250,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "CCC3822C-5626-2954-A4A1-9ADE535F9032",
@@ -7917,7 +7773,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "3276B64B-0DF2-2A9A-9DB3-25FFD8DD8BE7",
@@ -7938,7 +7794,7 @@
           "stimuliType": "IncongruentLeft",
           "text": "[flankers point right, center pointing left]",
           "timeout": 2000,
-          "flankers": ["→","→","←","→","→"],
+          "flankers": ["→", "→", "←", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "1EC8D2EC-2297-6026-97C7-510592867332",
@@ -7964,7 +7820,7 @@
         "storyboardIdentifier": "Flanker"
       },
       "resumeStep": "T.1L",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B49a",
@@ -7972,7 +7828,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 2500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "B6F10976-E45A-3D38-8511-6132C59CBC55",
@@ -7992,7 +7848,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "6C518129-AB4D-A7F7-ABB4-A9CBB4369A85",
@@ -8013,7 +7869,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "672EAB2C-99D7-30C4-8D36-5D15A4B54105",
@@ -8040,7 +7896,7 @@
       },
       "resumeStep": "T.1L",
       "nextStepIdentifier": "A01",
-      "stepGroup" : "setB",
+      "stepGroup": "setB",
       "inputFields": [
         {
           "identifier": "B50a",
@@ -8048,7 +7904,7 @@
           "flankerType": "interimStar",
           "text": "[yellow star in middle of the screen, two response buttons at bottom of the screen]",
           "delayToNextInputField": 500,
-          "flankers": ["","","⭐️","",""],
+          "flankers": ["", "", "⭐️", "", ""],
           "choices": [
             {
               "itemResponseOID": "D88DACB3-D43A-FDD6-B199-A343D85EF52A",
@@ -8068,7 +7924,7 @@
           "flankerType": "flankers",
           "text": "[flanking arrows on screen, pointing right]",
           "delayToNextInputField": 200,
-          "flankers": ["→","→","","→","→"],
+          "flankers": ["→", "→", "", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "14C1BA21-DD9A-437E-9732-DCA886570A07",
@@ -8089,7 +7945,7 @@
           "stimuliType": "CongruentRight",
           "text": "[both flanking and center arrows pointing right]",
           "timeout": 2000,
-          "flankers": ["→","→","→","→","→"],
+          "flankers": ["→", "→", "→", "→", "→"],
           "choices": [
             {
               "itemResponseOID": "504C27B8-CB5B-44C3-A645-4E6AE0E194F2",
@@ -8107,6 +7963,5 @@
         }
       ]
     }
-
   ]
 }

@@ -84,7 +84,7 @@ class ShowFlankerFormStepFragment : Fragment() {
 
     private val handler = Handler(Looper.getMainLooper())
 
-    private val startStepDate: Instant = ZonedDateTime.now().toInstant()
+//    private val startStepDate: Instant = ZonedDateTime.now().toInstant()
 
     val flankers: Array<TextView> by lazy {
         arrayOf(
