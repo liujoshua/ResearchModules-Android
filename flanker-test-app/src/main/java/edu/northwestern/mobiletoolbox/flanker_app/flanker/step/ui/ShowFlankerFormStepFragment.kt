@@ -213,6 +213,7 @@ class ShowFlankerFormStepFragment : Fragment() {
     }
 
     private fun processEndOfStep() {
+        handler.removeCallbacksAndMessages(null)
         performTaskFragment.goForward()
     }
 
