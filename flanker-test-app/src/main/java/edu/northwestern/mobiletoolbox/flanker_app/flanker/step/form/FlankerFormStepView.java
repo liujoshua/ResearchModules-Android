@@ -50,6 +50,8 @@ import org.sagebionetworks.research.presentation.model.action.ActionView;
 import org.sagebionetworks.research.presentation.model.implementations.UIStepViewBase;
 import org.sagebionetworks.research.presentation.model.interfaces.UIStepView;
 
+import java.util.ArrayList;
+
 import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule;
 import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup;
 
@@ -158,7 +160,7 @@ public class FlankerFormStepView implements UIStepView {
     public Integer getDelayToNextStep() { return flankerFormStep.getDelayToNextStep(); }
 
     @Nullable
-    public ImmutableList<FlankerStepBranchingRule> getBranchingNavigationRules() { return flankerFormStep.getBranchingNavigationRules(); }
+    public ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules() { return flankerFormStep.getBranchingNavigationRules(); }
 
     @Override
     public String toString() {

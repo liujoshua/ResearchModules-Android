@@ -33,6 +33,8 @@
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.overview
 
 import com.google.common.collect.ImmutableMap
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup
 import org.sagebionetworks.research.domain.step.StepType
 import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.presentation.DisplayString
@@ -46,6 +48,12 @@ import java.lang.IllegalArgumentException
 
 class FlankerOverviewStepView(
         val flanker: Flanker,
+        val stepName: String?,
+        val stepGroup: FlankerStepGroup?,
+        val delayToNextStep: Int?,
+        val branchingNavigationRules: ArrayList<FlankerStepBranchingRule>?,
+        val stepBackTo: String?,
+        val nextStepIdentifier: String?,
         identifier: String,
         actions: ImmutableMap<String, ActionView>,
         title: DisplayString?,
@@ -68,6 +76,12 @@ class FlankerOverviewStepView(
             val uiStepView: UIStepView = fromUIStep(step, mapper)
             return FlankerOverviewStepView(
                     step.flanker,
+                    step.stepName,
+                    step.stepGroup,
+                    step.delayToNextStep,
+                    step.branchingNavigationRules,
+                    step.stepBackTo,
+                    step.nextStepIdentifier,
                     uiStepView.identifier,
                     uiStepView.actions,
                     uiStepView.title,

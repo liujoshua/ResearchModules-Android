@@ -35,6 +35,7 @@ package edu.northwestern.mobiletoolbox.flanker_app.flanker.inject;
 import static org.sagebionetworks.research.domain.inject.GsonModule.createPassThroughDeserializer;
 
 import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonSerializer;
 
 import org.sagebionetworks.research.domain.RuntimeTypeAdapterFactory;
 import org.sagebionetworks.research.domain.impl.StepAutoValueModule;
@@ -62,6 +63,7 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerBranchingCriteria;
 
 @Module(includes = {GsonModule.class, StepAutoValueModule.class})
 public class FlankerStepModule {
@@ -119,6 +121,13 @@ public class FlankerStepModule {
     static JsonDeserializer<?> provideSectionStepDeserializer() {
         return createPassThroughDeserializer(SectionStepBase.class);
     }
+
+//    @Provides
+//    @IntoMap
+//    @ClassKey(FlankerBranchingCriteria.class)
+//    static JsonDeserializer<?> provideFlankerBranchingCriteriaDeserializer() {
+//        return FlankerBranchingCriteria.deserializer;
+//    }
 
     @Provides
     @IntoMap

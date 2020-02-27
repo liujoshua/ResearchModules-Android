@@ -35,9 +35,16 @@ package edu.northwestern.mobiletoolbox.flanker_app.jni;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.readdle.codegen.anotation.SwiftFunc;
 import com.readdle.codegen.anotation.SwiftGetter;
 import com.readdle.codegen.anotation.SwiftValue;
+
+import java.lang.reflect.Type;
 
 @SwiftValue
 public class FlankerBranchingCriteria {
@@ -75,7 +82,34 @@ public class FlankerBranchingCriteria {
             @Nullable String description,
             @Nullable FlankerCriteriaName name,
             @Nullable FlankerCriteriaType type,
-            @Nullable Integer duration);
+            @Nullable Integer duration
+    );
+
+
 
     private FlankerBranchingCriteria() {}
+
+//    public static JsonDeserializer<FlankerBranchingCriteria> deserializer = new JsonDeserializer<FlankerBranchingCriteria>() {
+//        @Override
+//        public FlankerBranchingCriteria deserialize(final JsonElement json, final Type typeOfT,
+//                final JsonDeserializationContext context) throws JsonParseException {
+//            JsonObject jsonObject = json.getAsJsonObject();
+//
+//
+//            FlankerCriteriaName criteriaName = context.deserialize(jsonObject.get("name"), FlankerCriteriaName.class);
+//            FlankerCriteriaType criteriaType = context.deserialize(jsonObject.get("type"), FlankerCriteriaType.class);
+//
+//            FlankerBranchingCriteria criteria = FlankerBranchingCriteria();
+//            criteria.description = jsonObject.get("description").getAsString();
+//            criter
+//
+//
+//            return FlankerBranchingCriteria.init(
+//                    jsonObject.get("description").getAsString(),
+//                    criteriaName,
+//                    criteriaType,
+//                    new Integer(jsonObject.get("duration").getAsInt())
+//            );
+//        }
+//    };
 }

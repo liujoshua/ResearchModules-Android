@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.example.flanker_test_app.util
+package edu.northwestern.mobiletoolbox.flanker_app.util
 
 
 import android.content.Context

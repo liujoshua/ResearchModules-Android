@@ -48,10 +48,13 @@ import org.sagebionetworks.research.domain.step.ui.action.Action;
 import org.sagebionetworks.research.domain.step.ui.theme.ColorTheme;
 import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme;
 
+import java.util.ArrayList;
+
 import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule;
 import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup;
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepType;
 
-public class FlankerFormStep extends MtbFormStepBase {
+public class FlankerFormStep extends MtbFormStepBase implements FlankerStepType {
     public static final String TYPE = "form";
 
     @Nullable
@@ -67,7 +70,7 @@ public class FlankerFormStep extends MtbFormStepBase {
     private final Integer delayToNextStep;
 
     @Nullable
-    private final ImmutableList<FlankerStepBranchingRule> branchingNavigationRules;
+    private final ArrayList<FlankerStepBranchingRule> branchingNavigationRules;
 
     public FlankerFormStep(@NonNull final String identifier,
             @Nullable final ImmutableList<InputField> inputFields,
@@ -84,7 +87,7 @@ public class FlankerFormStep extends MtbFormStepBase {
             @Nullable final FlankerStepGroup stepGroup,
             @Nullable final String stepBackTo,
             @Nullable final Integer delayToNextStep,
-            @Nullable final ImmutableList<FlankerStepBranchingRule> branchingNavigationRules) {
+            @Nullable final ArrayList<FlankerStepBranchingRule> branchingNavigationRules) {
         super(identifier, inputFields, colorTheme, imageTheme, detail, footnote, text, title, asyncActions, actions,
                 hiddenActions);
         this.stepName = stepName;
@@ -150,8 +153,11 @@ public class FlankerFormStep extends MtbFormStepBase {
     @Nullable
     public Integer getDelayToNextStep() { return delayToNextStep; }
 
+//    @Nullable
+//    public ImmutableList<FlankerStepBranchingRule> getBranchingNavigationRules() { return branchingNavigationRules; }
+
     @Nullable
-    public ImmutableList<FlankerStepBranchingRule> getBranchingNavigationRules() { return branchingNavigationRules; }
+    public ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules() { return branchingNavigationRules; }
 
     @NonNull
     @Override

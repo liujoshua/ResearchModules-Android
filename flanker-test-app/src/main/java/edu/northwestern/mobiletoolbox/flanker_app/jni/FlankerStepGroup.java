@@ -51,7 +51,7 @@ public enum FlankerStepGroup {
 
     FlankerStepGroup() {}
 
-    FlankerStepGroup(@NonNull String rawValue) {
+    FlankerStepGroup(String rawValue) {
         this.rawValue = rawValue;
     }
 

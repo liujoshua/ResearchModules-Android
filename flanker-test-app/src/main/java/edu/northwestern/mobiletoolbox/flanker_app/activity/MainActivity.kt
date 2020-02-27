@@ -34,8 +34,18 @@ package edu.northwestern.mobiletoolbox.flanker_app.activity
 
 import android.os.Bundle
 import android.util.Log
+import com.readdle.codegen.anotation.JavaSwift
 import dagger.android.support.DaggerAppCompatActivity
+import edu.northwestern.mobiletoolbox.flanker_app.FlankerApp
 import edu.northwestern.mobiletoolbox.flanker_app.R.layout
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerBranchingCriteria
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerConditionType.all
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerCriteriaName.lastStepIdentifierInSetA
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerKitCore
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStep
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup.setA
+import edu.northwestern.mobiletoolbox.flanker_app.util.CertInstaller
 import org.sagebionetworks.research.domain.repository.TaskRepository
 import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskActivity
 import org.sagebionetworks.research.presentation.model.TaskView
@@ -66,6 +76,10 @@ class MainActivity : DaggerAppCompatActivity() {
         Log.d(TAG, "Task: $task")
         val intent = PerformTaskActivity.createIntent(applicationContext, taskView, taskRunUUID)
         this.startActivity(intent)
+
+//        val step = FlankerStep.init("ID", "danStep", null, arrayListOf(FlankerStepBranchingRule.init("somerule", "nextStep", all, arrayListOf(
+//                FlankerBranchingCriteria.init("criteria", lastStepIdentifierInSetA, null, 90)), setA)), setA, null)
+//        Log.d(TAG, "Step: $step")
     }
 
     companion object {
@@ -73,10 +87,10 @@ class MainActivity : DaggerAppCompatActivity() {
         val TAG = MainActivity::class.java.name
 
         init {
-//            System.loadLibrary("FlankerKitCore")
-//            JavaSwift.init()
-//            val cacheDir = CertInstaller.install(FlankerApp.sharedApplication.applicationContext)
-//            FlankerKitCore.bootstrap(cacheDir)
+            System.loadLibrary("FlankerKitCore")
+            JavaSwift.init()
+            val cacheDir = CertInstaller.install(FlankerApp.sharedApplication.applicationContext)
+            FlankerKitCore.bootstrap(cacheDir)
         }
     }
 }

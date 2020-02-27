@@ -47,7 +47,7 @@ public enum FlankerConditionType {
 
     FlankerConditionType() {}
 
-    FlankerConditionType(@NonNull String rawValue) {
+    FlankerConditionType(String rawValue) {
         this.rawValue = rawValue;
     }
 }

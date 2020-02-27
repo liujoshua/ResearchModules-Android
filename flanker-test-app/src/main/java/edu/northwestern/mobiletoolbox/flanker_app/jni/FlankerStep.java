@@ -32,6 +32,8 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app.jni;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -41,77 +43,81 @@ import com.readdle.codegen.anotation.SwiftValue;
 
 import java.util.ArrayList;
 
-import edu.northwestern.mobiletoolbox.flanker_app.flanker.step.form.FlankerFormStep;
+@SwiftValue
+public class FlankerStep {
 
-//@SwiftValue
-//public class FlankerStep {
+    @NonNull
+    private String identifier;
+
+    @NonNull
+    @SwiftGetter("identifier")
+    public native String getIdentifier();
+
+    @Nullable
+    private String stepName;
+
+    @Nullable
+    @SwiftGetter("stepName")
+    public native String getStepName();
+
+    @Nullable
+    private String nextStepIdentifier;
+
+    @Nullable
+    @SwiftGetter("nextStepIdentifier")
+    public native String getNextStepIdentifier();
+
+    @Nullable
+    private ArrayList<FlankerStepBranchingRule> branchingNavigationRules;
+
+    @Nullable
+    @SwiftGetter("branchingNavigationRules")
+    public native ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules();
+
+    @Nullable
+    private FlankerStepGroup stepGroup;
+
+    @Nullable
+    @SwiftGetter("stepGroup")
+    public native FlankerStepGroup getStepGroup();
+
+    @Nullable
+    private String stepBackTo;
+
+    @Nullable
+    @SwiftGetter("stepBackTo")
+    public native String getStepBackTo();
+
+    @NonNull
+    @SwiftFunc("init(identifier:stepName:nextStepIdentifier:branchingNavigationRules:stepGroup:stepBackTo:)")
+    public static native FlankerStep init(
+        @NonNull String identifier,
+        @Nullable String stepName,
+        @Nullable String nextStepIdentifier,
+        @Nullable ArrayList<FlankerStepBranchingRule> branchingNavigationRules,
+        @Nullable FlankerStepGroup stepGroup,
+        @Nullable String stepBackTo
+    );
+
+    @Nullable
+    public static FlankerStep fromStepType(@Nullable FlankerStepType stepType) {
+        if (stepType == null) {
+            return null;
+        }
+
+        Log.d("FlankerStep", stepType.toString());
+        return FlankerStep.init(
+                stepType.getIdentifier(),
+                stepType.getStepName(),
+                stepType.getNextStepIdentifier(),
+                stepType.getBranchingNavigationRules(),
+                stepType.getStepGroup(),
+                stepType.getStepBackTo()
+                );
+    }
+
+    private FlankerStep() {}
 //
-//    @NonNull
-//    private String identifier;
-//
-//    @NonNull
-//    @SwiftGetter("identifier")
-//    public native String getIdentifier();
-//
-//    @Nullable
-//    private String stepName;
-//
-//    @Nullable
-//    @SwiftGetter("stepName")
-//    public native String getStepName();
-//
-//    @Nullable
-//    private String nextStepIdentifier;
-//
-//    @Nullable
-//    @SwiftGetter("nextStepIdentifier")
-//    public native String getNextStepIdentifier();
-//
-//    @Nullable
-//    private ArrayList<FlankerStepBranchingRule> branchingNavigationRules;
-//
-//    @Nullable
-//    @SwiftGetter("branchingNavigationRules")
-//    public native ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules();
-//
-//    @Nullable
-//    private FlankerStepGroup stepGroup;
-//
-//    @Nullable
-//    @SwiftGetter("stepGroup")
-//    public native FlankerStepGroup getStepGroup();
-//
-//    @Nullable
-//    private String stepBackTo;
-//
-//    @Nullable
-//    @SwiftGetter("stepBackTo")
-//    public native String getStepBackTo();
-//
-//    @NonNull
-//    @SwiftFunc("init(identifier:stepName:nextStepIdentifier:branchingNavigationRules:stepGroup:stepBackTo:)")
-//    public static native FlankerStep init(
-//        @NonNull String identifier,
-//        @Nullable String stepName,
-//        @Nullable String nextStepIdentifier,
-//        @Nullable ArrayList<FlankerStepBranchingRule> branchingNavigationRules,
-//        @Nullable FlankerStepGroup stepGroup,
-//        @Nullable String stepBackTo
-//    );
-//
-//    public static FlankerStep fromFormStep(@NonNull FlankerFormStep formStep) {
-//        return init(
-//                formStep.getIdentifier(),
-//                formStep.getStepName(),
-//                formStep.getNextStepIdentifier(),
-//                new ArrayList(formStep.getBranchingNavigationRules()),
-//                formStep.getStepGroup(),
-//                formStep.getStepBackTo()
-//                );
-//    }
-//
-//    private FlankerStep() {}
-////
-////    private long nativePointer = 0L;
-////    private native void release();
-//}
+//    private long nativePointer = 0L;
+//    private native void release();
+}

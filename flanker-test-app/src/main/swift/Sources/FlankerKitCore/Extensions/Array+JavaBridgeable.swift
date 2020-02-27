@@ -2,9 +2,6 @@ import Foundation
 import java_swift
 import JavaCoder
 
-// TODO: fix this hack
-private let AndroidPackage = "com/example/flanker_test_app/jni"
-
 public extension Array {
 
   // Decoding SwiftValue type with JavaCoder

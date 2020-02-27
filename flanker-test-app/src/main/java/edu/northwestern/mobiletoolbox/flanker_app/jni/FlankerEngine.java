@@ -40,25 +40,26 @@ import com.readdle.codegen.anotation.SwiftReference;
 
 import java.util.ArrayList;
 
-//@SwiftReference
-//public class FlankerEngine {
-//
-//    @Nullable
-//    @SwiftFunc("getNextStep(step:)")
-//    public native FlankerStep getNextStep(@Nullable FlankerStep step);
-//
-//    @Nullable
-//    @SwiftFunc("getPreviousStep(step:)")
-//    public native FlankerStep getPreviousStep(@Nullable FlankerStep step);
-//
-//    @NonNull
-//    @SwiftFunc("init(with:localPersistentData:)")
-//    public native static FlankerEngine init(
-//            @NonNull ArrayList<FlankerStep> steps,
-//            @Nullable FlankerLocalPersistentData localPersistentData
-//    );
-//
-//    private long nativePointer = 0L;
-//    public native void release();
-//    private FlankerEngine() {}
-//}
+@SwiftReference
+public class FlankerEngine {
+
+
+    @Nullable
+    @SwiftFunc("getNextStep(step:)")
+    public native FlankerStep getNextStep(@Nullable FlankerStep step);
+
+    @Nullable
+    @SwiftFunc("getPreviousStep(step:)")
+    public native FlankerStep getPreviousStep(@Nullable FlankerStep step);
+
+    @NonNull
+    @SwiftFunc("init(with:localPersistentData:)")
+    public native static FlankerEngine init(
+            @NonNull ArrayList<FlankerStep> steps,
+            @Nullable FlankerLocalPersistentData localPersistentData
+    );
+
+    private long nativePointer = 0L;
+    public native void release();
+    private FlankerEngine() {}
+}

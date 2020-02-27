@@ -3,6 +3,8 @@ import Foundation
 import AnyCodable
 import FlankerKit
 
+let AndroidPackage = "edu/northwestern/mobiletoolbox/flanker_app/jni"
+
 public class FlankerKitCore {
   public static func bootstrap(cachePath: String?) {
     setenv("TMPDIR", cachePath!, 1)

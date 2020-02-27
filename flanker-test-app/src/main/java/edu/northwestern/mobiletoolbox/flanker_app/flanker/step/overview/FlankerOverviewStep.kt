@@ -32,6 +32,9 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.step.overview
 
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepBranchingRule
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepGroup
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepType
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
 import org.sagebionetworks.research.domain.step.StepType
 import org.sagebionetworks.research.domain.step.implementations.UIStepBase
@@ -41,6 +44,12 @@ import org.sagebionetworks.research.domain.step.ui.theme.ImageTheme
 
 class FlankerOverviewStep(
         val flanker: Flanker,
+        @JvmField val stepName: String?,
+        @JvmField val stepGroup: FlankerStepGroup?,
+        @JvmField val delayToNextStep: Int?,
+        @JvmField val branchingNavigationRules: ArrayList<FlankerStepBranchingRule>?,
+        @JvmField val stepBackTo: String?,
+        @JvmField val nextStepIdentifier: String?,
         identifier: String,
         asyncActions: Set<AsyncActionConfiguration>,
         actions: Map<String, Action>?,
@@ -53,16 +62,36 @@ class FlankerOverviewStep(
         imageTheme: ImageTheme?
 ): UIStepBase(
     identifier, asyncActions, actions, hiddenActions, title, text, detail, footnote, colorTheme, imageTheme
-) {
+), FlankerStepType {
 
     override fun copyWithIdentifier(identifier: String): UIStepBase {
         return FlankerOverviewStep(
-            flanker, identifier, asyncActions, actions, hiddenActions, title, text, detail, footnote, colorTheme, imageTheme
+                flanker, stepName, stepGroup, delayToNextStep, branchingNavigationRules, stepBackTo, nextStepIdentifier, identifier, asyncActions, actions, hiddenActions, title, text, detail, footnote, colorTheme, imageTheme
         )
+    }
+
+    override fun getStepName(): String? {
+        return stepName
+    }
+
+    override fun getStepGroup(): FlankerStepGroup? {
+        return stepGroup
+    }
+
+    override fun getBranchingNavigationRules(): java.util.ArrayList<FlankerStepBranchingRule>? {
+        return branchingNavigationRules
+    }
+
+    override fun getStepBackTo(): String? {
+        return stepBackTo
     }
 
     override fun getType(): String {
         return FlankerOverviewStep.TYPE_KEY
+    }
+
+    override fun getNextStepIdentifier(): String? {
+        return nextStepIdentifier
     }
 
     companion object {

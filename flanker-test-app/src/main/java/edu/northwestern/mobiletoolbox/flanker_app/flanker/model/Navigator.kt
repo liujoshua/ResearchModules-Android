@@ -32,6 +32,9 @@
 
 package edu.northwestern.mobiletoolbox.flanker_app.flanker.model
 
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerEngine
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStep
+import edu.northwestern.mobiletoolbox.flanker_app.jni.FlankerStepType
 import org.sagebionetworks.research.domain.result.interfaces.TaskResult
 import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.domain.task.Task
@@ -42,7 +45,10 @@ import org.sagebionetworks.research.domain.task.navigation.TaskProgress
 
 class Navigator(val task: Task): StepNavigator {
 
-//    private var steps: ArrayList<FlankerStepType>
+    private val steps: ArrayList<Step> = ArrayList(task.steps)
+
+
+    private val engine = FlankerEngine.init(ArrayList(steps.mapNotNull { FlankerStep.fromStepType(it as FlankerStepType?)}), null)
 
     class Factory: StepNavigatorFactory {
         override fun create(task: Task, progressMarkers: List<String>?): StepNavigator {
@@ -50,24 +56,32 @@ class Navigator(val task: Task): StepNavigator {
         }
     }
 
-    init {
-//        steps = ArrayList(task.steps.map { it as FlankerStepType })
-    }
-
     override fun getNextStep(step: Step?, taskResult: TaskResult): StepAndNavDirection {
-        return StepAndNavDirection(step, -1)
+        val currentFlankerStep = FlankerStep.fromStepType(step as FlankerStepType?)
+        engine.getNextStep(currentFlankerStep)?.let { nextStep ->
+            return StepAndNavDirection(steps.find { s -> nextStep.identifier == s.identifier })
+        } ?: run {
+            return StepAndNavDirection(null)
+        }
     }
 
     override fun getPreviousStep(step: Step, taskResult: TaskResult): Step? {
-        return null
+        val currentFlankerStep = FlankerStep.fromStepType(step as FlankerStepType)
+        return engine.getPreviousStep(currentFlankerStep)?.let {
+            steps.find { s -> s.identifier == it.identifier }
+        }
     }
 
     override fun getProgress(step: Step, taskResult: TaskResult): TaskProgress? {
-        return null
+        var currentStepIndex = steps.indexOfFirst { step.identifier == it.identifier }
+
+        if (currentStepIndex == -1) currentStepIndex = 0
+
+        return TaskProgress(currentStepIndex, steps.count(), false)
     }
 
     override fun getStep(identifier: String): Step? {
-        return null
+        return steps.first { it.identifier == identifier }
     }
 
     override fun getSteps(): List<Step> {

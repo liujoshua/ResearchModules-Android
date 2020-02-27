@@ -38,26 +38,34 @@ import androidx.annotation.Nullable;
 import com.readdle.codegen.anotation.SwiftCallbackFunc;
 import com.readdle.codegen.anotation.SwiftDelegate;
 
+import org.sagebionetworks.research.domain.step.interfaces.Step;
+
+import java.util.ArrayList;
+
 //@SwiftDelegate(protocols = {"FlankerStepProtocol"})
-//public interface FlankerStepType {
-//
-//    @NonNull
+public interface FlankerStepType {
+
+    @NonNull
 //    @SwiftCallbackFunc
-//    String getIdentifier();
-//
-//    @Nullable
+    String getIdentifier();
+
+    @Nullable
 //    @SwiftCallbackFunc
-//    String getNextStepIdentifier();
-//
-//    @Nullable
+    String getNextStepIdentifier();
+
+    @Nullable
 //    @SwiftCallbackFunc
-//    String getStepName();
-//
-//    @Nullable
+    String getStepName();
+
+    @Nullable
 //    @SwiftCallbackFunc
-//    FlankerStepGroup getStepGroup();
-//
-//    @Nullable
+    ArrayList<FlankerStepBranchingRule> getBranchingNavigationRules();
+
+    @Nullable
 //    @SwiftCallbackFunc
-//    String getStepBackTo();
-//}
+    FlankerStepGroup getStepGroup();
+
+    @Nullable
+//    @SwiftCallbackFunc
+    String getStepBackTo();
+}

@@ -48,7 +48,7 @@ public enum FlankerCriteriaType {
 
     FlankerCriteriaType() {}
 
-    FlankerCriteriaType(@NonNull String rawValue) {
+    FlankerCriteriaType(String rawValue) {
         this.rawValue = rawValue;
     }
 }

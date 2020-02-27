@@ -79,7 +79,7 @@ public abstract class FlankerTaskModule {
      */
     @Provides
     static StepNavigatorFactory provideStepNavigatorFactory() {
-        return new FlankerNavigator.Factory();
+        return new Navigator.Factory();
     }
 
     /**

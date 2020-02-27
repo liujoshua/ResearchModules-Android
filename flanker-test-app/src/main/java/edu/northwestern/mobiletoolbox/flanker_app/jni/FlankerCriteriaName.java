@@ -40,7 +40,7 @@ import com.readdle.codegen.anotation.SwiftValue;
 public enum FlankerCriteriaName {
     lastAdministrationlessThanDays("lastAdministrationlessThanDays"),
     lastAdministrationLessThanEqualToDays("lastAdministrationLessThanEqualToDays"),
-    lastAdministrationGreaterThanEqualToDays("lastAdministrationGreaterThanEqualToDays"),
+    lastAdministrationGreaterThanEqualToDays("lastAdministrationGrea terThanEqualToDays"),
     lastAdministrationGreaterThanDays("lastAdministrationGreaterThanDays"),
     lastStepIdentifierInSetA("lastStepIdentifierInSetA"),
     lastStepIdentifierInSetB("lastStepIdentifierInSetB");
@@ -51,7 +51,7 @@ public enum FlankerCriteriaName {
 
     FlankerCriteriaName() {}
 
-    FlankerCriteriaName(@NonNull String rawValue) {
+    FlankerCriteriaName(String rawValue) {
         this.rawValue = rawValue;
     }
 }

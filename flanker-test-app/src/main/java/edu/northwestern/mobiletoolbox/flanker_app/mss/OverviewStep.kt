@@ -30,64 +30,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker_app.jni;
+package edu.northwestern.mobiletoolbox.flanker_app.mss
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import org.sagebionetworks.research.domain.step.implementations.UIStepBase
 
-import com.readdle.codegen.anotation.SwiftFunc;
-import com.readdle.codegen.anotation.SwiftGetter;
-import com.readdle.codegen.anotation.SwiftValue;
+class OverviewStep(
+    var isPractice: Boolean = false,
+    var stepName: String?,
+    var timeout: Int?
+): UIStepBase(
 
-import java.util.ArrayList;
+) {
 
-@SwiftValue
-public class FlankerStepBranchingRule {
-
-    @Nullable
-    private String description;
-
-    @Nullable
-    @SwiftGetter("description")
-    public native String getDescription();
-
-    @Nullable
-    private String nextStepName;
-
-    @Nullable
-    @SwiftGetter("nextStepName")
-    public native String getNextStepName();
-
-    @Nullable
-    private FlankerConditionType conditionType;
-
-    @Nullable
-    @SwiftGetter("conditionType")
-    public native FlankerConditionType getConditionType();
-
-    @NonNull
-    private ArrayList<FlankerBranchingCriteria> criteria;
-
-    @NonNull
-    @SwiftGetter("criteria")
-    public native ArrayList<FlankerBranchingCriteria> getCriteria();
-
-    @Nullable
-    private FlankerStepGroup stepGroup;
-
-    @Nullable
-    @SwiftGetter("stepGroup")
-    public native FlankerStepGroup getStepGroup();
-
-    @NonNull
-    @SwiftFunc("init(description:nextStepName:conditionType:criteria:stepGroup:)")
-    public native static FlankerStepBranchingRule init(
-            @Nullable String description,
-            @Nullable String nextStepName,
-            @Nullable FlankerConditionType conditionType,
-            @NonNull ArrayList<FlankerBranchingCriteria> criteria,
-            @Nullable FlankerStepGroup stepGroup);
-
-
-    private FlankerStepBranchingRule() {}
 }
