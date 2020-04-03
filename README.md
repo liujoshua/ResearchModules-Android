@@ -27,4 +27,4 @@ chmod ugo+x swift-android-toolchain-installer.sh
 
 ### Go to android studio and rebuild project.
 
-### You will be able to see project. Happy conding!
+### You will be able to run the project. Happy coding!
