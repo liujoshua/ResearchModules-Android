@@ -1,3 +1,4 @@
 include ':motor-control-test-app', ':motor-control', ':psorcast', ':psorcast-test-app', ':common', ':flanker-test-app'
 
 //includeBuild ('../SageResearch-Android')
+include ':mss-mobile-kit'
