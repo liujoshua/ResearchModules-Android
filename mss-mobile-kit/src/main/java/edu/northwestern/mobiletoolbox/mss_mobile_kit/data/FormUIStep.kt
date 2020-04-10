@@ -7,7 +7,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 import com.google.common.collect.ImmutableSet
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
 
-data class FormUIStepObject(
+data class FormUIStep(
 
         var isPractice: Boolean = false,
         var timeout: Int? = null,
