@@ -8,8 +8,8 @@ import android.os.Parcelable
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.OrientationEnum
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.OrientationEnum.portrait
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.ScreenOrientation
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.ScreenOrientation.portrait
 import kotlinx.android.parcel.Parcelize
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
 import org.sagebionetworks.research.domain.step.interfaces.Step
@@ -18,7 +18,7 @@ import org.sagebionetworks.research.domain.task.Task as RSDTask
 
 @Parcelize
 data class Task(
-        var taskOrientation: OrientationEnum = portrait,
+        var taskOrientation: ScreenOrientation = portrait,
         var interruptionManager : InterruptionManager
 
 ) : RSDTask, Parcelable {

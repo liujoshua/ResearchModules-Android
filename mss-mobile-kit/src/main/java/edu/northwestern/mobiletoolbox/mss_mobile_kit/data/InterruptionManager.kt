@@ -5,9 +5,8 @@
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import android.os.Parcelable
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.InterruptionTimestampEnum
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.InterruptionTimestamp
 import kotlinx.android.parcel.Parcelize
-import java.util.Calendar
 
 @Parcelize
 data class InterruptionManager(
@@ -24,18 +23,18 @@ data class InterruptionManager(
     }
 
     fun announceInterruption() {
-        interruptions.add(Interruption(InterruptionTimestampEnum.interruptionTime, Calendar.getInstance()))
+        interruptions.add(Interruption(InterruptionTimestamp.interruptionTime, System.nanoTime()))
         //***Save data here
         delegate.didBeginInterruption()
     }
 
     fun resumeFromInterruption() {
-        interruptions.add(Interruption(InterruptionTimestampEnum.resumeTime, Calendar.getInstance()))
+        interruptions.add(Interruption(InterruptionTimestamp.resumeTime, System.nanoTime()))
         delegate.didEndInterruption()
     }
 
     fun appTerminating() {
-        interruptions.add(Interruption(InterruptionTimestampEnum.terminationTime, Calendar.getInstance()))
+        interruptions.add(Interruption(InterruptionTimestamp.terminationTime, System.nanoTime()))
         //***TODO - Send saved data to Bridge
     }
 }

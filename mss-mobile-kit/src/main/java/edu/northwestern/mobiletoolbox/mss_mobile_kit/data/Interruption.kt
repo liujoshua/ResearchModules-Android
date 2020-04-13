@@ -5,12 +5,12 @@
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import android.os.Parcelable
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.InterruptionTimestampEnum
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.enums.InterruptionTimestamp
 import kotlinx.android.parcel.Parcelize
-import java.util.Calendar
+import java.time.Instant
 
 @Parcelize
 data class Interruption(
-        val name: InterruptionTimestampEnum,
-        val timestamp: Calendar
+        val name: InterruptionTimestamp,
+        val timestamp: Long
 ): Parcelable

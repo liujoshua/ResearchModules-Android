@@ -4,7 +4,7 @@
 
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.enums
 
-enum class InterruptionTimestampEnum {
+enum class InterruptionTimestamp {
     interruptionTime,
     resumeTime,
     terminationTime

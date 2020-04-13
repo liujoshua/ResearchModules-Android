@@ -7,7 +7,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.enums
 import android.content.pm.ActivityInfo
 import android.graphics.drawable.GradientDrawable.Orientation
 
-enum class OrientationEnum(val orientation: Int) {
+enum class ScreenOrientation(val orientation: Int) {
     portrait(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT),
     portraitUpsideDown(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT),
     landscapeLeft(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE),

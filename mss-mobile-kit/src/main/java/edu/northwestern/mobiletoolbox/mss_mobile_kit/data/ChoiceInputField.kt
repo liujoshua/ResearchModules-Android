@@ -7,45 +7,47 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 import android.os.Parcelable
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Range
+import org.sagebionetworks.research.domain.form.InputUIHint
 import org.sagebionetworks.research.domain.form.TextField.TextFieldOptions
 import org.sagebionetworks.research.domain.form.data_types.InputDataType
+import org.sagebionetworks.research.domain.form.implementations.InputFieldBase
 import org.sagebionetworks.research.domain.form.interfaces.ChoiceOptions
-import org.sagebionetworks.research.domain.form.interfaces.InputField
-import org.sagebionetworks.research.domain.survey.SurveyRule
 import org.sagebionetworks.research.domain.form.interfaces.Choice as RSDChoice
 
-//TODO not sure that "ValueType: Comparable" = IOS Equatable
-//TODO what generic we need to use <ValueType , Choice: Parcelable> ?!
-open class  ChoiceInputField <ValueType , Choice: Parcelable>
-    : ChoiceOptions<Choice>, InputField<ValueType>
-where ValueType: Comparable<ValueType>?,  ValueType : Parcelable {
+//TODO rename _choice to getChoices returns _choice
+open class ChoiceInputField<ValueType, ScoreType>(
+        private val identifier: String,
+        private val _choices: ImmutableList<Choice<ValueType, ScoreType>>,
+        private val dataType: InputDataType,
+        private val uiHint: InputUIHint? = null,
+        private val  prompt: String? = null,
+        private val _defaultAnswer: Any? = null)
+    : ChoiceOptions<ValueType>, InputFieldBase<ValueType>()
+        where ValueType : Comparable<ValueType>, ValueType : Parcelable, ScoreType : Parcelable {
 
-    override fun getChoices(): ImmutableList<RSDChoice<Choice>> {
-       return this.choices
+
+    override fun getChoices(): ImmutableList<RSDChoice<ValueType>> {
+        return this.choices
     }
 
     override fun isOptional(): Boolean {
-      return isOptional
+        return isOptional
     }
 
-    override fun getDefaultAnswer(): Choice? {
-       return defaultAnswer
+    override fun getDefaultAnswer(): ValueType? {
+        return defaultAnswer
     }
 
     override fun getTextFieldOptions(): TextFieldOptions? {
-      return textFieldOptions
+        return textFieldOptions
     }
 
     override fun getIdentifier(): String? {
-       return identifier
-    }
-
-    override fun getSurveyRules(): ImmutableList<out SurveyRule>? {
-        return  surveyRules
+        return identifier
     }
 
     override fun getFormDataType(): InputDataType {
-        return  formDataType
+        return dataType
     }
 
     override fun getPlaceholderText(): String? {
@@ -61,10 +63,10 @@ where ValueType: Comparable<ValueType>?,  ValueType : Parcelable {
     }
 
     override fun getFormUIHint(): String? {
-       return formUIHint
+        return uiHint.toString()
     }
 
     override fun getPrompt(): String? {
-       return prompt
+        return prompt
     }
 }
