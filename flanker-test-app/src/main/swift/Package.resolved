@@ -21,10 +21,10 @@
       },
       {
         "package": "MobileToolbox",
-        "repositoryURL": "/Users/elvira/Documents/разработка/mobiletoolbox",
+        "repositoryURL": "/Users/neural/Work/kastelolabs/heliumfoot/clients/nu/mobiletoolbox",
         "state": {
           "branch": "feature/spm-integration",
-          "revision": "790f785d392e6deb9d3c9bd33d020f0ec0055e49",
+          "revision": "3783520434fe4b8a8f7d20ad386fa1dcf71a4abd",
           "version": null
         }
       },
