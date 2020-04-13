@@ -7,6 +7,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import org.sagebionetworks.research.domain.result.interfaces.Result
+import org.sagebionetworks.research.presentation.DisplayDrawable
 import java.util.UUID
 import org.sagebionetworks.research.domain.form.interfaces.Choice as RSDChoice
 
@@ -16,7 +17,7 @@ data class Choice<ValueType : Parcelable, ScoreType : Parcelable>(
         val score: ScoreType,
         val itemResponseOID: UUID,
         val dataType: String?,
-        val image: String //TODO missing RSDImageWrapper?
+        val image: DisplayDrawable //TODO missing RSDImageWrapper?
 ) : Parcelable, RSDChoice<ValueType> {
 
     override fun getIconName(): String? {

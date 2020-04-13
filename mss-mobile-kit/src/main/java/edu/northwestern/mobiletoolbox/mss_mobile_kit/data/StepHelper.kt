@@ -4,21 +4,22 @@
 
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.common.RawRepresentable
 
-class StepHelper<StepName : RawRepresentable> {
-    //where StepName ==  String
-    var steps: ArrayList<Step>
-    var stepMapping: MutableMap<String, Step>
+class StepHelper(var steps: ArrayList<Step>) {
+    var stepNameMapping: MutableMap<String, Step>
+    var stepIndexMapping: MutableMap<String, Step>
 
-    constructor(steps: ArrayList<Step>) {
-        this.steps = steps
-        var dictionary: MutableMap<String, Step> = mutableMapOf()
+    init {
+        var dictionaryName: MutableMap<String, Step> = mutableMapOf()
+        var dictionaryIndex: MutableMap<String, Step> = mutableMapOf()
         for (index in 0 until steps.size) {
             this.steps[index].stepName?.let { stepName ->
-                dictionary[stepName] = this.steps[index]
+                dictionaryName[stepName] = this.steps[index]
             }
+            dictionaryIndex[this.steps[index].identifier] = this.steps[index]
+
         }
-        this.stepMapping = dictionary
+        this.stepNameMapping = dictionaryName
+        this.stepIndexMapping = dictionaryIndex
     }
 }
