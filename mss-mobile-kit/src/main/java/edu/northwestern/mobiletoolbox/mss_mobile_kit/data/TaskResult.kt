@@ -10,7 +10,7 @@ import org.sagebionetworks.research.domain.result.ResultType
 import org.threeten.bp.Instant
 import java.util.Date
 
-open class TaskResult<StepResultType: Parcelable>(task: String, archiveDataFileName: String,
+open class TaskResult<StepResultType: Parcelable>(task: String, archiveDataFileName: String = "taskData.json",
         steps: List<StepResultType>, result: ResultData, override val type: ResultType, var rawScore: Int?)
     : ResultData() {
     private val identifier: String
