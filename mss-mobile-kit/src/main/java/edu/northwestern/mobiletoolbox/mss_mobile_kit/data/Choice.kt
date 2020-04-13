@@ -17,7 +17,7 @@ data class Choice<ValueType : Parcelable, ScoreType : Parcelable>(
         val score: ScoreType,
         val itemResponseOID: UUID,
         val dataType: String?,
-        val image: DisplayDrawable //TODO missing RSDImageWrapper?
+        val image: String?
 ) : Parcelable, RSDChoice<ValueType> {
 
     override fun getIconName(): String? {
