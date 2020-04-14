@@ -6,6 +6,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import com.google.common.collect.ImmutableSet
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
+import org.sagebionetworks.research.domain.step.interfaces.Step as RSDStep
 
 data class FormUIStep(
         var isPractice: Boolean = false,
@@ -31,8 +32,8 @@ data class FormUIStep(
         return asyncActions
     }
 
-    override fun copyWithIdentifier(identifier: String): org.sagebionetworks.research.domain.step.interfaces.Step {
-        return FormUIStep(isPractice, timeout, stepName, htmlText, identifier, type, asyncActions)
+    override fun copyWithIdentifier(identifier: String): RSDStep {
+        return copy(identifier = identifier)
     }
 }
 

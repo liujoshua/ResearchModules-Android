@@ -49,7 +49,7 @@ data class Task(
     }
 
     override fun getHiddenActions(): ImmutableSet<String> {
-        return this.hiddenActions
+        return hiddenActions
     }
 
     override fun copyWithAsyncActions(asyncActions: MutableSet<AsyncActionConfiguration>?): Task {
