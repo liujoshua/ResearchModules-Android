@@ -10,8 +10,8 @@ class StepHelper(var steps: ArrayList<Step>) {
     var stepIndexMapping: MutableMap<String, Step>
 
     init {
-        var dictionaryName: MutableMap<String, Step> = mutableMapOf()
-        var dictionaryIndex: MutableMap<String, Step> = mutableMapOf()
+        val dictionaryName: MutableMap<String, Step> = mutableMapOf()
+        val dictionaryIndex: MutableMap<String, Step> = mutableMapOf()
         for (index in 0 until steps.size) {
             this.steps[index].stepName?.let { stepName ->
                 dictionaryName[stepName] = this.steps[index]

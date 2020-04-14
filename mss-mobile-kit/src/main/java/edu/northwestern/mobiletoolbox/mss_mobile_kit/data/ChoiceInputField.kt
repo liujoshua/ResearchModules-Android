@@ -20,7 +20,13 @@ open class ChoiceInputField<ValueType, ScoreType>(
         private val choices: List<Choice<ValueType, ScoreType>>,
         private val dataType: InputDataType,
         private val uiHint: InputUIHint? = null,
-        private val  prompt: String? = null)
+        private val  prompt: String? = null,
+        private val defaultAnswer: ValueType? = null,
+        private val textFieldOptions: TextFieldOptions? = null,
+        private val placeholderText: String? = null,
+        private val promptDetail: String? = null,
+        private val range: Range<ValueType>? = null
+)
     : ChoiceOptions<ValueType>, InputFieldBase<ValueType>()
         where ValueType : Comparable<ValueType>, ValueType : Parcelable, ScoreType : Parcelable {
 
@@ -69,3 +75,7 @@ open class ChoiceInputField<ValueType, ScoreType>(
         return prompt
     }
 }
+
+
+
+

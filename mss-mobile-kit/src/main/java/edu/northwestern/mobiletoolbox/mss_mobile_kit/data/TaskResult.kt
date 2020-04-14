@@ -6,6 +6,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import android.os.Parcelable
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.sage_extension.ResultData
+import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 import org.sagebionetworks.research.domain.result.ResultType
@@ -22,21 +23,13 @@ data class TaskResult<StepResultType : Parcelable>(
         )
     : ResultData(), Parcelable {
 
-    private val identifier: String
-    var startDate: Instant
-    var endDate: Instant?
+    @IgnoredOnParcel
     var fileName: String = archiveDataFileName
-    override val type: ResultType
-
-    init {
-        this.identifier = result.identifier
-        this.startDate = result.startTime
-        this.endDate = result.endTime
-        this.type = result.type
-    }
+    @IgnoredOnParcel
+    override val type: ResultType = result.type
 
     override fun getIdentifier(): String {
-        return this.identifier
+        return result.identifier
     }
 
     override fun toBuilder(): Builder {
@@ -44,10 +37,10 @@ data class TaskResult<StepResultType : Parcelable>(
     }
 
     override fun getEndTime(): Instant? {
-        return this.endTime
+        return result.endTime
     }
 
     override fun getStartTime(): Instant {
-        return this.startTime
+        return  result.startTime
     }
 }

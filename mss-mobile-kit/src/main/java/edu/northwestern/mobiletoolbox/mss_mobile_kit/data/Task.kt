@@ -19,8 +19,13 @@ import org.sagebionetworks.research.domain.task.Task as RSDTask
 @Parcelize
 data class Task(
         var taskOrientation: ScreenOrientation = portrait,
-        var interruptionManager : InterruptionManager
-
+        var interruptionManager : InterruptionManager,
+        private var identifier : String,
+        private var steps : ImmutableList<Step>,
+        private  var actions : ImmutableMap<String, Action>,
+        private  var asyncActions : ImmutableSet<AsyncActionConfiguration>,
+        private  var hiddenActions : ImmutableSet<String>,
+        private  var progressMarkers : ImmutableList<String>
 ) : RSDTask, Parcelable {
 
     override fun getIdentifier(): String {
@@ -44,7 +49,7 @@ data class Task(
     }
 
     override fun getHiddenActions(): ImmutableSet<String> {
-        return hiddenActions
+        return this.hiddenActions
     }
 
     override fun copyWithAsyncActions(asyncActions: MutableSet<AsyncActionConfiguration>?): Task {
