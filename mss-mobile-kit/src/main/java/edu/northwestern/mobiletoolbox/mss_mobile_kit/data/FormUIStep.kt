@@ -6,13 +6,16 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import com.google.common.collect.ImmutableSet
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
+import org.sagebionetworks.research.domain.step.interfaces.Step as RSDStep
 
-data class FormUIStepObject(
-
+data class FormUIStep(
         var isPractice: Boolean = false,
         var timeout: Int? = null,
         override var stepName: String?,
-        override var htmlText: String?
+        override var htmlText: String?,
+        private val identifier: String,
+        private val type: String,
+        private val asyncActions: ImmutableSet<AsyncActionConfiguration>
 ) : Step {
 
 //TODO also should be extended FormUIStep or UIStep
@@ -29,9 +32,8 @@ data class FormUIStepObject(
         return asyncActions
     }
 
-    override fun copyWithIdentifier(identifier: String): org.sagebionetworks.research.domain.step.interfaces.Step {
-        return copyWithIdentifier(identifier)
+    override fun copyWithIdentifier(identifier: String): RSDStep {
+        return copy(identifier = identifier)
     }
 }
-
 
