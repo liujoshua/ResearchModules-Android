@@ -13,11 +13,13 @@ import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerInstructionStepModule;
 import edu.northwestern.mobiletoolbox.common.test_app.MtbCommonTestApplication;
 
 // joliu TODO StepModule
 @Component(modules = {PerformTaskModule.class, TaskModule.class, AndroidSupportInjectionModule.class,
-        InputFieldsModule.class, AsyncActionModule.class, MtbCommonTestAppModule.class, DataModule.class})
+        InputFieldsModule.class, AsyncActionModule.class, MtbCommonTestAppModule.class,
+        FlankerInstructionStepModule.class, DataModule.class})
 public interface MtbCommonTestAppComponent extends AndroidInjector<MtbCommonTestApplication> {
     @Component.Builder
     interface Builder {

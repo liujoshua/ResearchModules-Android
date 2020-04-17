@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -33,7 +34,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -51,13 +51,14 @@ dependencies {
 
     // Butterknife
     implementation "com.jakewharton:butterknife:$butterknife_version"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
 
     // Dagger
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     // Logging
     implementation 'org.slf4j:slf4j-api:1.7.21'
@@ -71,15 +72,16 @@ dependencies {
 
     implementation 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.6'
     implementation "com.ryanharter.auto.value:auto-value-gson-annotations:$auto_value_gson_version"
-    annotationProcessor "com.google.auto.value:auto-value:$auto_value_version"
-    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
-    annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$auto_value_gson_version"
-    annotationProcessor "com.google.auto.value:auto-value-annotations:$auto_value_version" // include again for auto-value-gson
+    kapt "com.google.auto.value:auto-value:$auto_value_version"
+    kapt 'com.ryanharter.auto.value:auto-value-parcel:0.2.6'
+    kapt "com.ryanharter.auto.value:auto-value-gson:$auto_value_gson_version"
+    kapt "com.google.auto.value:auto-value-annotations:$auto_value_version"
+    // include again for auto-value-gson
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.google.code.findbugs:jsr305:2.0.1'
 
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
@@ -92,4 +94,3 @@ dependencies {
     testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
 }
-

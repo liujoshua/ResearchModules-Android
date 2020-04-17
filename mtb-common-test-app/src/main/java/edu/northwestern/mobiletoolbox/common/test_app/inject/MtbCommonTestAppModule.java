@@ -14,6 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoSet;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerShowStepFragmentModule;
 import edu.northwestern.mobiletoolbox.common.test_app.MainActivity;
 import io.reactivex.Single;
 
@@ -27,7 +28,7 @@ public abstract class MtbCommonTestAppModule {
     }
 
     // joliu TODO add common step module
-    @ContributesAndroidInjector(modules = {ShowStepFragmentModule.class})
+    @ContributesAndroidInjector(modules = {ShowStepFragmentModule.class, FlankerShowStepFragmentModule.class})
     abstract PerformTaskFragment contributesPerformTaskFragmentInjector();
 
     @ContributesAndroidInjector
