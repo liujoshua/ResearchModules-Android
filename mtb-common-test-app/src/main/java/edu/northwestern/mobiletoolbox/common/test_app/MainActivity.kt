@@ -10,6 +10,8 @@ import java.util.UUID
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
+//    MSS-mobile-kit
+
     @Inject
     lateinit var taskRepository: TaskRepository
 

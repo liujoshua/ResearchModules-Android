@@ -33,8 +33,17 @@
 package edu.northwestern.mobiletoolbox.common.test_app.inject;
 
 import dagger.Module;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerFormStepModule;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerInstructionFormStepModule;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerInstructionStepModule;
+import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerOverviewStepModule;
 
-@Module
+@Module(includes = {
+        FlankerInstructionFormStepModule.class,
+        FlankerInstructionStepModule.class,
+        FlankerOverviewStepModule.class,
+        FlankerFormStepModule.class
+})
 public class MtbCommonStepConfigurationModule {
 
 }

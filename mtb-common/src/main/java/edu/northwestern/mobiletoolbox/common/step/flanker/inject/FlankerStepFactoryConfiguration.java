@@ -40,15 +40,15 @@ import org.sagebionetworks.research.domain.step.interfaces.Step;
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory;
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory;
 
-import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.FlankerInstructionStep;
+import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.FlankerInstructionFormStep;
 
 public class FlankerStepFactoryConfiguration {
     public static final StepConfiguration FLANKER_INSTRUCTION_STEP =
             new StepConfiguration(
-                    FlankerInstructionStep.TYPE,
-                    FlankerInstructionStep.class,
-                    FlankerInstructionStep.provideInternalStepViewFactory(),
-                    FlankerInstructionStep.provideStepFragmentFactory()
+                    FlankerInstructionFormStep.TYPE,
+                    FlankerInstructionFormStep.class,
+                    FlankerInstructionFormStep.provideInternalStepViewFactory(),
+                    FlankerInstructionFormStep.provideStepFragmentFactory()
             );
 
     public static final ImmutableSet<StepConfiguration> FLANKER_STEP_CONFIGURATIONS =

@@ -34,7 +34,10 @@ package edu.northwestern.mobiletoolbox.common.step.flanker.inject
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.FlankerInstructionStep
+import edu.northwestern.mobiletoolbox.common.step.flanker.form.FlankerFormStep
+import edu.northwestern.mobiletoolbox.common.step.flanker.instruction.FlankerInstructionStep
+import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.FlankerInstructionFormStep
+import edu.northwestern.mobiletoolbox.common.step.flanker.overview.FlankerOverviewStep
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
@@ -42,7 +45,58 @@ import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalS
 import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey
 
 @Module
+class FlankerInstructionFormStepModule {
+
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerInstructionFormStep::class)
+    fun provideFlankerInstructionStepClassInfo(): String {
+        return FlankerInstructionFormStep.TYPE
+    }
+
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerInstructionFormStep.TYPE)
+    fun provideInstructionStepViewFactory(): InternalStepViewFactory {
+        return FlankerInstructionFormStep.provideInternalStepViewFactory()
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerInstructionFormStep.TYPE)
+    fun provideShowInstructionStepFragmentFactory(): ShowStepFragmentFactory {
+        return FlankerInstructionFormStep.provideStepFragmentFactory()
+    }
+}
+
+@Module
+class FlankerFormStepModule {
+
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerFormStep::class)
+    fun provideFlankerFormStepClassInfo(): String {
+        return FlankerFormStep.TYPE
+    }
+
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerFormStep.TYPE)
+    fun provideFlankerFormStepViewFactory(): InternalStepViewFactory {
+        return FlankerFormStep.provideInternalStepViewFactory()
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerFormStep.TYPE)
+    fun provideShowFlankerFormStepFragmentFactory(): ShowStepFragmentFactory {
+        return FlankerFormStep.provideStepFragmentFactory()
+    }
+}
+
+@Module
 class FlankerInstructionStepModule {
+
     @Provides
     @IntoMap
     @StepClassKey(FlankerInstructionStep::class)
@@ -62,5 +116,30 @@ class FlankerInstructionStepModule {
     @StepViewKey(FlankerInstructionStep.TYPE)
     fun provideShowInstructionStepFragmentFactory(): ShowStepFragmentFactory {
         return FlankerInstructionStep.provideStepFragmentFactory()
+    }
+}
+
+@Module
+class FlankerOverviewStepModule {
+
+    @Provides
+    @IntoMap
+    @StepClassKey(FlankerOverviewStep::class)
+    fun provideFlankerOverviewStepClassInfo(): String {
+        return FlankerOverviewStep.TYPE
+    }
+
+    @Provides
+    @IntoMap
+    @StepTypeKey(FlankerOverviewStep.TYPE)
+    fun provideFlankerOverviewStepViewFactory(): InternalStepViewFactory {
+        return FlankerOverviewStep.provideInternalStepViewFactory()
+    }
+
+    @Provides
+    @IntoMap
+    @StepViewKey(FlankerOverviewStep.TYPE)
+    fun provideShowFlankerOverviewStepFragmentFactory(): ShowStepFragmentFactory {
+        return FlankerOverviewStep.provideStepFragmentFactory()
     }
 }

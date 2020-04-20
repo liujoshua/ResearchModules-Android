@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form
+package edu.northwestern.mobiletoolbox.common.step.flanker.overview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,19 +38,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import edu.northwestern.mobiletoolbox.common.R
-import kotlinx.android.synthetic.main.mtbc_fragment_flanker_instruction_step.view.next_button
-import kotlinx.android.synthetic.main.mtbc_fragment_flanker_instruction_step.view.step_view
+import kotlinx.android.synthetic.main.mtbc_fragment_show_flanker_overview_step.view.next_button
+import kotlinx.android.synthetic.main.mtbc_fragment_show_flanker_overview_step.view.step_view
 import org.sagebionetworks.research.mobile_ui.perform_task.PerformTaskFragment
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ShowFlankerInstructionStepFragment.newInstance] factory method to
+ * Use the [ShowFlankerOverviewStepFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ShowFlankerInstructionStepFragment : Fragment() {
+class ShowFlankerOverviewStepFragment : Fragment() {
 
-    protected lateinit var stepView: FlankerInstructionStepView
+    protected lateinit var stepView: FlankerOverviewStepView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,18 +59,18 @@ class ShowFlankerInstructionStepFragment : Fragment() {
             val arguments = arguments
             if (arguments != null) {
                 // noinspection unchecked
-                stepView = arguments.getSerializable(ARGUMENT_STEP_VIEW) as FlankerInstructionStepView
+                stepView = arguments.getSerializable(ARGUMENT_STEP_VIEW) as FlankerOverviewStepView
             }
         } else {
             // noinspection unchecked
-            stepView = savedInstanceState.getSerializable(ARGUMENT_STEP_VIEW) as FlankerInstructionStepView
+            stepView = savedInstanceState.getSerializable(ARGUMENT_STEP_VIEW) as FlankerOverviewStepView
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.mtbc_fragment_flanker_instruction_step, container, false)
+        val view = inflater.inflate(R.layout.mtbc_fragment_show_flanker_overview_step, container, false)
         view.step_view.text = stepView.toString()
         view.next_button.setOnClickListener {
             (parentFragment as PerformTaskFragment).goForward()
@@ -91,11 +91,11 @@ class ShowFlankerInstructionStepFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(stepView: StepView): ShowFlankerInstructionStepFragment {
+        fun newInstance(stepView: StepView): ShowFlankerOverviewStepFragment {
             val args = Bundle()
             args.putSerializable(ARGUMENT_STEP_VIEW, stepView)
 
-            val fragment = ShowFlankerInstructionStepFragment()
+            val fragment = ShowFlankerOverviewStepFragment()
             fragment.arguments = args
             return fragment
         }

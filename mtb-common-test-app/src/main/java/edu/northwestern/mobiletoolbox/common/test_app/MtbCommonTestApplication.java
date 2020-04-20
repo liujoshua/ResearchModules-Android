@@ -1,12 +1,9 @@
 package edu.northwestern.mobiletoolbox.common.test_app;
 
-import android.app.Application;
-
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
-import edu.northwestern.mobiletoolbox.common.step.flanker.inject.FlankerInstructionStepModule;
 import edu.northwestern.mobiletoolbox.common.test_app.inject.DaggerMtbCommonTestAppComponent;
 
 public class MtbCommonTestApplication extends DaggerApplication {

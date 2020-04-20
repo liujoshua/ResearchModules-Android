@@ -30,37 +30,59 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form
+package edu.northwestern.mobiletoolbox.common.step.flanker.instruction
 
+import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
-import com.google.gson.Gson
-import edu.northwestern.mobiletoolbox.common.step.flanker.form.InputField
-import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.FlankerInstructionStep.Companion.TYPE
+import edu.northwestern.mobiletoolbox.common.step.flanker.form.FlankerBranchingNavigationRule
+import edu.northwestern.mobiletoolbox.common.step.flanker.form.FlankerInputField
+import edu.northwestern.mobiletoolbox.common.step.flanker.form.FlankerViewTheme
+import edu.northwestern.mobiletoolbox.common.step.flanker.form.NestedFlankerFormStep
+import edu.northwestern.mobiletoolbox.common.step.flanker.instruction.FlankerInstructionStep.Companion.TYPE
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
 import org.sagebionetworks.research.domain.step.interfaces.Step
-import org.sagebionetworks.research.domain.step.interfaces.UIStep
 import org.sagebionetworks.research.domain.step.ui.action.Action
+import org.sagebionetworks.research.domain.step.ui.action.ActionHandler
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
-import org.sagebionetworks.research.presentation.DisplayString
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
 import org.sagebionetworks.research.presentation.mapper.DrawableMapper
-import org.sagebionetworks.research.presentation.model.ColorThemeView
-import org.sagebionetworks.research.presentation.model.ImageThemeView
-import org.sagebionetworks.research.presentation.model.action.ActionView
 import org.sagebionetworks.research.presentation.model.interfaces.StepView
-import org.sagebionetworks.research.presentation.model.interfaces.UIStepView
 
+data class Data(
+        val name: String,
+        val number: Int
+) {
+
+    constructor(
+            name: String?,
+            number: Int?
+    ) : this(
+            name ?: "",
+            number ?: 0
+    )
+}
+
+// done
 data class FlankerInstructionStep(
-        private val identifier: String,
-        val flankerImageNames: List<String>,
-        val inputFields: List<InputField>,
-        val isInstruction: Boolean,
-        private val text: String
-) : UIStep {
+        private val identifier: String = "INVALID_STATE",
+        private val actions: ImmutableMap<String, Action> = ImmutableMap.of(),
+        val branchingNavigationRules: ImmutableList<FlankerBranchingNavigationRule> = ImmutableList.of(),
+        val shouldHideActions: ImmutableSet<String> = ImmutableSet.of(),
+        val htmlText: String? = null,
+        val inputFields: ImmutableList<FlankerInputField> = ImmutableList.of(),
+        val nextStepIdentifier: String? = null,
+        val stepBackTo: String? = null,
+        val stepGroup: String? = null,
+        val stepName: String? = null,
+        val steps: ImmutableList<NestedFlankerFormStep> = ImmutableList.of(),
+        val timeout: Int = 0,
+        val title: String? = null,
+        val viewTheme: FlankerViewTheme? = null
+) : Step, ActionHandler {
 
     companion object {
-        const val TYPE = "flankerInstructionForm"
+        const val TYPE = "flankerInstruction"
 
         @JvmStatic
         fun provideInternalStepViewFactory(): InternalStepViewFactory {
@@ -77,102 +99,65 @@ data class FlankerInstructionStep(
         }
     }
 
-    override fun getType(): kotlin.String {
+    override fun getType(): String {
         return TYPE
-    }
-
-    override fun getIdentifier(): kotlin.String {
-        return identifier
-    }
-
-    override fun getText(): kotlin.String? {
-        return text
-    }
-
-    override fun getFootnote(): String? {
-        return null
-    }
-
-    override fun getTitle(): String? {
-        return null
-    }
-
-    override fun getAsyncActions(): ImmutableSet<AsyncActionConfiguration> {
-        return ImmutableSet.of()
-    }
-
-    override fun getActions(): ImmutableMap<String, Action> {
-        return ImmutableMap.of()
-    }
-
-    override fun getDetail(): String? {
-        return null
-    }
-
-    override fun copyWithIdentifier(identifier: String): Step {
-        return FlankerInstructionStep(
-                identifier, flankerImageNames, inputFields, isInstruction, text)
-    }
-
-    override fun getHiddenActions(): ImmutableSet<String> {
-        return ImmutableSet.of()
-    }
-}
-
-data class FlankerInstructionStepView(
-        private val identifier: String,
-        val flankerImageNames: List<String>,
-        val inputFields: List<InputField>,
-        val isInstruction: Boolean,
-        private val text: String?
-) : UIStepView {
-
-    companion object {
-        fun create(flankerInstructionStep: FlankerInstructionStep): FlankerInstructionStepView {
-            with(flankerInstructionStep) {
-                return FlankerInstructionStepView(
-                        identifier, flankerImageNames, inputFields, isInstruction, text)
-            }
-        }
     }
 
     override fun getIdentifier(): String {
         return identifier
     }
 
-    override fun getColorTheme(): ColorThemeView? {
-        return null
+    override fun getActions(): ImmutableMap<String, Action> {
+        return actions
+    }
+
+    override fun getHiddenActions(): ImmutableSet<String> {
+        return shouldHideActions
+    }
+
+    override fun getAsyncActions(): ImmutableSet<AsyncActionConfiguration> {
+        return ImmutableSet.of()
+    }
+
+    override fun copyWithIdentifier(identifier: String): Step {
+        return FlankerInstructionStep(identifier, actions, branchingNavigationRules, shouldHideActions, htmlText,
+                inputFields, nextStepIdentifier, stepBackTo, stepGroup, stepName, steps, timeout, title,
+                viewTheme)
+    }
+}
+
+data class FlankerInstructionStepView(
+        private val identifier: String,
+        private val actions: ImmutableMap<String, Action>,
+        val branchingNavigationRules: ImmutableList<FlankerBranchingNavigationRule>,
+        val shouldHideActions: ImmutableSet<String>,
+        val htmlText: String?,
+        val inputFields: ImmutableList<FlankerInputField>,
+        val nextStepIdentifier: String?,
+        val stepBackTo: String?,
+        val stepGroup: String?,
+        val stepName: String?,
+        val steps: ImmutableList<NestedFlankerFormStep>,
+        val timeout: Int,
+        val title: String?,
+        val viewTheme: FlankerViewTheme?
+) : StepView {
+
+    companion object {
+        fun create(flankerInstructionStep: FlankerInstructionStep): FlankerInstructionStepView {
+            with(flankerInstructionStep) {
+                return FlankerInstructionStepView(identifier, actions, branchingNavigationRules, shouldHideActions,
+                        htmlText, inputFields, nextStepIdentifier, stepBackTo, stepGroup, stepName, steps, timeout,
+                        title, viewTheme)
+            }
+        }
     }
 
     override fun getType(): String {
         return TYPE
     }
 
-    override fun getText(): DisplayString? {
-        return null
-    }
-
-    override fun getFootnote(): DisplayString? {
-        return null
-    }
-
-    override fun getActionFor(actionType: String?): ActionView? {
-        return null
-    }
-
-    override fun getImageTheme(): ImageThemeView? {
-        return null
-    }
-
-    override fun getTitle(): DisplayString? {
-        return null
-    }
-
-    override fun getActions(): ImmutableMap<String, ActionView> {
-        return ImmutableMap.of()
-    }
-
-    override fun getDetail(): DisplayString? {
-        return null
+    override fun getIdentifier(): String {
+        return identifier
     }
 }

@@ -30,79 +30,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.common.step.flanker.form;
+package edu.northwestern.mobiletoolbox.common.step.flanker.form
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+data class NestedFlankerFormStep(
+        val identifier: String,
+        val type: String,
+        val flankerImageNames: List<String>,
+        val flankerType: String,
+        val inputFields: List<FlankerInputField>,
+        val isPractice: Boolean,
+        val text: String,
+        val timeout: Int
+)
 
-import com.google.common.collect.ImmutableMap;
+data class FlankerInputField(
+        val choices: List<FlankerChoice>,
+        val identifier: String,
+        val type: String
+)
 
-import org.sagebionetworks.research.presentation.DisplayString;
-import org.sagebionetworks.research.presentation.model.ColorThemeView;
-import org.sagebionetworks.research.presentation.model.ImageThemeView;
-import org.sagebionetworks.research.presentation.model.action.ActionView;
-import org.sagebionetworks.research.presentation.model.interfaces.UIStepView;
+data class FlankerViewTheme(
+        val storyboardIdentifier: String,
+        val viewIdentifier: String
+)
 
-public class FlankerFormStepView implements UIStepView {
-    public static final String TYPE_KEY = "flankerForm";
+data class FlankerChoice(
+        val itemResponseOID: String,
+        val score: Int,
+        val text: String,
+        val value: Int
+)
 
-    @Nullable
-    @Override
-    public ActionView getActionFor(final String actionType) {
-        return null;
-    }
+data class FlankerBranchingNavigationRule(
+        val criteria: List<FlankerCriteria>,
+        val description: String,
+        val nextStepName: String
+)
 
-    @NonNull
-    @Override
-    public ImmutableMap<String, ActionView> getActions() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public ColorThemeView getColorTheme() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public DisplayString getDetail() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public DisplayString getFootnote() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public String getIdentifier() {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    public String getType() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public ImageThemeView getImageTheme() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public DisplayString getText() {
-        return null;
-    }
-
-    @Nullable
-    @Override
-    public DisplayString getTitle() {
-        return null;
-    }
-}
+data class FlankerCriteria(
+        val description: String,
+        val duration: Int,
+        val name: String
+)

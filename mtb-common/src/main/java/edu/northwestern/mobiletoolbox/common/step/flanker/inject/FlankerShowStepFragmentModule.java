@@ -36,11 +36,11 @@ import org.sagebionetworks.research.mobile_ui.inject.ShowStepFragmentScope;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.ShowFlankerInstructionStepFragment;
+import edu.northwestern.mobiletoolbox.common.step.flanker.instruction_form.ShowFlankerInstructionFormStepFragment;
 
 @Module
 public interface FlankerShowStepFragmentModule {
     @ContributesAndroidInjector
     @ShowStepFragmentScope
-    ShowFlankerInstructionStepFragment contributeShowFlankerInstructionStepFragmentInjector();
+    ShowFlankerInstructionFormStepFragment contributeShowFlankerInstructionStepFragmentInjector();
 }
