@@ -20,7 +20,7 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         flanker.setOnClickListener {
-            launchTask("Flanker", UUID.randomUUID())
+            launchTask(getString(R.string.mtbf_flanker_task_id), UUID.randomUUID())
         }
     }
 

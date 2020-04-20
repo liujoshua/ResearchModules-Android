@@ -54,6 +54,23 @@ data class FlankerInstructionFormStep(
         val viewTheme: FlankerViewTheme? = null
 ) : Step {
 
+    override fun getType(): String {
+        return TYPE
+    }
+
+    override fun getIdentifier(): String {
+        return identifier
+    }
+
+    override fun getAsyncActions(): ImmutableSet<AsyncActionConfiguration> {
+        return ImmutableSet.of()
+    }
+
+    override fun copyWithIdentifier(identifier: String): Step {
+        return FlankerInstructionFormStep(identifier, inputFields, flankerImageNames, isInstruction, stepName, text,
+                viewTheme)
+    }
+
     companion object {
         const val TYPE = "flankerInstructionForm"
 
@@ -71,23 +88,6 @@ data class FlankerInstructionFormStep(
             }
         }
     }
-
-    override fun getType(): String {
-        return TYPE
-    }
-
-    override fun getIdentifier(): String {
-        return identifier
-    }
-
-    override fun getAsyncActions(): ImmutableSet<AsyncActionConfiguration> {
-        return ImmutableSet.of()
-    }
-
-    override fun copyWithIdentifier(identifier: String): Step {
-        return FlankerInstructionFormStep(identifier, inputFields, flankerImageNames, isInstruction, stepName, text,
-                viewTheme)
-    }
 }
 
 data class FlankerInstructionStepView(
@@ -100,6 +100,14 @@ data class FlankerInstructionStepView(
         val viewTheme: FlankerViewTheme?
 ) : StepView {
 
+    override fun getIdentifier(): String {
+        return identifier
+    }
+
+    override fun getType(): String {
+        return TYPE
+    }
+
     companion object {
         fun create(flankerInstructionStep: FlankerInstructionFormStep): FlankerInstructionStepView {
             with(flankerInstructionStep) {
@@ -107,13 +115,5 @@ data class FlankerInstructionStepView(
                         identifier, inputFields, flankerImageNames, isInstruction, stepName, text, viewTheme)
             }
         }
-    }
-
-    override fun getIdentifier(): String {
-        return identifier
-    }
-
-    override fun getType(): String {
-        return TYPE
     }
 }

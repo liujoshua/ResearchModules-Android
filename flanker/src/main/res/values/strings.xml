@@ -31,5 +31,5 @@
   -->
 
 <resources>
-
+    <string name="mtbf_flanker_task_id" translatable="false">Flanker</string>
 </resources>

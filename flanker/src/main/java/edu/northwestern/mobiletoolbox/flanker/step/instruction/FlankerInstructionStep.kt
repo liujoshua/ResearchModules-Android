@@ -66,24 +66,6 @@ data class FlankerInstructionStep(
         val viewTheme: FlankerViewTheme? = null
 ) : Step, ActionHandler {
 
-    companion object {
-        const val TYPE = "flankerInstruction"
-
-        @JvmStatic
-        fun provideInternalStepViewFactory(): InternalStepViewFactory {
-            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
-                FlankerInstructionStepView.create(step as FlankerInstructionStep)
-            }
-        }
-
-        @JvmStatic
-        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
-            return ShowStepFragmentFactory { stepView: StepView ->
-                ShowFlankerInstructionStepFragment.newInstance(stepView)
-            }
-        }
-    }
-
     override fun getType(): String {
         return TYPE
     }
@@ -109,6 +91,24 @@ data class FlankerInstructionStep(
                 inputFields, nextStepIdentifier, stepBackTo, stepGroup, stepName, steps, timeout, title,
                 viewTheme)
     }
+
+    companion object {
+        const val TYPE = "flankerInstruction"
+
+        @JvmStatic
+        fun provideInternalStepViewFactory(): InternalStepViewFactory {
+            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
+                FlankerInstructionStepView.create(step as FlankerInstructionStep)
+            }
+        }
+
+        @JvmStatic
+        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
+            return ShowStepFragmentFactory { stepView: StepView ->
+                ShowFlankerInstructionStepFragment.newInstance(stepView)
+            }
+        }
+    }
 }
 
 data class FlankerInstructionStepView(
@@ -128,6 +128,14 @@ data class FlankerInstructionStepView(
         val viewTheme: FlankerViewTheme?
 ) : StepView {
 
+    override fun getType(): String {
+        return TYPE
+    }
+
+    override fun getIdentifier(): String {
+        return identifier
+    }
+
     companion object {
         fun create(flankerInstructionStep: FlankerInstructionStep): FlankerInstructionStepView {
             with(flankerInstructionStep) {
@@ -136,13 +144,5 @@ data class FlankerInstructionStepView(
                         title, viewTheme)
             }
         }
-    }
-
-    override fun getType(): String {
-        return TYPE
-    }
-
-    override fun getIdentifier(): String {
-        return identifier
     }
 }

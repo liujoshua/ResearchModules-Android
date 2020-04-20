@@ -57,24 +57,6 @@ data class FlankerOverviewStep(
         val viewTheme: FlankerViewTheme? = null
 ) : Step, ActionHandler {
 
-    companion object {
-        const val TYPE = "flankerOverview"
-
-        @JvmStatic
-        fun provideInternalStepViewFactory(): InternalStepViewFactory {
-            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
-                FlankerOverviewStepView.create(step as FlankerOverviewStep)
-            }
-        }
-
-        @JvmStatic
-        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
-            return ShowStepFragmentFactory { stepView: StepView ->
-                ShowFlankerOverviewStepFragment.newInstance(stepView)
-            }
-        }
-    }
-
     override fun getType(): kotlin.String {
         return TYPE
     }
@@ -100,6 +82,24 @@ data class FlankerOverviewStep(
                 identifier, actions, branchingNavigationRules, shouldHideActions, text, title,
                 viewTheme)
     }
+
+    companion object {
+        const val TYPE = "flankerOverview"
+
+        @JvmStatic
+        fun provideInternalStepViewFactory(): InternalStepViewFactory {
+            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
+                FlankerOverviewStepView.create(step as FlankerOverviewStep)
+            }
+        }
+
+        @JvmStatic
+        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
+            return ShowStepFragmentFactory { stepView: StepView ->
+                ShowFlankerOverviewStepFragment.newInstance(stepView)
+            }
+        }
+    }
 }
 
 data class FlankerOverviewStepView(
@@ -112,6 +112,14 @@ data class FlankerOverviewStepView(
         val viewTheme: FlankerViewTheme?
 ) : StepView {
 
+    override fun getType(): String {
+        return TYPE
+    }
+
+    override fun getIdentifier(): String {
+        return identifier
+    }
+
     companion object {
         fun create(flankerOverviewStep: FlankerOverviewStep): FlankerOverviewStepView {
             with(flankerOverviewStep) {
@@ -119,13 +127,5 @@ data class FlankerOverviewStepView(
                         title, viewTheme)
             }
         }
-    }
-
-    override fun getType(): String {
-        return TYPE
-    }
-
-    override fun getIdentifier(): String {
-        return identifier
     }
 }

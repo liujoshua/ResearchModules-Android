@@ -32,43 +32,7 @@
 
 package edu.northwestern.mobiletoolbox.flanker.step
 
-data class NestedFlankerFormStep(
-        val identifier: String,
-        val type: String,
-        val flankerImageNames: List<String>,
-        val flankerType: String,
-        val inputFields: List<FlankerInputField>,
-        val isPractice: Boolean,
-        val text: String,
-        val timeout: Int
-)
-
-data class FlankerInputField(
-        val choices: List<FlankerChoice>,
-        val identifier: String,
-        val type: String
-)
-
 data class FlankerViewTheme(
         val storyboardIdentifier: String,
         val viewIdentifier: String
-)
-
-data class FlankerChoice(
-        val itemResponseOID: String,
-        val score: Int,
-        val text: String,
-        val value: Int
-)
-
-data class FlankerBranchingNavigationRule(
-        val criteria: List<FlankerCriteria>,
-        val description: String,
-        val nextStepName: String
-)
-
-data class FlankerCriteria(
-        val description: String,
-        val duration: Int,
-        val name: String
 )

@@ -37,6 +37,7 @@
     android:layout_height="match_parent"
     tools:context=".step.form.ShowFlankerFormStepFragment"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,6 +53,5 @@
         android:id="@+id/step_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 </LinearLayout>

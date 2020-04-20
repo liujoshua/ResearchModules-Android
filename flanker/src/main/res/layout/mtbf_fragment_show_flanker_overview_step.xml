@@ -37,10 +37,12 @@
     android:layout_height="match_parent"
     tools:context=".step.overview.ShowFlankerOverviewStepFragment"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Flanker Overview Step" />
+
     <Button
         android:id="@+id/next_button"
         android:layout_width="wrap_content"
@@ -51,7 +53,5 @@
         android:id="@+id/step_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
 
 </LinearLayout>

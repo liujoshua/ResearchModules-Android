@@ -9,8 +9,9 @@ import edu.northwestern.mobiletoolbox.flanker.test_app.inject.DaggerFlankerTestA
 public class FlankerTestApplication extends DaggerApplication {
     @Override
     public void onCreate() {
-        AndroidThreeTen.init(this);
         super.onCreate();
+
+        AndroidThreeTen.init(this);
     }
 
     @Override

@@ -22,19 +22,19 @@ import io.reactivex.Single;
 public abstract class FlankerTestAppModule {
     private static final Logger LOG = LoggerFactory.getLogger(FlankerTestAppModule.class);
 
-    @Provides
-    static Context getApplicationContext(Application application) {
-        return application.getApplicationContext();
-    }
-
-    @ContributesAndroidInjector(modules = {ShowStepFragmentModule.class, FlankerShowStepFragmentModule.class})
-    abstract PerformTaskFragment contributesPerformTaskFragmentInjector();
+    @ContributesAndroidInjector
+    abstract MainActivity contributeMainActivityInjector();
 
     @ContributesAndroidInjector
     abstract PerformTaskActivity contributePerformTaskActivityInjector();
 
-    @ContributesAndroidInjector
-    abstract MainActivity contributeMainActivityInjector();
+    @ContributesAndroidInjector(modules = {ShowStepFragmentModule.class, FlankerShowStepFragmentModule.class})
+    abstract PerformTaskFragment contributesPerformTaskFragmentInjector();
+
+    @Provides
+    static Context getApplicationContext(Application application) {
+        return application.getApplicationContext();
+    }
 
     @Provides
     @IntoSet

@@ -43,26 +43,15 @@ import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalS
 import edu.northwestern.mobiletoolbox.flanker.step.instruction_form.FlankerInstructionFormStep;
 
 public class FlankerStepFactoryConfiguration {
-    public static final StepConfiguration FLANKER_INSTRUCTION_STEP =
-            new StepConfiguration(
-                    FlankerInstructionFormStep.TYPE,
-                    FlankerInstructionFormStep.class,
-                    FlankerInstructionFormStep.provideInternalStepViewFactory(),
-                    FlankerInstructionFormStep.provideStepFragmentFactory()
-            );
-
-    public static final ImmutableSet<StepConfiguration> FLANKER_STEP_CONFIGURATIONS =
-            ImmutableSet.of(FLANKER_INSTRUCTION_STEP);
-
     public static class StepConfiguration {
-
-        public final String stepTypeKey;
-
-        public final Class<? extends Step> stepType;
 
         public final InternalStepViewFactory internalStepViewFactory;
 
         public final ShowStepFragmentFactory showStepFragmentFactory;
+
+        public final Class<? extends Step> stepType;
+
+        public final String stepTypeKey;
 
         public StepConfiguration(
                 final String stepTypeKey,
@@ -74,6 +63,11 @@ public class FlankerStepFactoryConfiguration {
 
             this.internalStepViewFactory = internalStepViewFactory;
             this.showStepFragmentFactory = showStepFragmentFactory;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hashCode(stepTypeKey, stepType, internalStepViewFactory, showStepFragmentFactory);
         }
 
         @Override
@@ -92,11 +86,6 @@ public class FlankerStepFactoryConfiguration {
         }
 
         @Override
-        public int hashCode() {
-            return Objects.hashCode(stepTypeKey, stepType, internalStepViewFactory, showStepFragmentFactory);
-        }
-
-        @Override
         public String toString() {
             return MoreObjects.toStringHelper(this)
                     .add("stepTypeKey", stepTypeKey)
@@ -106,4 +95,15 @@ public class FlankerStepFactoryConfiguration {
                     .toString();
         }
     }
+
+    public static final StepConfiguration FLANKER_INSTRUCTION_STEP =
+            new StepConfiguration(
+                    FlankerInstructionFormStep.TYPE,
+                    FlankerInstructionFormStep.class,
+                    FlankerInstructionFormStep.provideInternalStepViewFactory(),
+                    FlankerInstructionFormStep.provideStepFragmentFactory()
+            );
+
+    public static final ImmutableSet<StepConfiguration> FLANKER_STEP_CONFIGURATIONS =
+            ImmutableSet.of(FLANKER_INSTRUCTION_STEP);
 }

@@ -59,7 +59,7 @@ data class FlankerFormStep(
         val nextStepIdentifier: String? = null,
         val shouldHideActions: ImmutableSet<String> = ImmutableSet.of(),
         val stepBackTo: String? = null,
-        val stepGroup: String? =null,
+        val stepGroup: String? = null,
         val stepName: String? = null,
         val steps: ImmutableList<NestedFlankerFormStep> = ImmutableList.of(),
         val text: String? = null,
@@ -67,24 +67,6 @@ data class FlankerFormStep(
         val title: String? = null,
         val viewTheme: FlankerViewTheme? = null
 ) : Step, ActionHandler {
-
-    companion object {
-        const val TYPE = "flankerForm"
-
-        @JvmStatic
-        fun provideInternalStepViewFactory(): InternalStepViewFactory {
-            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
-                FlankerFormStepView.create(step as FlankerFormStep)
-            }
-        }
-
-        @JvmStatic
-        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
-            return ShowStepFragmentFactory { stepView: StepView ->
-                ShowFlankerFormStepFragment.newInstance(stepView)
-            }
-        }
-    }
 
     override fun getType(): String {
         return TYPE
@@ -111,6 +93,24 @@ data class FlankerFormStep(
                 inputFields, isPractice, nextStepIdentifier, shouldHideActions, stepBackTo, stepGroup,
                 stepName, steps, text, timeout, title, viewTheme)
     }
+
+    companion object {
+        const val TYPE = "flankerForm"
+
+        @JvmStatic
+        fun provideInternalStepViewFactory(): InternalStepViewFactory {
+            return InternalStepViewFactory { step: Step, mapper: DrawableMapper? ->
+                FlankerFormStepView.create(step as FlankerFormStep)
+            }
+        }
+
+        @JvmStatic
+        fun provideStepFragmentFactory(): ShowStepFragmentFactory {
+            return ShowStepFragmentFactory { stepView: StepView ->
+                ShowFlankerFormStepFragment.newInstance(stepView)
+            }
+        }
+    }
 }
 
 data class FlankerFormStepView(
@@ -133,6 +133,14 @@ data class FlankerFormStepView(
         val viewTheme: FlankerViewTheme? = null
 ) : StepView {
 
+    override fun getType(): String {
+        return TYPE
+    }
+
+    override fun getIdentifier(): String {
+        return identifier
+    }
+
     companion object {
         fun create(flankerFormStep: FlankerFormStep): FlankerFormStepView {
             with(flankerFormStep) {
@@ -142,15 +150,4 @@ data class FlankerFormStepView(
             }
         }
     }
-
-    override fun getType(): String {
-        return TYPE
-    }
-
-    override fun getIdentifier(): String {
-        return identifier
-    }
 }
-
-
-
