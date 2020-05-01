@@ -12,6 +12,4 @@ interface StepConfiguration {
     fun configureStep()
     fun startDelayForPresentation()
     fun stepIsReady()
-    fun <V: Parcelable,S: Parcelable>createStepResult(choice: Choice<V, S>,
-            identifier: String, practice: Boolean): StepResult
 }

@@ -36,5 +36,9 @@ class TimeManagerImpl : TimeManager{
     override fun startResponse() {
         TODO("Not yet implemented")
     }
+
+    override fun getResponseTime(): Double {
+        TODO("Not yet implemented")
+    }
 }
 

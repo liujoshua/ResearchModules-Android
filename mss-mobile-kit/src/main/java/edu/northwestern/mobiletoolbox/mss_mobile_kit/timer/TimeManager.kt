@@ -32,6 +32,10 @@
 
 package edu.northwestern.mobiletoolbox.mss_mobile_toolkit.timer
 
+import java.util.Date
+
 interface TimeManager{
     fun startResponse()
+
+    fun getResponseTime(): Double
 }
