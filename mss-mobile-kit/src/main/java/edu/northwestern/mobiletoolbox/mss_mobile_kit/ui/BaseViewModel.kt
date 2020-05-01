@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Choice
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Step
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.StepResult
-import edu.northwestern.mobiletoolbox.mss_mobile_toolkit.timer.TimeManager
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.timer.TimeManager
 import org.sagebionetworks.research.domain.result.AnswerResultType
 import org.sagebionetworks.research.domain.result.interfaces.Result
 import java.util.Date

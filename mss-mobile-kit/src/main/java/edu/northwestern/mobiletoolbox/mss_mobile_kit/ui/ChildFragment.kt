@@ -27,12 +27,6 @@ class ChildFragment : BaseFragment() {
 
     fun prepareTestStepResult() {
         val testChoice = Choice<Test, Test>(Test(), Test(), UUID(0, 0), "", "", "", "", "")
-        createStepResult(testChoice, "", false)
-    }
-
-    override fun <V : Parcelable, S : Parcelable> createStepResult(choice: Choice<V, S>, identifier: String,
-            practice: Boolean): StepResult {
-        //Store this data. Should be in ViewModel
-        TODO("Not yet implemented")
+        recordChoice(testChoice,false)
     }
 }
