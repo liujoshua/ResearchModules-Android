@@ -15,4 +15,4 @@ data class OverviewStep(
         override var stepName: String?,
         override var htmlText: String?,
         var timeout: Int?
-): UIStepBase(), Parcelable, Step
+): UIStepBase(), Parcelable, MssStep

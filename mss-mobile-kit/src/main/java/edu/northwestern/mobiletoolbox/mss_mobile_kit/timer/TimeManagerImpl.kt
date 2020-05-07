@@ -5,6 +5,11 @@
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.timer
 
 class TimeManagerImpl : TimeManager {
+
+    override val presentationTimer =  TimerImpl()
+
+    override var enableUIDelay: Long = 0
+
     override fun startResponse() {
         TODO("Not yet implemented")
     }

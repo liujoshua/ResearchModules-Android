@@ -10,13 +10,12 @@ import android.os.Parcelable
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Choice
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.MssChoice
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.timer.TimeManagerImpl
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.timer.TimerImpl
 
 abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfiguration, RecordChoice {
 
-    private val presentationTimer = TimerImpl()
 
     val viewModel: BaseViewModel by lazy {
         ViewModelProvider(this, defaultViewModelProviderFactory).get(BaseViewModel::class.java)
@@ -24,10 +23,6 @@ abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfigurati
 
     fun createIdentifier(name: String, suffix: String) = name.plus(" ").plus(suffix)
 
-    /***
-     * enableUIDelay will be counted in Millis
-     */
-    var enableUIDelay: Long = 0
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,23 +54,25 @@ abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfigurati
             }
         }
 
-        Handler().postDelayed(runnable, enableUIDelay)
+        Handler().postDelayed(runnable, viewModel.timeManager.enableUIDelay)
     }
 
     override fun <V : Parcelable, S : Parcelable> recordChoice(
-            choice: Choice<V, S>, practice: Boolean) {
+            choice: MssChoice<V, S>, practice: Boolean) {
         viewModel.setEndStepDate()
         viewModel.choiceAggregation(choice, practice)
     }
 
     override fun <V : Parcelable, S : Parcelable> recordChoice(
-            choices: ArrayList<Choice<V, S>>,
+            choices: ArrayList<MssChoice<V, S>>,
             practice: Boolean) {
         viewModel.setEndStepDate()
         var i = 0
         choices.forEach { choice ->
             val stepResult = viewModel.choiceAggregation(choice, practice, i)
-            viewModel.configureAndRecordStepResult((stepResult))
+            stepResult?.let {
+                viewModel.configureAndRecordStepResult(stepResult)
+            }
             i++
         }
     }
@@ -87,11 +84,13 @@ abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfigurati
      * This is for passively skipping, actively skipping should be a Choice
      * For an undefined choice (program error), response can be = "" or null
      */
-    override fun <V : Parcelable, S : Parcelable> recordNoChoice(choice: Choice<V, S>,
+    override fun <V : Parcelable, S : Parcelable> recordNoChoice(choice: MssChoice<V, S>,
             practice: Boolean) {
         viewModel.setEndStepDate()
-        val stepResult = viewModel.createStepResult(choice, practice, viewModel.recordedStep.identifier)
-        viewModel.configureAndRecordStepResult(stepResult)
+        viewModel.recordedStep?.let {
+            val stepResult = viewModel.createStepResult(choice, practice, it.identifier)
+            viewModel.configureAndRecordStepResult(stepResult)
+        }
     }
 
     override fun onPause() {

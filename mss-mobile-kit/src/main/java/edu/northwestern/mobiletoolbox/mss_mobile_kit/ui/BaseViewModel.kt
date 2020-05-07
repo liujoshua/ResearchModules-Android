@@ -6,8 +6,8 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.ui
 
 import android.os.Parcelable
 import androidx.lifecycle.ViewModel
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Choice
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Step
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.MssChoice
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.MssStep
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.StepResult
 import edu.northwestern.mobiletoolbox.mss_mobile_kit.timer.TimeManager
 import org.sagebionetworks.research.domain.result.AnswerResultType
@@ -31,17 +31,20 @@ class BaseViewModel() : ViewModel() {
     }
 
     //TODO initialize
-    var recordedStep: Step = Step("", "")
+    var recordedStep: MssStep? = null
 
     fun <V : Parcelable, S : Parcelable> choiceAggregation(
-            choice: Choice<V, S>, practice: Boolean, index: Int? = null): StepResult<V, S> {
-        val identifier = index?.let {
-            recordedStep.identifier.plus(" ").plus(index)
-        } ?: recordedStep.identifier
-        return createStepResult(choice, practice, identifier)
+            choice: MssChoice<V, S>, practice: Boolean, index: Int? = null): StepResult<V, S>? {
+
+        recordedStep?.let { recordedStep ->
+            val identifier = index?.let {
+                recordedStep.identifier.plus(" ").plus(index)
+            } ?: recordedStep.identifier
+            return createStepResult(choice, practice, identifier)
+        }?: return null
     }
 
-    fun <V : Parcelable, S : Parcelable> createStepResult(choice: Choice<V, S>, practice: Boolean,
+    fun <V : Parcelable, S : Parcelable> createStepResult(choice: MssChoice<V, S>, practice: Boolean,
             identifier: String): StepResult<V, S> {
         //TODO create StepResult
         return StepResult(response = choice.value, score = choice.score, identifier = identifier, practice = practice)
@@ -61,7 +64,7 @@ class BaseViewModel() : ViewModel() {
 
     fun <R : Parcelable, S : Parcelable> recordStepResult(stepResult: StepResult<R, S>) {
         //TODO find impl from sage AnswerResult()?!!! answerType?? type??
-        val result = edu.northwestern.mobiletoolbox.mss_mobile_kit.data.AnswerResult<AnswerResultType>(
+        val result = edu.northwestern.mobiletoolbox.mss_mobile_kit.data.MssAnswerResult<AnswerResultType, StepResult<R, S>>(
                 _identifier = stepResult.identifier,
                 value = stepResult,
                 answerType = null,
@@ -71,8 +74,8 @@ class BaseViewModel() : ViewModel() {
     }
 
     fun addResult(result: Result) {
-     //TODO need to understand how sage stores this data
-     // IOS: self.stepViewModel.taskResult.appendStepHistory(with: stepResult)
+        //TODO need to understand how sage stores this data
+        // IOS: self.stepViewModel.taskResult.appendStepHistory(with: stepResult)
     }
 }
 

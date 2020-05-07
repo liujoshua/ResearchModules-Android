@@ -8,7 +8,7 @@ import android.os.Parcelable
 import java.util.Date
 
 data class StepResult<ResponseType : Parcelable, ScoreType : Parcelable>(
-        var identifier: String = "",
+        var identifier: String,
 
         ///Administration order of step
         var position: Int? = null,
@@ -33,17 +33,4 @@ data class StepResult<ResponseType : Parcelable, ScoreType : Parcelable>(
 
         ///score of a participant response
         var score: ScoreType? = null
-){
-  /*  fun <R: Parcelable, S: Parcelable>copy(
-            identifier: String = this.identifier,
-            position: Int? = this.position,
-            startDate: Date? = this.startDate,
-            endDate: Date? = this.endDate,
-            practice: Boolean = this.practice,
-            responseTime: Double? = this.responseTime,
-            interactions: ArrayList<UserInteraction>? = this.interactions,
-            response: ResponseType? = this.response,
-            score: ScoreType? = this.score
-    ) = StepResult<R, S>(identifier, position, startDate,
-    endDate, practice, responseTime, interactions, response, score)*/
-}
+)

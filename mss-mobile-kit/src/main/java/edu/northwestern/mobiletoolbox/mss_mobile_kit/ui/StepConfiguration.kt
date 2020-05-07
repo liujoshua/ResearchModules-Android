@@ -4,10 +4,6 @@
 
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.ui
 
-import android.os.Parcelable
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Choice
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.StepResult
-
 interface StepConfiguration {
     fun configureStep()
     fun startDelayForPresentation()

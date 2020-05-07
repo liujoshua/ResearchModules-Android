@@ -8,9 +8,9 @@ import org.sagebionetworks.research.domain.result.AnswerResultType
 import org.sagebionetworks.research.domain.result.ResultType
 import org.threeten.bp.Instant
 import java.util.Date
-import org.sagebionetworks.research.domain.result.interfaces.AnswerResult as RSDAnswerResult
+import org.sagebionetworks.research.domain.result.interfaces.AnswerResult
 
-data class AnswerResult<T : AnswerResultType>(
+data class MssAnswerResult<T : AnswerResultType, V>(
         /// The identifier associated with the task, step, or asynchronous action.
         val _identifier: String,
 
@@ -28,11 +28,11 @@ data class AnswerResult<T : AnswerResultType>(
         val answerType: T?,
 
         /// The answer for the result.
-        var value: Any?,
+        var value: V?,
 
         /// The question text for the form step (if applicable).
         var questionText: String? = null
-) : RSDAnswerResult<T> {
+) : AnswerResult<T> {
 
     override fun getIdentifier(): String {
         return _identifier

@@ -17,7 +17,7 @@ import org.sagebionetworks.research.domain.form.interfaces.Choice as RSDChoice
 //TODO rename _choice to getChoices returns _choice
 open class ChoiceInputField<ValueType, ScoreType>(
         private val identifier: String,
-        private val choices: List<Choice<ValueType, ScoreType>>,
+        private val choices: List<MssChoice<ValueType, ScoreType>>,
         private val dataType: InputDataType,
         private val uiHint: InputUIHint? = null,
         private val  prompt: String? = null,

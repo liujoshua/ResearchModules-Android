@@ -8,10 +8,10 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import org.sagebionetworks.research.domain.result.interfaces.Result
 import java.util.UUID
-import org.sagebionetworks.research.domain.form.interfaces.Choice as RSDChoice
+import org.sagebionetworks.research.domain.form.interfaces.Choice
 
 @Parcelize
-data class Choice<ValueType : Parcelable, ScoreType : Parcelable>(
+data class MssChoice<ValueType : Parcelable, ScoreType : Parcelable>(
         val value: ValueType,
         val score: ScoreType,
         val itemResponseOID: UUID,
@@ -20,7 +20,7 @@ data class Choice<ValueType : Parcelable, ScoreType : Parcelable>(
         private val iconName: String?,
         private val text: String,
         private val detail: String?
-) : Parcelable, RSDChoice<ValueType> {
+) : Parcelable, Choice<ValueType> {
 
     override fun getIconName(): String? {
         return iconName

@@ -14,10 +14,10 @@ import kotlinx.android.parcel.Parcelize
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
 import org.sagebionetworks.research.domain.step.interfaces.Step
 import org.sagebionetworks.research.domain.step.ui.action.Action
-import org.sagebionetworks.research.domain.task.Task as RSDTask
+import org.sagebionetworks.research.domain.task.Task
 
 @Parcelize
-data class Task(
+data class MssTask(
         var taskOrientation: ScreenOrientation = portrait,
         var interruptionManager : InterruptionManager,
         private var identifier : String,
@@ -26,13 +26,13 @@ data class Task(
         private  var asyncActions : ImmutableSet<AsyncActionConfiguration>,
         private  var hiddenActions : ImmutableSet<String>,
         private  var progressMarkers : ImmutableList<String>
-) : RSDTask, Parcelable {
+) : Task, Parcelable {
 
     override fun getIdentifier(): String {
         return identifier
     }
 
-    override fun copyWithSteps(steps: MutableList<Step>?): Task {
+    override fun copyWithSteps(steps: MutableList<Step>?): MssTask {
         return copyWithSteps(steps)
     }
 
@@ -52,7 +52,7 @@ data class Task(
         return hiddenActions
     }
 
-    override fun copyWithAsyncActions(asyncActions: MutableSet<AsyncActionConfiguration>?): Task {
+    override fun copyWithAsyncActions(asyncActions: MutableSet<AsyncActionConfiguration>?): MssTask {
         return copyWithAsyncActions(asyncActions)
     }
 

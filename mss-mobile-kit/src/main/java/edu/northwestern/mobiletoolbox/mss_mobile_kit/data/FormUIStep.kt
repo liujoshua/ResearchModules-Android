@@ -6,7 +6,7 @@ package edu.northwestern.mobiletoolbox.mss_mobile_kit.data
 
 import com.google.common.collect.ImmutableSet
 import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
-import org.sagebionetworks.research.domain.step.interfaces.Step as RSDStep
+import org.sagebionetworks.research.domain.step.interfaces.Step
 
 data class FormUIStep(
         var isPractice: Boolean = false,
@@ -16,7 +16,7 @@ data class FormUIStep(
         private val identifier: String,
         private val type: String,
         private val asyncActions: ImmutableSet<AsyncActionConfiguration>
-) : Step {
+) : MssStep {
 
 //TODO also should be extended FormUIStep or UIStep
 
@@ -32,7 +32,7 @@ data class FormUIStep(
         return asyncActions
     }
 
-    override fun copyWithIdentifier(identifier: String): RSDStep {
+    override fun copyWithIdentifier(identifier: String): Step {
         return copy(identifier = identifier)
     }
 }

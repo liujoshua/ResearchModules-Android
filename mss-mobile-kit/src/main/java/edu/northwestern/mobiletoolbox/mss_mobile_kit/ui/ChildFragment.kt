@@ -5,8 +5,7 @@
 package edu.northwestern.mobiletoolbox.mss_mobile_kit.ui
 
 import android.os.Parcelable
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.Choice
-import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.StepResult
+import edu.northwestern.mobiletoolbox.mss_mobile_kit.data.MssChoice
 import kotlinx.android.parcel.Parcelize
 import java.util.UUID
 
@@ -26,7 +25,7 @@ class ChildFragment : BaseFragment() {
     }
 
     fun prepareTestStepResult() {
-        val testChoice = Choice<Test, Test>(Test(), Test(), UUID(0, 0), "", "", "", "", "")
+        val testChoice = MssChoice<Test, Test>(Test(), Test(), UUID(0, 0), "", "", "", "", "")
         recordChoice(testChoice,false)
     }
 }
