@@ -12,16 +12,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import edu.northwestern.mobiletoolbox.mtb_mobile_kit.data.MtbChoice
 import edu.northwestern.mobiletoolbox.mtb_mobile_kit.timer.TimeManagerImpl
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.TimeUnit
 
 abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfiguration, RecordChoice {
 
 
-    val viewModel: BaseViewModel by lazy {
+    private val viewModel: BaseViewModel by lazy {
         ViewModelProvider(this, defaultViewModelProviderFactory).get(BaseViewModel::class.java)
     }
 
     fun createIdentifier(name: String, suffix: String) = name.plus(" ").plus(suffix)
-
+    private val scheduler: ScheduledExecutorService = Executors.newScheduledThreadPool(1)
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +51,14 @@ abstract class BaseFragment : Fragment(), ComponentAvailability, StepConfigurati
     override fun stepIsReady() {
         val runnable = Runnable {
             kotlin.run {
-                enableUI(true)
-                viewModel.timeManager.startResponse()
+                if(isVisible) {
+                    enableUI(true)
+                    viewModel.timeManager.startResponse()
+                }
             }
         }
 
-        Handler().postDelayed(runnable, viewModel.timeManager.enableUIDelay)
+        scheduler.schedule(runnable, viewModel.timeManager.enableUIDelay, TimeUnit.MILLISECONDS)
     }
 
     override fun <V : Parcelable, S : Parcelable> recordChoice(
