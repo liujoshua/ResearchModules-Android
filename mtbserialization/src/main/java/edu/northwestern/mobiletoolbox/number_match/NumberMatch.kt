@@ -25,7 +25,7 @@ data class NumberMatchAssessmentObject(
         @SerialName("steps")
         override val children: List<Node>,
         val taskOrientation: String = "landscape",
-        val symbolArray: List<String?>? = null,
+        val symbolArray: List<String>,
         val alertMessages: List<AlertMessages>,
         override val versionString: String? = null,
         @SerialName("taskTimeLimit")

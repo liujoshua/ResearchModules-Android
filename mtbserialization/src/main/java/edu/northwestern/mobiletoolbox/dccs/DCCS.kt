@@ -58,7 +58,7 @@ data class DCCSForm(
         val steps: List<Node> = listOf(),
         val stimulusText: String? = null,
         val screenType: String? = null,
-        val isAnimated: Boolean? = null,
+        val isAnimated: Boolean = false,
         val timing: AnimatedTiming? = null
 ) : MtbStep(), FormStep
 

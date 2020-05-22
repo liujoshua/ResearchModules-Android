@@ -22,7 +22,7 @@ data class AnimatedImageInstructionStep(
 @Serializable
 data class AnimatedImageInfo(
         val type: String,
-        val imageNames: List<String>? = null,
+        val imageNames: List<String>,
         val placementType: String? = null,
         val animationRepeatCount: Int? = null,
         val animationDuration: Int? = null
