@@ -2,12 +2,12 @@
  * Copyright © 2020 Northwestern University. All rights reserved.
  */
 
-package edu.northwestern.mobiletoolbox.flanker
+package edu.northwestern.mobiletoolbox.serialization.flanker
 
-import edu.northwestern.mobiletoolbox.IntIntChoiceInputField
-import edu.northwestern.mobiletoolbox.MtbNodeObject
-import edu.northwestern.mobiletoolbox.MtbStep
-import edu.northwestern.mobiletoolbox.MtbStepRule
+import edu.northwestern.mobiletoolbox.serialization.IntIntChoiceInputField
+import edu.northwestern.mobiletoolbox.serialization.MtbNodeObject
+import edu.northwestern.mobiletoolbox.serialization.MtbStep
+import edu.northwestern.mobiletoolbox.serialization.MtbStepRule
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json

@@ -63,7 +63,7 @@ class FlankerOverviewStepFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_flanker_overview_step, container, false)
 
-        this.stepView = arguments!!.getSerializable("STEP_VIEW") as FlankerOverviewStepView
+        this.stepView = requireArguments().getSerializable("STEP_VIEW") as FlankerOverviewStepView
         this.taskViewModel = ViewModelProviders.of(performTaskFragment)
                 .get<PerformTaskViewModel>(PerformTaskViewModel::class.java)
 

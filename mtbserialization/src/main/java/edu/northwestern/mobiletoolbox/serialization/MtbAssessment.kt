@@ -2,26 +2,25 @@
  * Copyright © 2020 Northwestern University. All rights reserved.
  */
 
-package edu.northwestern.mobiletoolbox
+package edu.northwestern.mobiletoolbox.serialization
 
-import edu.northwestern.mobiletoolbox.dccs.DCCSActive
-import edu.northwestern.mobiletoolbox.dccs.DCCSAssessmentObject
-import edu.northwestern.mobiletoolbox.dccs.DCCSForm
-import edu.northwestern.mobiletoolbox.dccs.DCCSFormStimulusImage
-import edu.northwestern.mobiletoolbox.flanker.FlankerAssessmentObject
-import edu.northwestern.mobiletoolbox.flanker.FlankerForm
-import edu.northwestern.mobiletoolbox.flanker.FlankerInstructionForm
-import edu.northwestern.mobiletoolbox.flanker.FlankerInstructionStep
-import edu.northwestern.mobiletoolbox.flanker.FlankerOverviewStep
-import edu.northwestern.mobiletoolbox.mfs.MFSAssessmentObject
-import edu.northwestern.mobiletoolbox.mfs.MfsForm
-import edu.northwestern.mobiletoolbox.mfs.MfsOverviewStep
-import edu.northwestern.mobiletoolbox.number_match.NumberMatchAssessmentObject
-import edu.northwestern.mobiletoolbox.number_match.NumberMatchForm
-import edu.northwestern.mobiletoolbox.number_match.NumberMatchInstructionForm
+import edu.northwestern.mobiletoolbox.serialization.dccs.DCCSActive
+import edu.northwestern.mobiletoolbox.serialization.dccs.DCCSAssessmentObject
+import edu.northwestern.mobiletoolbox.serialization.dccs.DCCSForm
+import edu.northwestern.mobiletoolbox.serialization.dccs.DCCSFormStimulusImage
+import edu.northwestern.mobiletoolbox.serialization.flanker.FlankerAssessmentObject
+import edu.northwestern.mobiletoolbox.serialization.flanker.FlankerForm
+import edu.northwestern.mobiletoolbox.serialization.flanker.FlankerInstructionForm
+import edu.northwestern.mobiletoolbox.serialization.flanker.FlankerInstructionStep
+import edu.northwestern.mobiletoolbox.serialization.flanker.FlankerOverviewStep
+import edu.northwestern.mobiletoolbox.serialization.mfs.MFSAssessmentObject
+import edu.northwestern.mobiletoolbox.serialization.mfs.MfsForm
+import edu.northwestern.mobiletoolbox.serialization.mfs.MfsOverviewStep
+import edu.northwestern.mobiletoolbox.serialization.number_match.NumberMatchAssessmentObject
+import edu.northwestern.mobiletoolbox.serialization.number_match.NumberMatchForm
+import edu.northwestern.mobiletoolbox.serialization.number_match.NumberMatchInstructionForm
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.json.JsonElement

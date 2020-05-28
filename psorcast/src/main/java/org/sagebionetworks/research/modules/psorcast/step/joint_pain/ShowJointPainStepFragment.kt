@@ -122,10 +122,10 @@ class ShowJointPainStepFragment : ShowUIStepFragmentBase<JointPainStepView, Show
                 buttonParams.rightToRight = iv.id
 
                 // Define the position of the button
-                buttonParams.horizontalBias = coords[horizontalBias]!!/joints.widthScale
+                buttonParams.horizontalBias = (coords[horizontalBias]?:0.toFloat())/joints.widthScale
                 buttonParams.horizontalBias = newHorizontalBias(iv, buttonParams.horizontalBias)
                 buttonParams.horizontalBias = adjustForButtonSize(buttonParams.horizontalBias, iv.measuredWidth.toFloat(), buttonSize)
-                buttonParams.verticalBias = coords[verticalBias]!!/joints.heightScale
+                buttonParams.verticalBias = (coords[verticalBias]?:0.toFloat())/joints.heightScale
                 buttonParams.verticalBias = adjustForButtonSize(buttonParams.verticalBias, iv.measuredHeight.toFloat(), buttonSize)
 
                 // Define button for this joint

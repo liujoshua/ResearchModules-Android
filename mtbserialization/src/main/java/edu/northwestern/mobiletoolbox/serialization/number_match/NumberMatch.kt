@@ -2,17 +2,16 @@
  * Copyright © 2020 Northwestern University. All rights reserved.
  */
 
-package edu.northwestern.mobiletoolbox.mfs
+package edu.northwestern.mobiletoolbox.serialization.number_match
 
-import edu.northwestern.mobiletoolbox.MtbStep
-import edu.northwestern.mobiletoolbox.StringIntChoiceInputField
+import edu.northwestern.mobiletoolbox.serialization.IntIntChoiceInputField
+import edu.northwestern.mobiletoolbox.serialization.MtbStep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.sagebionetworks.assessmentmodel.Assessment
 import org.sagebionetworks.assessmentmodel.AssessmentResult
 import org.sagebionetworks.assessmentmodel.FormStep
-import org.sagebionetworks.assessmentmodel.InstructionStep
 import org.sagebionetworks.assessmentmodel.Node
 import org.sagebionetworks.assessmentmodel.resourcemanagement.FileLoader
 import org.sagebionetworks.assessmentmodel.resourcemanagement.ResourceInfo
@@ -20,16 +19,16 @@ import org.sagebionetworks.assessmentmodel.resourcemanagement.copyResourceInfo
 import org.sagebionetworks.assessmentmodel.serialization.NodeContainerObject
 
 @Serializable
-@SerialName("MFS_pilot_1a")
-data class MFSAssessmentObject(
+@SerialName("Number_Match")
+data class NumberMatchAssessmentObject(
         override val identifier: String = "",
         @SerialName("steps")
         override val children: List<Node>,
-        val sequenceNumbers: List<String?>? = null,
-        val taskOrientation: String = "portrait",
-        val sequenceLetters: List<String?>? = null,
-        //TODO put to the up level MSS if we will not use in json
+        val taskOrientation: String = "landscape",
+        val symbolArray: List<String>,
+        val alertMessages: List<AlertMessages>,
         override val versionString: String? = null,
+        @SerialName("taskTimeLimit")
         override val estimatedMinutes: Int = 0,
         override val resultIdentifier: String? = null
 ) : NodeContainerObject(), Assessment {
@@ -38,7 +37,7 @@ data class MFSAssessmentObject(
             fileLoader: FileLoader,
             resourceInfo: ResourceInfo,
             jsonCoder: Json
-    ): MFSAssessmentObject {
+    ): NumberMatchAssessmentObject {
         imageInfo?.copyResourceInfo(resourceInfo)
         val copyChildren = children.map { it.unpack(fileLoader, resourceInfo, jsonCoder) }
         val copy = copy(children = copyChildren)
@@ -47,20 +46,32 @@ data class MFSAssessmentObject(
     }
 }
 
-@Serializable
-@SerialName("mfsOverview")
-data class MfsOverviewStep(
-        override val identifier: String,
-        override val fullInstructionsOnly: Boolean = false
-) : MtbStep(), InstructionStep
 
 @Serializable
-//TODO change value for types
-data class MfsForm(
+@SerialName("numberMatchForm")
+data class NumberMatchForm(
         override val identifier: String,
         val isPractice: Boolean = false,
+        val prefillSymbols: List<String>? = null,
         @SerialName("inputFields")
-        override val children: List<StringIntChoiceInputField> = listOf(),
-        //this field is not everywhere
-        val sequenceName: String? = null
+        override val children: List<Node> = listOf(),
+        val steps: List<Node> = listOf()
 ) : MtbStep(), FormStep
+
+@Serializable
+@SerialName("numberMatchInstructionForm")
+data class NumberMatchInstructionForm(
+        override val identifier: String,
+        @SerialName("inputFields")
+        override val children: List<IntIntChoiceInputField> = listOf(),
+        val symbol: String? = null
+) : MtbStep(), FormStep
+
+@Serializable
+data class AlertMessages(
+        val type: String,
+        val title: String,
+        val message: String
+)
+
+

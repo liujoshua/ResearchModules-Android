@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Northwestern University. All rights reserved.
+  -->
+
+<resources>
+    <dimen name="instruction_top_padding">60dp</dimen>
+    <dimen name="instruction_side_margin">120dp</dimen>
+    <dimen name="close_button_margin">16dp</dimen>
+
+
+
+    <dimen name="text_size_lg">24sp</dimen>
+</resources>

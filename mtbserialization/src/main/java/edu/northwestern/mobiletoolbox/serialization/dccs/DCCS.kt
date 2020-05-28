@@ -2,10 +2,10 @@
  * Copyright © 2020 Northwestern University. All rights reserved.
  */
 
-package edu.northwestern.mobiletoolbox.dccs
+package edu.northwestern.mobiletoolbox.serialization.dccs
 
-import edu.northwestern.mobiletoolbox.IntIntChoiceInputField
-import edu.northwestern.mobiletoolbox.MtbStep
+import edu.northwestern.mobiletoolbox.serialization.IntIntChoiceInputField
+import edu.northwestern.mobiletoolbox.serialization.MtbStep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json

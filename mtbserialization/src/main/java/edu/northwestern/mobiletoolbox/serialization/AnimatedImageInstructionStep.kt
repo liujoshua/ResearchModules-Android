@@ -2,7 +2,7 @@
  * Copyright © 2020 Northwestern University. All rights reserved.
  */
 
-package edu.northwestern.mobiletoolbox
+package edu.northwestern.mobiletoolbox.serialization
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
