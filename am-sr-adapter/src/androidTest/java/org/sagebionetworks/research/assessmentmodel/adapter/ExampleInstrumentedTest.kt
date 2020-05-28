@@ -30,23 +30,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
+package org.sagebionetworks.research.assessmentmodel.adapter
 
-import org.sagebionetworks.research.assessmentmodel.adapter.inject.WrappedAssessmentStepModule;
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
 
-import dagger.Module;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
+import org.junit.Test
+import org.junit.runner.RunWith
 
-@Module(includes = {
-        FlankerInstructionFormStepModule.class,
-        FlankerInstructionStepModule.class,
-        FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class,
-        WrappedAssessmentStepModule.class
-})
-public class FlankerStepConfigurationModule {
+import org.junit.Assert.*
 
+/**
+ * Instrumented test, which will execute on an Android device.
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+@RunWith(AndroidJUnit4::class)
+class ExampleInstrumentedTest {
+
+    @Test
+    fun useAppContext() {
+        // Context of the app under test.
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals("org.sagebionetworks.research.assessmentmodel.adapter.test", appContext.packageName)
+    }
 }

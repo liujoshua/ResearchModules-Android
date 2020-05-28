@@ -10,12 +10,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/am-sr-adapter" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/flanker" />
             <option value="$PROJECT_DIR$/flanker-test-app" />
             <option value="$PROJECT_DIR$/motor-control" />
             <option value="$PROJECT_DIR$/motor-control-test-app" />
             <option value="$PROJECT_DIR$/mss-mobile-toolkit" />
+            <option value="$PROJECT_DIR$/mtb-am-serialization" />
             <option value="$PROJECT_DIR$/psorcast" />
             <option value="$PROJECT_DIR$/psorcast-test-app" />
           </set>

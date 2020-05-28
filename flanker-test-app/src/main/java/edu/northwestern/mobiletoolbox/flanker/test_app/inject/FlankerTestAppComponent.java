@@ -3,7 +3,7 @@ package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
 
 import android.app.Application;
 
-import org.sagebionetworks.research.data.inject.DataModule;
+import org.sagebionetworks.research.assessmentmodel.adapter.inject.AssessmentModelDataModule;
 import org.sagebionetworks.research.domain.inject.AsyncActionModule;
 import org.sagebionetworks.research.domain.inject.InputFieldsModule;
 import org.sagebionetworks.research.domain.inject.TaskModule;
@@ -17,7 +17,7 @@ import edu.northwestern.mobiletoolbox.flanker.test_app.FlankerTestApplication;
 
 @Component(modules = {PerformTaskModule.class, TaskModule.class, AndroidSupportInjectionModule.class,
         InputFieldsModule.class, AsyncActionModule.class, FlankerTestAppModule.class,
-        FlankerStepConfigurationModule.class, DataModule.class})
+        FlankerStepConfigurationModule.class, AssessmentModelDataModule.class})
 public interface FlankerTestAppComponent extends AndroidInjector<FlankerTestApplication> {
     @Component.Builder
     interface Builder {

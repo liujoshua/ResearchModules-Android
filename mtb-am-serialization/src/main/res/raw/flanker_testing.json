@@ -1,0 +1,109 @@
+{
+    "comments" : "timeout is defined in miliseconds;",
+    "identifier" : "Flanker Inhibitory Control",
+    "type" : "Flanker",
+    "taskOrientation" : "landscape",
+    "hideActions" : ["goBackward"],
+    "defaultSteps": { "numberOfSteps" : 50, "startingStepGroup": "setA"},
+    "stepRules" : [
+        {
+            "description": "If last administered step was between A01 and A50 than live steps would be B01 - B50",
+            "nextStepName": "firstLiveStep",
+            "stepGroup" : "setB",
+            "criteria":[
+                {
+                    "name": "lastStepIdentifierInSetA",
+                    "description": "If last administered step was in set A"
+                }
+            ]
+        },
+        {
+            "description": "If last administered step was between B01 and B50 than live steps would be A01 - A50",
+            "nextStepName": "firstLiveStep",
+            "stepGroup": "setA",
+            "criteria":[
+                {
+                    "name": "lastStepIdentifierInSetB",
+                    "description": "If last administered step was in set B"
+                }
+            ]
+        }
+        
+    ],
+    "steps" : [
+        {
+            "identifier" : "T_1I",
+            "htmlText" : "<font face=\"Lato-Regular\" size=\"5\" color=\"#ffffff\"><center><b>Now let's try some.</b></br>Work as fast as you can without making mistakes. Keep your eyes on the star.</center></font>",
+            "type" : "flankerInstruction",
+            "stepName": "timedInstruction",
+            "actions"        : { "goForward": { "type":"default", "buttonTitle": "Next" }},
+            "shouldHideActions" : ["goBackward"],
+            "viewTheme"      : { "viewIdentifier":"FlankerTransition", "storyboardIdentifier":"Flanker" },
+            "nextStepIdentifier": "P_1",
+            "timeout": 2500
+        },
+        {
+            "identifier" : "T_1L",
+            "type" : "flankerInstruction",
+            "title" : "Now let's try some!",
+            "htmlText": "<font face=\"Lato-Regular\" size=\"5\"><center>Tap <b>Repeat</b> if you want to repeat the instructions for this activity. Otherwise, tap <b>Next</b> to start the activity.</br></br>Work as fast as you can without making mistakes.</center></font>",
+            "actions"        : { "goForward": { "type":"default", "buttonTitle": "Next" }, "goBackward": { "type":"default", "buttonTitle": "Repeat" }},
+            "viewTheme"      : { "viewIdentifier":"FlankerAdditionalInstructions", "storyboardIdentifier":"Flanker" },
+            "stepName":"repeatInstruction",
+            "stepBackTo": "firstInstruction",
+            "inputFields" : [
+                {
+                    "identifier" : "T_1L",
+                    "type" : "singleChoice",
+                    "choices" : [
+                        {
+                            "itemResponseOID" : "E3BF01F4-1BBD-4A96-9E95-75C04A0F0D92",
+                            "text" : "Repeat",
+                            "value" : 1
+                        },
+                        {
+                            "itemResponseOID" : "319DADAE-AAB0-4464-B2D8-A14E131DB116",
+                            "text" : "Next",
+                            "value" : 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "identifier" : "T_2L",
+            "htmlText" : "<font face=\"Lato-Regular\" size=\"5\" color=\"#ffffff\"><center>Remember to tap the button pointing the same direction as the center arrow. Keep your eyes on the star.</center></font>",
+            "type" : "flankerInstruction",
+            "stepName": "timedInstruction",
+            "actions"        : { "goForward": { "type":"default", "buttonTitle": "Next" }},
+            "shouldHideActions" : ["goBackward"],
+            "viewTheme"      : { "viewIdentifier":"FlankerTransition", "storyboardIdentifier":"Flanker" },
+            "timeout": 2500,
+            "branchingNavigationRules" : [
+                {
+                    "description": "If last administration was more than a day ago than administer P.1",
+                    "nextStepName": "firstPracticeInstruction",
+                    "criteria":[
+                        {
+                            "name": "lastAdministrationGreaterThanDays",
+                            "description": "If last administration was more than 1 day",
+                            "duration":1
+                        }
+                    ]
+                },
+                {
+                    "description": "If last administration was within a day and go to live step",
+                    "nextStepName": "firstLiveStep",
+                    "criteria":[
+                        {
+                            "name": "lastAdministrationLessThanEqualToDays",
+                            "description": "If last administration was within a day",
+                            "duration":1
+                        }
+                    ]
+                }
+            ]
+
+        }
+         ]
+}

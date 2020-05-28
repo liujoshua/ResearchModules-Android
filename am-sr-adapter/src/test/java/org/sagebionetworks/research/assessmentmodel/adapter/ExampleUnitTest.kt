@@ -30,23 +30,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
+package org.sagebionetworks.research.assessmentmodel.adapter
 
-import org.sagebionetworks.research.assessmentmodel.adapter.inject.WrappedAssessmentStepModule;
+import org.junit.Test
 
-import dagger.Module;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
+import org.junit.Assert.*
 
-@Module(includes = {
-        FlankerInstructionFormStepModule.class,
-        FlankerInstructionStepModule.class,
-        FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class,
-        WrappedAssessmentStepModule.class
-})
-public class FlankerStepConfigurationModule {
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+class ExampleUnitTest {
 
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, 2 + 2)
+    }
 }

@@ -30,23 +30,57 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
+package org.sagebionetworks.research.assessmentmodel.adapter
 
-import org.sagebionetworks.research.assessmentmodel.adapter.inject.WrappedAssessmentStepModule;
+import com.google.common.collect.ImmutableSet
+import org.sagebionetworks.research.domain.async.AsyncActionConfiguration
+import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
+import org.sagebionetworks.research.presentation.model.interfaces.StepView
+import org.sagebionetworks.assessmentmodel.Step as AMStep
+import org.sagebionetworks.research.domain.step.interfaces.Step as SRStep
 
-import dagger.Module;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
+class WrappedAssessmentStep(val amStep: AMStep) : SRStep {
+    companion object {
+        fun provideInternalStepViewFactory(): InternalStepViewFactory {
 
-@Module(includes = {
-        FlankerInstructionFormStepModule.class,
-        FlankerInstructionStepModule.class,
-        FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class,
-        WrappedAssessmentStepModule.class
-})
-public class FlankerStepConfigurationModule {
+            return InternalStepViewFactory { step, _ ->
+                WrappedAssessmentStepView(step as WrappedAssessmentStep)
+            }
+        }
+
+        const val TYPE = "org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep"
+    }
+
+    override fun getIdentifier(): String {
+        return amStep.identifier
+    }
+
+    override fun getType(): String {
+        return TYPE
+    }
+
+    override fun getAsyncActions(): ImmutableSet<AsyncActionConfiguration> {
+        // TODO implement if needed
+        return ImmutableSet.of()
+    }
+
+    override fun copyWithIdentifier(identifier: String): SRStep {
+        TODO("Not yet implemented")
+    }
+
+    fun getAssessmentModelStep(): AMStep {
+        return amStep
+    }
+
+    class WrappedAssessmentStepView(val assessmentStep: WrappedAssessmentStep) : StepView {
+        override fun getIdentifier(): String {
+            return assessmentStep.identifier
+        }
+
+        override fun getType(): String {
+            return assessmentStep.type
+        }
+    }
 
 }
+

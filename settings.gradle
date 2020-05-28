@@ -4,3 +4,5 @@ include ':mss-mobile-toolkit', ':flanker-test-app'
 
 // includeBuild ('../SageResearch-Android')
 include ':flanker'
+include ':am-sr-adapter'
+include ':mtb-am-serialization'

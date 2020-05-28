@@ -29,24 +29,40 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package org.sagebionetworks.research.assessmentmodel.adapter.inject
 
-package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import edu.northwestern.mobiletoolbox.serialization.MtbSerialization
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
+import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory
+import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory.AssessmentConfig
+import org.sagebionetworks.research.assessmentmodel.adapter.R
+import org.sagebionetworks.research.domain.repository.TaskRepository
 
-import org.sagebionetworks.research.assessmentmodel.adapter.inject.WrappedAssessmentStepModule;
+@Module
+class AssessmentModelDataModule {
 
-import dagger.Module;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
+    @Provides
+    fun provideAssessmentConfigs(): Map<String, AssessmentConfig> {
+        return mapOf(
+                "flanker_inhibitory_control" to AssessmentConfig("Flanker - Blue", "flanker_inhibitory_control",
+                        "edu.northwestern.mobiletoolbox", R.style.BlueberryTheme)
+        )
+    }
 
-@Module(includes = {
-        FlankerInstructionFormStepModule.class,
-        FlankerInstructionStepModule.class,
-        FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class,
-        WrappedAssessmentStepModule.class
-})
-public class FlankerStepConfigurationModule {
+    @Provides
+    fun provideJsonLoader(): Json {
+        return Json(context = MtbSerialization.SerializersModule.default,
+                configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true))
+    }
 
+    @Provides
+    fun provideTaskRepository(context: Context, json: Json,
+            assessmentConfigs: Map<String, AssessmentConfig>): TaskRepository {
+
+        return AssessmentModelTaskFactory(context, json, assessmentConfigs)
+    }
 }

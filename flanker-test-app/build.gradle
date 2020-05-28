@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "edu.northwestern.mobiletoolbox.flanker.test_app"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -37,12 +37,18 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':flanker')
+    implementation project(':am-sr-adapter')
+    implementation project(':mtb-am-serialization')
 
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
     implementation "org.sagebionetworks.research:domain:$sage_research_version"
@@ -52,6 +58,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
