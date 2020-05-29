@@ -42,7 +42,7 @@ import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskF
 import org.sagebionetworks.research.assessmentmodel.adapter.R
 import org.sagebionetworks.research.domain.repository.TaskRepository
 
-@Module
+@Module(includes = [WrappedAssessmentStepModule::class])
 class AssessmentModelDataModule {
 
     @Provides

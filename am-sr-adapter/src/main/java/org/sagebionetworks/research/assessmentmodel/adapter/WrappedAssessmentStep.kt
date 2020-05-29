@@ -80,7 +80,10 @@ class WrappedAssessmentStep(val amStep: AMStep) : SRStep {
         override fun getType(): String {
             return assessmentStep.type
         }
-    }
 
+        fun getAssessmentModelStep(): AMStep {
+            return assessmentStep.amStep
+        }
+    }
 }
 

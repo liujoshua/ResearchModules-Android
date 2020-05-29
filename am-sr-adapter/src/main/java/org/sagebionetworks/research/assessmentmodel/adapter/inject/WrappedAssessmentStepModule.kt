@@ -41,6 +41,7 @@ import org.sagebionetworks.assessmentmodel.presentation.InstructionStepFragment
 import org.sagebionetworks.assessmentmodel.presentation.TextQuestionStepFragment
 import org.sagebionetworks.assessmentmodel.survey.SimpleQuestion
 import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep
+import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep.WrappedAssessmentStepView
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
 import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
@@ -69,7 +70,7 @@ class WrappedAssessmentStepModule {
     @StepViewKey(WrappedAssessmentStep.TYPE)
     fun provideShowInstructionStepFragmentFactory(): ShowStepFragmentFactory {
         return ShowStepFragmentFactory {
-            when ((it as WrappedAssessmentStep).amStep) {
+            when ((it as WrappedAssessmentStepView).getAssessmentModelStep()) {
                 is SimpleQuestion -> TextQuestionStepFragment()
                 is InstructionStep -> InstructionStepFragment()
                 else -> DebugStepFragment()

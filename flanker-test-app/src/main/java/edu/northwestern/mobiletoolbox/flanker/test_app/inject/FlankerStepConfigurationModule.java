@@ -32,8 +32,6 @@
 
 package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
 
-import org.sagebionetworks.research.assessmentmodel.adapter.inject.WrappedAssessmentStepModule;
-
 import dagger.Module;
 import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
 import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
@@ -44,8 +42,7 @@ import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
         FlankerInstructionFormStepModule.class,
         FlankerInstructionStepModule.class,
         FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class,
-        WrappedAssessmentStepModule.class
+        FlankerFormStepModule.class
 })
 public class FlankerStepConfigurationModule {
 
