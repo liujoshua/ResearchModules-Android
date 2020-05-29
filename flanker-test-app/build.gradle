@@ -49,6 +49,8 @@ dependencies {
     implementation project(':flanker')
     implementation project(':am-sr-adapter')
     implementation project(':mtb-am-serialization')
+    // needed for Dagger to find?
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0") // JVM dependency
 
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
     implementation "org.sagebionetworks.research:domain:$sage_research_version"

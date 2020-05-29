@@ -61,6 +61,9 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 
+    testAnnotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    testAnnotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
     // Logging
     implementation 'org.slf4j:slf4j-api:1.7.21'
     implementation 'com.github.tony19:logback-android-core:1.1.1-6'

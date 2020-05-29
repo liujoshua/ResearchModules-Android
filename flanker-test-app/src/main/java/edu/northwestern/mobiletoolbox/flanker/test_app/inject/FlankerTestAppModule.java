@@ -15,6 +15,7 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoSet;
 import edu.northwestern.mobiletoolbox.flanker.inject.FlankerShowStepFragmentModule;
+import edu.northwestern.mobiletoolbox.flanker.test_app.ContainerActivity;
 import edu.northwestern.mobiletoolbox.flanker.test_app.MainActivity;
 import io.reactivex.Single;
 
@@ -24,6 +25,9 @@ public abstract class FlankerTestAppModule {
 
     @ContributesAndroidInjector
     abstract MainActivity contributeMainActivityInjector();
+
+    @ContributesAndroidInjector
+    abstract ContainerActivity contributeContainerActivityInjector();
 
     @ContributesAndroidInjector
     abstract PerformTaskActivity contributePerformTaskActivityInjector();
