@@ -32,7 +32,7 @@
             "identifier": "MFS.P1.a",
             "title": "H-3",
             "text":"Tap the letters you saw in alphabetical order, then tap the numbers you saw from smallest to largest.",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -72,7 +72,7 @@
             "identifier": "MFS.P2.a",
             "title": "J-8-D",
             "text" : "Tap the letters you saw in alphabetical order, then tap the numbers you saw from smallest to largest.",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -124,7 +124,7 @@
             "identifier": "MFS.3.1.a",
             "sequenceName" : "MFS.3",
             "title": "6-F-8",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -168,7 +168,7 @@
             "identifier": "MFS.3.2.a",
             "sequenceName" : "MFS.3",
             "title": "4-F-2",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -212,7 +212,7 @@
             "identifier": "MFS.3.3.a",
             "sequenceName" : "MFS.3",
             "title": "9-G-1",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -256,7 +256,7 @@
             "identifier": "MFS.4.1.a",
             "sequenceName" : "MFS.4",
             "title": "1-B-6-J",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -300,7 +300,7 @@
             "identifier": "MFS.4.2.a",
             "sequenceName" : "MFS.4",
             "title": "5-A-8-B",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -344,7 +344,7 @@
             "identifier": "MFS.4.3.a",
             "sequenceName" : "MFS.4",
             "title": "4-E-2-H",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -388,7 +388,7 @@
             "identifier": "MFS.5.1.a",
             "sequenceName" : "MFS.5",
             "title": "C-6-D-1-B",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -432,7 +432,7 @@
             "identifier": "MFS.5.2.a",
             "sequenceName" : "MFS.5",
             "title": "A-9-F-4-H",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -476,7 +476,7 @@
             "identifier": "MFS.5.3.a",
             "sequenceName" : "MFS.5",
             "title": "G-6-D-4-C",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -520,7 +520,7 @@
             "identifier": "MFS.6.1.a",
             "sequenceName" : "MFS.6",
             "title": "J-2-H-9-E-1",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -564,7 +564,7 @@
             "identifier": "MFS.6.2.a",
             "sequenceName" : "MFS.6",
             "title": "A-4-E-7-C-6",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -608,7 +608,7 @@
             "identifier": "MFS.6.3.a",
             "sequenceName" : "MFS.6",
             "title": "H-8-J-1-G-7",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -652,7 +652,7 @@
             "identifier": "MFS.7.1.a",
             "sequenceName" : "MFS.7",
             "title": "1-A-7-C-9-H-8",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -696,7 +696,7 @@
             "identifier": "MFS.7.2.a",
             "sequenceName" : "MFS.7",
             "title": "8-F-5-G-1-C-2",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -740,7 +740,7 @@
             "identifier": "MFS.7.3.a",
             "sequenceName" : "MFS.7",
             "title": "3-A-6-B-8-H-7",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -784,7 +784,7 @@
             "identifier": "MFS.8.1.a",
             "sequenceName" : "MFS.8",
             "title": "E-2-G-1-C-4-H-8",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -828,7 +828,7 @@
             "identifier": "MFS.8.2.a",
             "sequenceName" : "MFS.8",
             "title": "J-6-A-5-G-9-C-1",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -872,7 +872,7 @@
             "identifier": "MFS.8.3.a",
             "sequenceName" : "MFS.8",
             "title": "F-3-D-4-E-1-A-2",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -916,7 +916,7 @@
             "identifier": "MFS.9.1.a",
             "sequenceName" : "MFS.9",
             "title": "E-2-A-3-F-5-D-1-B",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -960,7 +960,7 @@
             "identifier": "MFS.9.2.a",
             "sequenceName" : "MFS.9",
             "title": "H-6-G-7-C-5-E-4-A",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -1004,7 +1004,7 @@
             "identifier": "MFS.9.3.a",
             "sequenceName" : "MFS.9",
             "title": "A-1-D-7-C-2-B-3-F",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -1048,7 +1048,7 @@
             "identifier": "MFS.10.1.a",
             "sequenceName" : "MFS.10",
             "title": "2-B-6-C-7-H-9-E-1-A",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -1092,7 +1092,7 @@
             "identifier": "MFS.10.2.a",
             "sequenceName" : "MFS.10",
             "title": "9-E-7-A-8-C-6-B-5-D",
-            "type": "form",
+            "type": "mfsForm",
             "inputFields": [
                 {
                     "choices": [
@@ -1136,7 +1136,7 @@
             "identifier": "MFS.10.3.a",
             "sequenceName" : "MFS.10",
             "title": "4-F-3-C-1-D-6-A-9-B",
-            "type": "form",
+            "type": "mfsForm",
             "timeout" :15000,
             "inputFields": [
                 {

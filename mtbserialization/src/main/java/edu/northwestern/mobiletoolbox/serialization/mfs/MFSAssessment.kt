@@ -4,6 +4,7 @@
 
 package edu.northwestern.mobiletoolbox.serialization.mfs
 
+import edu.northwestern.mobiletoolbox.serialization.MtbNodeObject
 import edu.northwestern.mobiletoolbox.serialization.MtbStep
 import edu.northwestern.mobiletoolbox.serialization.StringIntChoiceInputField
 import kotlinx.serialization.SerialName
@@ -14,10 +15,12 @@ import org.sagebionetworks.assessmentmodel.AssessmentResult
 import org.sagebionetworks.assessmentmodel.FormStep
 import org.sagebionetworks.assessmentmodel.InstructionStep
 import org.sagebionetworks.assessmentmodel.Node
+import org.sagebionetworks.assessmentmodel.NodeContainer
 import org.sagebionetworks.assessmentmodel.resourcemanagement.FileLoader
 import org.sagebionetworks.assessmentmodel.resourcemanagement.ResourceInfo
 import org.sagebionetworks.assessmentmodel.resourcemanagement.copyResourceInfo
 import org.sagebionetworks.assessmentmodel.serialization.NodeContainerObject
+
 
 @Serializable
 @SerialName("MFS_pilot_1a")
@@ -32,7 +35,11 @@ data class MFSAssessmentObject(
         override val versionString: String? = null,
         override val estimatedMinutes: Int = 0,
         override val resultIdentifier: String? = null
-) : NodeContainerObject(), Assessment {
+) : MtbNodeObject(), NodeContainer, Assessment {
+    override val progressMarkers: kotlin.collections.List<kotlin.String>?
+        get() = null
+    override val imageInfo: org.sagebionetworks.assessmentmodel.ImageInfo?
+        get() = null
     override fun createResult(): AssessmentResult = super<Assessment>.createResult()
     override fun unpack(
             fileLoader: FileLoader,
@@ -55,12 +62,11 @@ data class MfsOverviewStep(
 ) : MtbStep(), InstructionStep
 
 @Serializable
-//TODO change value for types
+@SerialName("mfsForm")
 data class MfsForm(
         override val identifier: String,
         val isPractice: Boolean = false,
         @SerialName("inputFields")
         override val children: List<StringIntChoiceInputField> = listOf(),
-        //this field is not everywhere
         val sequenceName: String? = null
 ) : MtbStep(), FormStep
