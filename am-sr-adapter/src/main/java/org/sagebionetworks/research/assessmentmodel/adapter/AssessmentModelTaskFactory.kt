@@ -37,13 +37,14 @@ import android.content.res.Resources.NotFoundException
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
-import edu.northwestern.mobiletoolbox.serialization.mfs.MFSAssessmentObject
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import kotlinx.serialization.json.Json
+import org.sagebionetworks.assessmentmodel.Assessment
 import org.sagebionetworks.assessmentmodel.AssessmentProvider
 import org.sagebionetworks.assessmentmodel.Node
+import org.sagebionetworks.assessmentmodel.NodeContainer
 import org.sagebionetworks.assessmentmodel.serialization.AssessmentGroupInfoObject
 import org.sagebionetworks.assessmentmodel.serialization.FileAssessmentProvider
 import org.sagebionetworks.assessmentmodel.serialization.FileLoaderAndroid
@@ -57,7 +58,7 @@ import org.sagebionetworks.research.domain.task.Task
 import org.sagebionetworks.research.domain.task.TaskInfoView
 import org.threeten.bp.Duration
 import java.util.UUID
-import  org.sagebionetworks.assessmentmodel.Step as SRStep
+import org.sagebionetworks.assessmentmodel.Step as SRStep
 
 class AssessmentModelTaskFactory(val context: Context, val json: Json,
         val assessmentConfigs: Map<String, AssessmentConfig>) :
@@ -131,10 +132,11 @@ class AssessmentModelTaskFactory(val context: Context, val json: Json,
 
     override fun getTask(taskIdentifier: String): Single<Task> {
         val assessment = getAssessmentProvider(taskIdentifier).loadAssessment(taskIdentifier)
-        if (assessment is MFSAssessmentObject) {
-            return Single.just(map(assessment))
+        if (assessment is NodeContainer) {
+            return Single.just(map(assessment, assessment))
         }
-        return Single.error(IllegalStateException("Expecting Assessment to deserialize to an MFSAssessmentObject"))
+        return Single.error(IllegalStateException(
+                "Expecting Assessment to deserialize to an object that implements NodeContainer"))
     }
 
     override fun setTaskResult(taskResult: TaskResult?): Completable {
@@ -144,8 +146,8 @@ class AssessmentModelTaskFactory(val context: Context, val json: Json,
         return Completable.complete()
     }
 
-    fun map(assessment: MFSAssessmentObject): Task {
-        val steps = assessment.children.map { map(it) }
+    fun map(assessment: Assessment, nodeContainer: NodeContainer): Task {
+        val steps = nodeContainer.children.map { map(it) }
 
         return object : Task {
             override fun getIdentifier(): String {
@@ -177,10 +179,10 @@ class AssessmentModelTaskFactory(val context: Context, val json: Json,
             }
 
             override fun getProgressMarkers(): ImmutableList<String> {
-                return if (assessment.progressMarkers == null) {
+                return if (nodeContainer.progressMarkers == null) {
                     ImmutableList.of()
                 } else {
-                    ImmutableList.copyOf(assessment.progressMarkers!!)
+                    ImmutableList.copyOf(nodeContainer.progressMarkers!!)
                 }
             }
         }

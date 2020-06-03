@@ -73,12 +73,12 @@ class ContainerActivity : DaggerAppCompatActivity() {
 
 
         addAssessment("Flanker - Blue", "flanker_inhibitory_control", "flanker_inhibitory_control",
-                "edu.northwestern.mobiletoolbox", R.style.BlueberryTheme)
-        addAssessment("MFS", "mfs_pilot_1a", "mfs_pilot_1a", "edu.northwestern.mobiletoolbox", R.style.BlueberryTheme)
-        addAssessment("Number Match", "number_match", "number_match", "edu.northwestern.mobiletoolbox",
+                "edu.northwestern.mobiletoolbox.flanker.test_app", R.style.BlueberryTheme)
+        addAssessment("MFS", "mfs_pilot_1a", "mfs_pilot_1a", "edu.northwestern.mobiletoolbox.flanker.test_app", R.style.BlueberryTheme)
+        addAssessment("Number Match", "number_match", "number_match", "edu.northwestern.mobiletoolbox.flanker.test_app",
                 R.style.BlueberryTheme)
         addAssessment("DCCS", "dimensional_change_card_sort", "dimensional_change_card_sort",
-                "edu.northwestern.mobiletoolbox", R.style.BlueberryTheme)
+                "edu.northwestern.mobiletoolbox.flanker.test_app", R.style.BlueberryTheme)
     }
 
     private fun addAssessment(title: String, assessmentId: String, resourceName: String, packageName: String,

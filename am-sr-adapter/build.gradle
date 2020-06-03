@@ -33,6 +33,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: "org.jetbrains.kotlin.plugin.serialization"
 
 android {
@@ -55,7 +56,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -64,7 +64,14 @@ dependencies {
 
     implementation project(':mtb-am-serialization')
 
-    implementation 'org.sagebionetworks.assessmentmodel:presentation:0.2.0'
+    // Dagger
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+//    kaptTest "com.google.dagger:dagger-compiler:$dagger_version"
+
+//    implementation 'org.sagebionetworks.assessmentmodel:presentation:0.2.0'
     implementation("org.sagebionetworks.assessmentmodel:assessmentModel-androidlib-debug:0.2.0")
 
     implementation "org.sagebionetworks.research:domain:$sage_research_version"

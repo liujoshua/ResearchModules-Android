@@ -30,20 +30,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package edu.northwestern.mobiletoolbox.flanker.test_app.inject;
+package edu.northwestern.mobiletoolbox.flanker.test_app
 
-import dagger.Module;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule;
-import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule;
+import org.sagebionetworks.research.domain.task.Task
+import org.sagebionetworks.research.domain.task.navigation.StepNavigator
+import org.sagebionetworks.research.domain.task.navigation.StepNavigatorFactory
+import org.sagebionetworks.research.domain.task.navigation.strategy.StrategyBasedNavigator
 
-@Module(includes = {
-        FlankerInstructionFormStepModule.class,
-        FlankerInstructionStepModule.class,
-        FlankerOverviewStepModule.class,
-        FlankerFormStepModule.class
-})
-public class FlankerStepConfigurationModule {
+class FlankerNavigator(val task: Task, val progressMarkers: List<String>) :
+        StrategyBasedNavigator(task, progressMarkers) {
 
+    class Factory : StepNavigatorFactory {
+        override fun create(task: Task,
+                progressMarkers: List<String>): StepNavigator {
+            return FlankerNavigator(task, progressMarkers)
+        }
+    }
 }

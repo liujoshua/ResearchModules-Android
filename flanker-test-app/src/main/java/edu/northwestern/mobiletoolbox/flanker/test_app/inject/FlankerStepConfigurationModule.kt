@@ -29,31 +29,40 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.sagebionetworks.research.assessmentmodel.adapter.inject
+package edu.northwestern.mobiletoolbox.flanker.test_app.inject
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
-import edu.northwestern.mobiletoolbox.serialization.MtbSerialization
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
-import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory
-import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory.AssessmentConfig
-import org.sagebionetworks.research.domain.repository.TaskRepository
+import dagger.multibindings.IntoMap
+import edu.northwestern.mobiletoolbox.flanker.inject.FlankerFormStepModule
+import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionFormStepModule
+import edu.northwestern.mobiletoolbox.flanker.inject.FlankerInstructionStepModule
+import edu.northwestern.mobiletoolbox.flanker.inject.FlankerOverviewStepModule
+import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep
+import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep.WrappedAssessmentStepView
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
+import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
+import org.sagebionetworks.research.mobile_ui.show_step.view.ShowUIStepFragment
+import org.sagebionetworks.research.modules.common.step.instruction.InstructionStep
+import org.sagebionetworks.research.modules.common.step.instruction.ShowInstructionStepFragment
 
-@Module(includes = [WrappedAssessmentStepModule::class])
-class AssessmentModelDataModule {
+/**
+ * Provides
+ */
+@Module(
+        includes = [FlankerInstructionFormStepModule::class, FlankerInstructionStepModule::class, FlankerOverviewStepModule::class, FlankerFormStepModule::class])
+class FlankerStepConfigurationModule {
 
     @Provides
-    fun provideJsonLoader(): Json {
-        return Json(context = MtbSerialization.SerializersModule.default,
-                configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true))
-    }
-
-    @Provides
-    fun provideTaskRepository(context: Context, json: Json,
-            assessmentConfigs: Map<String, AssessmentConfig>): TaskRepository {
-
-        return AssessmentModelTaskFactory(context, json, assessmentConfigs)
+    @IntoMap
+    @StepViewKey(WrappedAssessmentStep.TYPE)
+    fun provideWrappedAssessmentStepFragmentFactory(): ShowStepFragmentFactory {
+        return ShowStepModule.ShowStepFragmentFactory {
+            when ((it as WrappedAssessmentStepView).getAssessmentModelStep()) {
+                is InstructionStep -> ShowInstructionStepFragment()
+                else -> ShowUIStepFragment()
+            }
+        }
     }
 }

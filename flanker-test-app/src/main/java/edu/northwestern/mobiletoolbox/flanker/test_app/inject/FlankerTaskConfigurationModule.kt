@@ -29,31 +29,22 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.sagebionetworks.research.assessmentmodel.adapter.inject
 
-import android.content.Context
+package edu.northwestern.mobiletoolbox.flanker.test_app.inject
+
 import dagger.Module
 import dagger.Provides
-import edu.northwestern.mobiletoolbox.serialization.MtbSerialization
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
-import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory
+import edu.northwestern.mobiletoolbox.flanker.test_app.R
 import org.sagebionetworks.research.assessmentmodel.adapter.AssessmentModelTaskFactory.AssessmentConfig
-import org.sagebionetworks.research.domain.repository.TaskRepository
 
-@Module(includes = [WrappedAssessmentStepModule::class])
-class AssessmentModelDataModule {
-
-    @Provides
-    fun provideJsonLoader(): Json {
-        return Json(context = MtbSerialization.SerializersModule.default,
-                configuration = JsonConfiguration.Stable.copy(ignoreUnknownKeys = true, isLenient = true))
-    }
+@Module
+class FlankerTaskConfigurationModule {
 
     @Provides
-    fun provideTaskRepository(context: Context, json: Json,
-            assessmentConfigs: Map<String, AssessmentConfig>): TaskRepository {
-
-        return AssessmentModelTaskFactory(context, json, assessmentConfigs)
+    fun provideAssessmentConfigs(): Map<String, AssessmentConfig> {
+        return mapOf(
+                "flanker_inhibitory_control" to AssessmentConfig("Flanker - Blue", "flanker_inhibitory_control",
+                        "edu.northwestern.mobiletoolbox.flanker.test_app", R.style.BlueberryTheme)
+        )
     }
 }

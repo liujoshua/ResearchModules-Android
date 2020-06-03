@@ -35,16 +35,8 @@ package org.sagebionetworks.research.assessmentmodel.adapter.inject
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
-import org.sagebionetworks.assessmentmodel.InstructionStep
-import org.sagebionetworks.assessmentmodel.presentation.DebugStepFragment
-import org.sagebionetworks.assessmentmodel.presentation.InstructionStepFragment
-import org.sagebionetworks.assessmentmodel.presentation.TextQuestionStepFragment
-import org.sagebionetworks.assessmentmodel.survey.SimpleQuestion
 import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep
-import org.sagebionetworks.research.assessmentmodel.adapter.WrappedAssessmentStep.WrappedAssessmentStepView
 import org.sagebionetworks.research.domain.inject.StepModule.StepClassKey
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.ShowStepFragmentFactory
-import org.sagebionetworks.research.mobile_ui.inject.ShowStepModule.StepViewKey
 import org.sagebionetworks.research.presentation.inject.StepViewModule.InternalStepViewFactory
 import org.sagebionetworks.research.presentation.inject.StepViewModule.StepTypeKey
 
@@ -54,27 +46,14 @@ class WrappedAssessmentStepModule {
     @Provides
     @IntoMap
     @StepClassKey(WrappedAssessmentStep::class)
-    fun provideFlankerInstructionStepClassInfo(): String {
+    fun provideWrappedAssessmentStepClassInfo(): String {
         return WrappedAssessmentStep.TYPE
     }
 
     @Provides
     @IntoMap
     @StepTypeKey(WrappedAssessmentStep.TYPE)
-    fun provideInstructionStepViewFactory(): InternalStepViewFactory {
+    fun provideWrappedAssessmentStepViewFactory(): InternalStepViewFactory {
         return WrappedAssessmentStep.provideInternalStepViewFactory()
-    }
-
-    @Provides
-    @IntoMap
-    @StepViewKey(WrappedAssessmentStep.TYPE)
-    fun provideShowInstructionStepFragmentFactory(): ShowStepFragmentFactory {
-        return ShowStepFragmentFactory {
-            when ((it as WrappedAssessmentStepView).getAssessmentModelStep()) {
-                is SimpleQuestion -> TextQuestionStepFragment()
-                is InstructionStep -> InstructionStepFragment()
-                else -> DebugStepFragment()
-            }
-        }
     }
 }
