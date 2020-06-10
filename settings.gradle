@@ -1,8 +1,10 @@
 include ':motor-control-test-app', ':motor-control', ':psorcast', ':psorcast-test-app', ':common',
         ':flanker-test-app', ':assessmentModel'
 
-//includeBuild ('../sage/SageResearch-Android')
-include ':mss-mobile-kit'
+include ':mss-mobile-toolkit', ':flanker-test-app'
+
+// includeBuild ('../SageResearch-Android')
 include ':mss-mobile-ui'
-/*includeBuild ('/AssessmentModel-KotlinNative')*/
-include ':mtbserialization'
+include ':flanker'
+include ':am-sr-adapter'
+include ':mtb-am-serialization'

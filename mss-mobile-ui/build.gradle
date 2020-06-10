@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":mtbserialization"))
+    implementation(project(":mtb-am-serialization"))
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.sagebionetworks.assessmentmodel:presentation:0.2.0'

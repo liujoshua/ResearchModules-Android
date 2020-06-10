@@ -114,12 +114,31 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+    
+    packagingOptions {
+        exclude("META-INF/main.kotlin_module")
+        exclude("META-INF/presentation_release.kotlin_module")
+        pickFirst("META-INF/kotlinx-serialization-runtime.kotlin_module")
+    }
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     api project(':common')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    
+    implementation project(':flanker')
+    implementation project(':am-sr-adapter')
+    implementation 'org.sagebionetworks.assessmentmodel:presentation:0.2.0'
+    implementation project(':mtb-am-serialization')
+
+    // needed for Dagger to find?
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0") // JVM dependency
+
 
     // Sage
     implementation "org.sagebionetworks.research:mobile-ui:$sage_research_version"
