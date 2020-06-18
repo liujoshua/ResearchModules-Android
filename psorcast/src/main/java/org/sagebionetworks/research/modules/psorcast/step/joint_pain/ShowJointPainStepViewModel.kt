@@ -61,7 +61,7 @@ class ShowJointPainStepViewModel(performTaskViewModel: PerformTaskViewModel,
     override fun handleAction(actionType: String?) {
         if(actionType == ActionType.FORWARD) {
             jpResultBuilder.setSelectedJoints(selectedJoints)
-            jpResultBuilder.setJointCount(jointCount.value?:0)
+            jpResultBuilder.setJointCount(jointCount.value!!)
             this.performTaskViewModel.addStepResult(jpResultBuilder.build())
         }
         super.handleAction(actionType)
